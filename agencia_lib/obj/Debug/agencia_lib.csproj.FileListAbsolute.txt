@@ -1,0 +1,6 @@
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\bin\Debug\agencia_lib.dll
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\bin\Debug\agencia_lib.pdb
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.csproj.CoreCompileInputs.cache
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.dll
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.pdb
+C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.csprojAssemblyReference.cache

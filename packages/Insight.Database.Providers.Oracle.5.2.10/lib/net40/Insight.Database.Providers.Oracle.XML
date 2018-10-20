@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Insight.Database.Providers.Oracle</name>
+    </assembly>
+    <members>
+        <member name="T:Insight.Database.Providers.Oracle.OracleArray`1">
+            <summary>
+            Implements an array of Oracle objects.
+            </summary>
+            <typeparam name="T">The type of object contained in the array.</typeparam>
+        </member>
+        <member name="P:Insight.Database.Providers.Oracle.OracleArray`1.Value">
+            <summary>
+            Gets or sets the value of the array.
+            </summary>
+        </member>
+        <member name="P:Insight.Database.Providers.Oracle.OracleArray`1.IsNull">
+            <summary>
+            Gets a value indicating whether this instance is null.
+            </summary>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleArray`1.FromCustomObject(Oracle.DataAccess.Client.OracleConnection,System.IntPtr)">
+            <summary>
+            Creates an internal Oracle structure from the array.
+            </summary>
+            <param name="con">The connection.</param>
+            <param name="pUdt">The internal UDT.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleArray`1.ToCustomObject(Oracle.DataAccess.Client.OracleConnection,System.IntPtr)">
+            <summary>
+            Creates an array from an internal Oracle structure.
+            </summary>
+            <param name="con">The connection.</param>
+            <param name="pUdt">The internal UDT.</param>
+        </member>
+        <member name="T:Insight.Database.Providers.Oracle.OracleArrayFactory`1">
+            <summary>
+            Implements a factory for an Oracle Array.
+            </summary>
+            <typeparam name="T">The type of object contained in the array.</typeparam>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleArrayFactory`1.CreateObject">
+            <summary>
+            Creates an instance of the OracleArray.
+            </summary>
+            <returns>A new instance.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleArrayFactory`1.CreateArray(System.Int32)">
+            <summary>
+            Creates an instance of the OracleArray with the desired number of elements.
+            </summary>
+            <param name="numElems">The number of elements.</param>
+            <returns>A new instance.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleArrayFactory`1.CreateStatusArray(System.Int32)">
+            <summary>
+            Creates a status array for the array, indicating whether elements are null.
+            </summary>
+            <param name="numElems">The number of elements.</param>
+            <returns>A new status arrays.</returns>
+        </member>
+        <member name="T:Insight.Database.Providers.Oracle.OracleCustomType">
+            <summary>
+            Implements an Oracle Custom Type.
+            </summary>
+        </member>
+        <member name="P:Insight.Database.Providers.Oracle.OracleCustomType.IsNull">
+            <summary>
+            Gets a value indicating whether this value is null.
+            </summary>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleCustomType.FromCustomObject(Oracle.DataAccess.Client.OracleConnection,System.IntPtr)">
+            <summary>
+            Creates an internal Oracle structure from the object.
+            </summary>
+            <param name="con">The connection.</param>
+            <param name="pUdt">The internal UDT.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleCustomType.ToCustomObject(Oracle.DataAccess.Client.OracleConnection,System.IntPtr)">
+            <summary>
+            Creates an object from an internal Oracle structure.
+            </summary>
+            <param name="con">The connection.</param>
+            <param name="pUdt">The internal UDT.</param>
+        </member>
+        <member name="T:Insight.Database.Providers.Oracle.OracleInsightDbProvider">
+            <summary>
+            Implements the Insight provider for Oracle ODP.NET connections.
+            </summary>
+        </member>
+        <member name="F:Insight.Database.Providers.Oracle.OracleInsightDbProvider._cursorSql">
+            <summary>
+            Regex used to auto-detect cursors in queries.
+            </summary>
+        </member>
+        <member name="F:Insight.Database.Providers.Oracle.OracleInsightDbProvider._supportedTypes">
+            <summary>
+            The list of types supported by this provider.
+            </summary>
+        </member>
+        <member name="P:Insight.Database.Providers.Oracle.OracleInsightDbProvider.SupportedTypes">
+            <summary>
+            Gets the types of objects that this provider supports.
+            Include connectionstrings, connections, commands, and readers.
+            </summary>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.GetSupportedBulkCopyOptions(System.Data.IDbConnection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.CreateDbConnection">
+            <summary>
+            Creates a new DbConnection supported by this provider.
+            </summary>
+            <returns>A new DbConnection.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.FixupCommand(System.Data.IDbCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.DeriveParametersFromStoredProcedure(System.Data.IDbCommand)">
+            <summary>
+            Derives the parameter list from a stored procedure command.
+            </summary>
+            <param name="command">The command to derive.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.DeriveParametersFromSqlText(System.Data.IDbCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.CloneParameter(System.Data.IDbCommand,System.Data.IDataParameter)">
+            <summary>
+            Clones a parameter so that it can be used with another command.
+            </summary>
+            <param name="command">The command to use.</param>
+            <param name="parameter">The parameter to clone.</param>
+            <returns>The clone.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.IsXmlParameter(System.Data.IDbCommand,System.Data.IDataParameter)">
+            <summary>
+            Determines if a parameter is an XML type parameter.
+            </summary>
+            <param name="command">The related command object.</param>
+            <param name="parameter">The parameter to test.</param>
+            <returns>True if the parameter is an XML parameter.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.GetTableSchemaSql(System.Data.IDbConnection,System.String)">
+            <summary>
+            Returns SQL that queries a table for the schema only, no rows.
+            </summary>
+            <param name="connection">The connection to use.</param>
+            <param name="tableName">The name of the table to query.</param>
+            <returns>SQL that queries a table for the schema only, no rows.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.SetupTableValuedParameter(System.Data.IDbCommand,System.Data.IDataParameter,System.Collections.IEnumerable,System.Type)">
+            <summary>
+            Set up a table-valued parameter to a procedure.
+            </summary>
+            <param name="command">The command to operate on.</param>
+            <param name="parameter">The parameter to set up.</param>
+            <param name="list">The list of records.</param>
+            <param name="listType">The type of object in the list.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.IsXmlColumn(System.Data.DataTable,System.Int32)">
+            <summary>
+            Determines if the given column in the schema table is an XML column.
+            </summary>
+            <param name="schemaTable">The schema table to analyze.</param>
+            <param name="index">The index of the column.</param>
+            <returns>True if the column is an XML column.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.BulkCopy(System.Data.IDbConnection,System.String,System.Data.IDataReader,System.Action{Insight.Database.InsightBulkCopy},Insight.Database.InsightBulkCopyOptions,System.Data.IDbTransaction)">
+            <summary>
+            Bulk copies a set of objects to the server.
+            </summary>
+            <param name="connection">The connection to use.</param>
+            <param name="tableName">The name of the table.</param>
+            <param name="reader">The reader to read objects from.</param>
+            <param name="configure">A callback method to configure the bulk copy object.</param>
+            <param name="options">Options for initializing the bulk copy object.</param>
+            <param name="transaction">An optional transaction to participate in.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleInsightDbProvider.IsTransientException(System.Exception)">
+            <summary>
+            Determines if a database exception is a transient exception and if the operation could be retried.
+            </summary>
+            <param name="exception">The exception to test.</param>
+            <returns>True if the exception is transient.</returns>
+        </member>
+        <member name="T:Insight.Database.Providers.Oracle.OracleObjectFactory`1">
+            <summary>
+            Implements a factory for an Oracle Custom Type.
+            </summary>
+            <typeparam name="T">The type of object.</typeparam>
+        </member>
+        <member name="M:Insight.Database.Providers.Oracle.OracleObjectFactory`1.CreateObject">
+            <summary>
+            Creates a new instance of the object.
+            </summary>
+            <returns>A new instance of the object.</returns>
+        </member>
+    </members>
+</doc>

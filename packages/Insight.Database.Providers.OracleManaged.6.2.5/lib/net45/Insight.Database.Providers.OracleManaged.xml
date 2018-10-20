@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Insight.Database.Providers.OracleManaged</name>
+    </assembly>
+    <members>
+        <member name="T:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider">
+            <summary>
+            Implements the Insight provider for Oracle ODP.NET connections.
+            </summary>
+        </member>
+        <member name="F:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider._cursorSql">
+            <summary>
+            Regex used to auto-detect cursors in queries.
+            </summary>
+        </member>
+        <member name="F:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider._supportedTypes">
+            <summary>
+            The list of types supported by this provider.
+            </summary>
+        </member>
+        <member name="P:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.SupportedTypes">
+            <summary>
+            Gets the types of objects that this provider supports.
+            Include connectionstrings, connections, commands, and readers.
+            </summary>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.RegisterProvider">
+            <summary>
+            Registers the Oracle Provider.
+            </summary>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.CreateDbConnection">
+            <summary>
+            Creates a new DbConnection supported by this provider.
+            </summary>
+            <returns>A new DbConnection.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.FixupCommand(System.Data.IDbCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.DeriveParametersFromStoredProcedure(System.Data.IDbCommand)">
+            <summary>
+            Derives the parameter list from a stored procedure command.
+            </summary>
+            <param name="command">The command to derive.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.DeriveParametersFromSqlText(System.Data.IDbCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.CloneParameter(System.Data.IDbCommand,System.Data.IDataParameter)">
+            <summary>
+            Clones a parameter so that it can be used with another command.
+            </summary>
+            <param name="command">The command to use.</param>
+            <param name="parameter">The parameter to clone.</param>
+            <returns>The clone.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.IsXmlParameter(System.Data.IDbCommand,System.Data.IDataParameter)">
+            <summary>
+            Determines if a parameter is an XML type parameter.
+            </summary>
+            <param name="command">The related command object.</param>
+            <param name="parameter">The parameter to test.</param>
+            <returns>True if the parameter is an XML parameter.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.GetTableSchemaSql(System.Data.IDbConnection,System.String)">
+            <summary>
+            Returns SQL that queries a table for the schema only, no rows.
+            </summary>
+            <param name="connection">The connection to use.</param>
+            <param name="tableName">The name of the table to query.</param>
+            <returns>SQL that queries a table for the schema only, no rows.</returns>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.SetupTableValuedParameter(System.Data.IDbCommand,System.Data.IDataParameter,System.Collections.IEnumerable,System.Type)">
+            <summary>
+            Set up a table-valued parameter to a procedure.
+            </summary>
+            <param name="command">The command to operate on.</param>
+            <param name="parameter">The parameter to set up.</param>
+            <param name="list">The list of records.</param>
+            <param name="listType">The type of object in the list.</param>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.IsXmlColumn(System.Data.IDataReader,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Insight.Database.Providers.OracleManaged.OracleInsightDbProvider.IsTransientException(System.Exception)">
+            <summary>
+            Determines if a database exception is a transient exception and if the operation could be retried.
+            </summary>
+            <param name="exception">The exception to test.</param>
+            <returns>True if the exception is transient.</returns>
+        </member>
+    </members>
+</doc>

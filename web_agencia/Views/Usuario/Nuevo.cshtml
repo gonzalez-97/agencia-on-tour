@@ -1,0 +1,87 @@
+﻿@{ ViewBag.Title = "Nuevo Usuario";}
+@model web_agencia.Models.Views.UsuarioViewModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Agregar Usuario</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    @using (Html.BeginForm("CrearAsync", "Usuario", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Rut</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Rut, new { @class = "form-control"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Nombre Completo</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.Nombre, new { @class="form-control", @placeholder ="Nombre" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.APaterno, new { @class = "form-control", @placeholder = "Apellido paterno" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.AMaterno, new { @class = "form-control", @placeholder = "Apellido materno" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Contraseña</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Correo Electronico</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Correo, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label label-checkbox">Perfiles</label>
+                            <div class="col-sm-10 checkbox-radios">
+                                @foreach (var item in Model.PerfilesDisponibles)
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" name="PerfilesElegidos" type="checkbox" value="@item.Value"> @item.Text
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 ml-auto mr-auto text-center">
+                                <button type="submit" class="btn btn-rose">Registrar<div class="ripple-container"></div></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

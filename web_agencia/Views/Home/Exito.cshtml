@@ -1,0 +1,13 @@
+﻿@model web_agencia.Models.Tarea_Terminada
+@{
+    ViewBag.Title = "Exito";
+}
+
+<h2>@Model.Titulo</h2>
+<p>@Model.Mensaje</p>
+
+<a href="@Url.Action(Model.ActionName, Model.ControllerName)">
+    @Model.LinkTexto
+</a>
+
+
