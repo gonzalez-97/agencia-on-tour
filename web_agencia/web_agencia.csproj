@@ -164,12 +164,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Web.cs" />
+    <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\SessionAuthorizeAttribute.cs" />
@@ -219,6 +221,8 @@
     <Content Include="Content\img\login.jpg" />
     <Content Include="Content\img\mask.png" />
     <Content Include="Content\img\new_logo.png" />
+    <Content Include="Content\img\on-tour-background.jpg" />
+    <Content Include="Content\img\on_tour_icon.png" />
     <Content Include="Content\img\placeholder.jpg" />
     <Content Include="Content\img\product1.jpg" />
     <Content Include="Content\img\product2.jpg" />
@@ -532,6 +536,10 @@
     <Content Include="Views\Actividad\Index.cshtml" />
     <Content Include="Views\Actividad\Nuevo.cshtml" />
     <Content Include="Views\Actividad\Editar.cshtml" />
+    <Content Include="Views\Destino\Index.cshtml" />
+    <Content Include="Views\Destino\Nuevo.cshtml" />
+    <Content Include="Views\Destino\Editar.cshtml" />
+    <Content Include="Scripts\Spanish.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

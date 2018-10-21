@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace agencia_lib
 {
-    public class Destino
+    public class Colegio
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Valor { get; set; }
     }
 }

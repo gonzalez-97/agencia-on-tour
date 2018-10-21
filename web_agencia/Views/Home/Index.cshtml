@@ -1,5 +1,4 @@
 ﻿@{Layout = null;}
-@{ ViewBag.Title = "Home Page";}
 @model web_agencia.Models.Views.UsuarioViewModel
 <!DOCTYPE html>
 <html lang="en">
@@ -8,12 +7,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        @ViewBag.Title
+        Ingreso | Agencia On-tour
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     <!-- CSS Files -->
     @Styles.Render("~/Content/css/material-dashboard.css?v=2.0.2")
 </head>
@@ -23,13 +23,13 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white" id="navigation-example">
         <div class="container">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="#pablo">Login Page</a>
+                <a class="navbar-brand" href="#pablo">Ingreso de usuarios</a>
             </div>
         </div>
     </nav>
     <!-- End Navbar -->
     <div class="wrapper wrapper-full-page">
-        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('@Href("~/Content/img/login.jpg")'); background-size: cover; background-position: top center;">
+        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('@Href("~/Content/img/on-tour-background.jpg")'); background-size: cover; background-position: top center;">
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="container">
                 <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
@@ -37,36 +37,27 @@
                     {
                         <div class="card card-login card-hidden">
                             <div class="card-header card-header-success text-center">
-                                <h4 class="card-title">Login</h4>
-                                <div class="social-line">
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
+                                <h5 class="card-title">Agencia On-tour</h5>
+                                <div class="text-center">
+                                    <img src="~/Content/img/on_tour_icon.png" class="img-fluid" style="max-width: 20%;" />
                                 </div>
                             </div>
                             <div class="card-body ">
-                                <p class="card-description text-center">Or Be Classical</p>
                                 <span class="bmd-form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="material-icons">email</i>
+                                                <i class="fas fa-user"></i>
                                             </span>
                                         </div>
-                                        @Html.TextBoxFor(m => m.Rut, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Rut, new { @class = "form-control", @placeholder = "Run" })
                                     </div>
                                 </span>
                                 <span class="bmd-form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
-                                                <i class="material-icons">lock_outline</i>
+                                                <i class="fas fa-key"></i>
                                             </span>
                                         </div>
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Contraseña" })
@@ -82,36 +73,11 @@
             </div>
             <footer class="footer">
                 <div class="container">
-                    <nav class="float-left">
-                        <ul>
-                            <li>
-                                <a href="https://www.creative-tim.com">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://creative-tim.com/presentation">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.creative-tim.com">
-                                    Blog
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.creative-tim.com/license">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright float-right">
                         &copy;
                         <script>
                             document.write(new Date().getFullYear())
-                        </script>, made with <i class="material-icons">favorite</i> by
-                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                        </script>, Instituto Profesional Duoc UC
                     </div>
                 </div>
             </footer>
@@ -119,47 +85,19 @@
     </div>
     <!--   Core JS Files   -->
     @Scripts.Render("~/bundles/dashboard-pro")
-    <!-- Plugin for the momentJs  -->
-    @Scripts.Render("~/Scripts/js/plugins/moment.min.js")
-    <!--  Plugin for Sweet Alert -->
-    @Scripts.Render("~/Scripts/js/plugins/sweetalert2.js")
     <!-- Forms Validations Plugin -->
     @Scripts.Render("~/bundles/jqueryval")
 
-    <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-    @Scripts.Render("~/Scripts/js/plugins/jquery.bootstrap-wizard.js")
-    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    @Scripts.Render("~/Scripts/js/plugins/bootstrap-selectpicker.js")
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    @Scripts.Render("~/Scripts/js/plugins/bootstrap-datetimepicker.min.js")
-    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-    @Scripts.Render("~/Scripts/js/plugins/jquery.dataTables.min.js")
-    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-    @Scripts.Render("~/Scripts/js/plugins/bootstrap-tagsinput.js")
-    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    @Scripts.Render("~/Scripts/js/plugins/jasny-bootstrap.min.js")
-    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-    @Scripts.Render("~/Scripts/js/plugins/fullcalendar.min.js")
-    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-    @Scripts.Render("~/Scripts/js/plugins/jquery-jvectormap.js")
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    @Scripts.Render("~/Scripts/js/plugins/nouislider.min.js")
-    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <!-- Library for adding dinamically elements -->
-    @Scripts.Render("~/Scripts/js/plugins/arrive.min.js")
-    <!-- Chartist JS -->
-    @Scripts.Render("~/Scripts/js/plugins/chartist.min.js")
-    <!--  Notifications Plugin    -->
-    @Scripts.Render("~/Scripts/js/plugins/bootstrap-notify.js")
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     @Scripts.Render("~/Scripts/js/material-dashboard.min.js?v=2.0.2")
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     @Scripts.Render("~/Content/demo/demo.js")
+
     <script>
         $(document).ready(function () {
             $().ready(function () {
+
                 $sidebar = $('.sidebar');
 
                 $sidebar_img_container = $sidebar.find('.sidebar-background');

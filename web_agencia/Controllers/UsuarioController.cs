@@ -11,6 +11,7 @@ using web_agencia.Models.Views;
 
 namespace web_agencia.Controllers
 {
+    [SessionAuthorize]
     [RoutePrefix("usuarios")]
     public class UsuarioController : Controller
     {

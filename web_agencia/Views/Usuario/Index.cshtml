@@ -28,7 +28,7 @@
                                     <th>Apellido paterno</th>
                                     <th>Apellido materno</th>
                                     <th>Correo</th>
-                                    <th class="disabled-sorting text-right">Actions</th>
+                                    <th class="disabled-sorting text-right">Acciones</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -38,7 +38,7 @@
                                     <th>Apellido paterno</th>
                                     <th>Apellido materno</th>
                                     <th>Correo</th>
-                                    <th class="text-right">Actions</th>
+                                    <th class="text-right">Acciones</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -61,6 +61,7 @@
 
             var table = $('#datatables').DataTable({
                 pagingType: "full_numbers",
+                language: { url: "/Scripts/Spanish.json" },
                 ajax: {
                     url: "/usuarios/all",
                     dataSrc : ""

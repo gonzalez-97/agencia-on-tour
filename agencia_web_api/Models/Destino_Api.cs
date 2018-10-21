@@ -36,7 +36,7 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
-                p.Add("Id", Id);
+                p.Add("Id", id);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
                 var retorno = Db.QuerySingle<Destino_Api>("sp_destino_por_id", p, commandType: CommandType.StoredProcedure);

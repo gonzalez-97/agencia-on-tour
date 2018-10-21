@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Actividades";
+﻿@{
+    ViewBag.Title = "Destinos";
 }
 <div class="container-fluid">
     <div class="row">
@@ -10,12 +9,12 @@
                     <div class="card-icon">
                         <i class="material-icons">assignment</i>
                     </div>
-                    <h4 class="card-title">Todas las actividades</h4>
+                    <h4 class="card-title">Todos los destinos</h4>
                 </div>
                 <div class="card-body">
                     <div class="toolbar">
-                        <a href="@Url.Action("NuevoAsync", "Actividad")" class="btn btn-fill btn-rose">
-                            Nueva Actividad
+                        <a href="@Url.Action("NuevoAsync", "Destino")" class="btn btn-fill btn-rose">
+                            Nuevo Destino
                             <div class="ripple-container"></div>
                         </a>
                     </div>
@@ -25,7 +24,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Descripción</th>
+                                    <th>Valor</th>
                                     <th class="disabled-sorting text-right">Acciones</th>
                                 </tr>
                             </thead>
@@ -59,19 +58,19 @@
                 pagingType: "full_numbers",
                 language: { url: "/Scripts/Spanish.json" },
                 ajax: {
-                    url: "/actividades/all",
+                    url: "/destinos/all",
                     dataSrc : ""
                 },
                 columns: [
                     { "data": "Id" },
                     { "data": "Nombre" },
-                    { "data": "Descripcion" },
+                    { "data": "Valor" },
                     {
                         "data": "Id",
                         "className": "disabled-sorting text-right",
                         "render": function (data, type, full, meta)
                         {
-                            return "<a href='/actividades/" + full.Id+"' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>\
+                            return "<a href='/destinos/" + full.Id+"' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>\
                                     <a href='#' id='"+ full.Id+ "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a> ";
                         }
                     }
@@ -93,10 +92,10 @@
             table.on('click', '.remove', function (e)
             {
                 var id = $(this).attr('id');
-                var respuesta = confirm("¿Desea borrar la actividad " + id + "?");
+                var respuesta = confirm("¿Desea borrar el destino " + id + "?");
                 if (respuesta == true)
                 {
-                    BorrarActividad(id);
+                    BorrarDestino(id);
                     $tr = $(this).closest('tr');
                     table.row($tr).remove().draw();
                     e.preventDefault();
@@ -105,14 +104,14 @@
 
         });
 
-        function BorrarActividad(id)
+        function BorrarDestino(id)
         {
-            $.get("/actividades/borrar/" + id, function (data) {
+            $.get("/destinos/borrar/" + id, function (data) {
                 var respuesta = JSON.parse(data);
                 if (respuesta)
-                    alert("La actividad ha sido borrada exitosamente.");
+                    alert("El destino ha sido borrado exitosamente.");
                 else
-                    alert("Error al borrar la actividad");
+                    alert("Error al borrar el destino.");
             });
         }
 

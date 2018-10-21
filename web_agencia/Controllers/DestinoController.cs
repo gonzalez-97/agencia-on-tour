@@ -10,10 +10,10 @@ using web_agencia.Models.Servicios;
 namespace web_agencia.Controllers
 {
     [SessionAuthorize]
-    [RoutePrefix("actividades")]
-    public class ActividadController : Controller
+    [RoutePrefix("destinos")]
+    public class DestinoController : Controller
     {
-        // GET: Actividad
+        // GET: Destino
         [Route]
         public ActionResult Index()
         {
@@ -22,14 +22,14 @@ namespace web_agencia.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<ActionResult> AllUsersAjaxAsync()
+        public async Task<ActionResult> AllDestinosAjaxAsync()
         {
             Colecciones col = new Colecciones();
-            var salida = await col.ListaActividades();
+            var salida = await col.ListaDestinos();
             return Json(salida, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("nueva")]
+        [Route("nuevo")]
         public ActionResult NuevoAsync()
         {
             return View("Nuevo", "_LayoutAdmin");
@@ -37,9 +37,9 @@ namespace web_agencia.Controllers
 
         [HttpPost]
         [Route("crear")]
-        public async Task<ActionResult> CrearAsync(Actividad_Web actividad)
+        public async Task<ActionResult> CrearAsync(Destino_Web destino)
         {
-            bool retorno = await actividad.Create();
+            bool retorno = await destino.Create();
             if (retorno)
             {
                 SessionUser userSesion = new SessionUser();
@@ -47,11 +47,11 @@ namespace web_agencia.Controllers
                 Tarea_Terminada task = new Tarea_Terminada()
                 {
                     LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Creada",
-                    Mensaje = "La actividad ha sido creada exitosamente.",
+                    Titulo = "Destino Creado",
+                    Mensaje = "El destino ha sido creado exitosamente.",
                     ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
+                    ControllerName = "Destino",
+                    LinkTexto = "Volver a la lista de destinos"
                 };
 
                 userSesion.SesionTareaTerminada = task;
@@ -65,16 +65,16 @@ namespace web_agencia.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> EditarAsync(int id)
         {
-            Actividad_Web actividad = new Actividad_Web();
-            await actividad.Read(id);
-            return View("Editar", "_LayoutAdmin", actividad);
+            Destino_Web destino = new Destino_Web();
+            await destino.Read(id);
+            return View("Editar", "_LayoutAdmin", destino);
         }
 
         [HttpPost]
         [Route("actualizar")]
-        public async Task<ActionResult> ActualizarAsync(Actividad_Web actividad)
+        public async Task<ActionResult> ActualizarAsync(Destino_Web destino)
         {
-            bool retorno = await actividad.Update();
+            bool retorno = await destino.Update();
             if (retorno)
             {
                 SessionUser userSesion = new SessionUser();
@@ -82,11 +82,11 @@ namespace web_agencia.Controllers
                 Tarea_Terminada task = new Tarea_Terminada()
                 {
                     LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Actualizada",
-                    Mensaje = "La actividad ha sido actualizada exitosamente.",
+                    Titulo = "Destino Actualizado",
+                    Mensaje = "El destino ha sido actualizado exitosamente.",
                     ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
+                    ControllerName = "Destino",
+                    LinkTexto = "Volver a la lista de destinos"
                 };
 
                 userSesion.SesionTareaTerminada = task;
@@ -101,8 +101,8 @@ namespace web_agencia.Controllers
         [Route("borrar/{id:int}")]
         public async Task<ActionResult> BorrarAsync(int id)
         {
-            Actividad_Web actividad_borrar = new Actividad_Web() { Id = id };
-            return Json(await actividad_borrar.Delete(), JsonRequestBehavior.AllowGet);
+            Destino_Web destino_borrar = new Destino_Web() { Id = id };
+            return Json(await destino_borrar.Delete(), JsonRequestBehavior.AllowGet);
         }
     }
 }

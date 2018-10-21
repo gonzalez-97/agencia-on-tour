@@ -1,43 +1,36 @@
-﻿@{ ViewBag.Title = "Editar Actividad";}
-@model web_agencia.Models.Actividad_Web
+﻿@{ ViewBag.Title = "Nuevo Destino";}
+@model web_agencia.Models.Destino_Web
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-header card-header-rose card-header-text">
                     <div class="card-text">
-                        <h4 class="card-title">Editar Actividad</h4>
+                        <h4 class="card-title">Agregar Destino</h4>
                     </div>
                 </div>
                 <div class="card-body ">
-                    @using (Html.BeginForm("ActualizarAsync", "Actividad", FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("CrearAsync", "Destino", FormMethod.Post, new { @class = "form-horizontal" }))
                     {
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    @Html.HiddenFor(m => m.Id, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <label class="col-sm-2 col-form-label">Nombre</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control"})
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-2 col-form-label">Descripción</label>
+                            <label class="col-sm-2 col-form-label">Valor</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Valor, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 ml-auto mr-auto text-center">
-                                <button type="submit" class="btn btn-rose">Guardar<div class="ripple-container"></div></button>
+                                <button type="submit" class="btn btn-rose">Registrar<div class="ripple-container"></div></button>
                             </div>
                         </div>
                     }
