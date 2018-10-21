@@ -10,8 +10,8 @@ using web_agencia.Models.Servicios;
 namespace web_agencia.Controllers
 {
     [SessionAuthorize]
-    [RoutePrefix("actividades")]
-    public class ActividadController : Controller
+    [RoutePrefix("colegios")]
+    public class ColegioController : Controller
     {
         // GET: Actividad
         [Route]
@@ -25,11 +25,11 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> AllAjaxAsync()
         {
             Colecciones col = new Colecciones();
-            var salida = await col.ListaActividades();
+            var salida = await col.ListaColegios();
             return Json(salida, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("nueva")]
+        [Route("nuevo")]
         public ActionResult NuevoAsync()
         {
             return View("Nuevo", "_LayoutAdmin");
@@ -37,9 +37,9 @@ namespace web_agencia.Controllers
 
         [HttpPost]
         [Route("crear")]
-        public async Task<ActionResult> CrearAsync(Actividad_Web actividad)
+        public async Task<ActionResult> CrearAsync(Colegio_Web colegio)
         {
-            bool retorno = await actividad.Create();
+            bool retorno = await colegio.Create();
             if (retorno)
             {
                 SessionUser userSesion = new SessionUser();
@@ -47,11 +47,11 @@ namespace web_agencia.Controllers
                 Tarea_Terminada task = new Tarea_Terminada()
                 {
                     LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Creada",
-                    Mensaje = "La actividad ha sido creada exitosamente.",
+                    Titulo = "Colegio Creado",
+                    Mensaje = "El colegio ha sido creado exitosamente.",
                     ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
+                    ControllerName = "Colegio",
+                    LinkTexto = "Volver a la lista de colegios"
                 };
 
                 userSesion.SesionTareaTerminada = task;
@@ -65,16 +65,16 @@ namespace web_agencia.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> EditarAsync(int id)
         {
-            Actividad_Web actividad = new Actividad_Web();
-            await actividad.Read(id);
-            return View("Editar", "_LayoutAdmin", actividad);
+            Colegio_Web colegio = new Colegio_Web();
+            await colegio.Read(id);
+            return View("Editar", "_LayoutAdmin", colegio);
         }
 
         [HttpPost]
         [Route("actualizar")]
-        public async Task<ActionResult> ActualizarAsync(Actividad_Web actividad)
+        public async Task<ActionResult> ActualizarAsync(Colegio_Web colegio)
         {
-            bool retorno = await actividad.Update();
+            bool retorno = await colegio.Update();
             if (retorno)
             {
                 SessionUser userSesion = new SessionUser();
@@ -82,11 +82,11 @@ namespace web_agencia.Controllers
                 Tarea_Terminada task = new Tarea_Terminada()
                 {
                     LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Actualizada",
-                    Mensaje = "La actividad ha sido actualizada exitosamente.",
+                    Titulo = "Colegio Actualizado",
+                    Mensaje = "El colegio ha sido actualizado exitosamente.",
                     ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
+                    ControllerName = "Colegio",
+                    LinkTexto = "Volver a la lista de colegios"
                 };
 
                 userSesion.SesionTareaTerminada = task;
@@ -101,8 +101,8 @@ namespace web_agencia.Controllers
         [Route("borrar/{id:int}")]
         public async Task<ActionResult> BorrarAsync(int id)
         {
-            Actividad_Web actividad_borrar = new Actividad_Web() { Id = id };
-            return Json(await actividad_borrar.Delete(), JsonRequestBehavior.AllowGet);
+            Colegio_Web colegio_borrar = new Colegio_Web() { Id = id };
+            return Json(await colegio_borrar.Delete(), JsonRequestBehavior.AllowGet);
         }
     }
 }

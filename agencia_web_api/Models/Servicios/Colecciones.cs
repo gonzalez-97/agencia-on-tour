@@ -64,5 +64,12 @@ namespace agencia_web_api.Models.Servicios
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
             return Db.Query<Destino>("sp_destino_todos", p, commandType: CommandType.StoredProcedure);
         }
+
+        public IEnumerable<Colegio> ListaColegio()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            return Db.Query<Colegio>("sp_colegio_todos", p, commandType: CommandType.StoredProcedure);
+        }
     }
 }

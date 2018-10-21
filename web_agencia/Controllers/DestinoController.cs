@@ -22,7 +22,7 @@ namespace web_agencia.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<ActionResult> AllDestinosAjaxAsync()
+        public async Task<ActionResult> AllAjaxAsync()
         {
             Colecciones col = new Colecciones();
             var salida = await col.ListaDestinos();

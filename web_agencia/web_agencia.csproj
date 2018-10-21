@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\ColegioController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -171,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Web.cs" />
+    <Compile Include="Models\Colegio_Web.cs" />
     <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
@@ -540,6 +542,9 @@
     <Content Include="Views\Destino\Nuevo.cshtml" />
     <Content Include="Views\Destino\Editar.cshtml" />
     <Content Include="Scripts\Spanish.json" />
+    <Content Include="Views\Colegio\Editar.cshtml" />
+    <Content Include="Views\Colegio\Index.cshtml" />
+    <Content Include="Views\Colegio\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

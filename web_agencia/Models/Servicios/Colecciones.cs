@@ -81,5 +81,17 @@ namespace web_agencia.Models.Servicios
             }
             return salida;
         }
+
+        public async Task<List<Colegio>> ListaColegios()
+        {
+            List<Colegio> salida = new List<Colegio>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "colegio"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Colegio>>(responseData);
+            }
+            return salida;
+        }
     }
 }

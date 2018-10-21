@@ -24,7 +24,7 @@ namespace web_agencia.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<ActionResult> AllUsersAjaxAsync()
+        public async Task<ActionResult> AllAjaxAsync()
         {
             Colecciones col = new Colecciones();
             var salida = await col.ListaUsuariosAsync();
@@ -125,7 +125,7 @@ namespace web_agencia.Controllers
 
         [HttpGet]
         [Route("borrar/{rut:int}")]
-        public async Task<ActionResult> BorrarUsuarioAsync(int rut)
+        public async Task<ActionResult> BorrarAsync(int rut)
         {
             Usuario_Web user_borrar = new Usuario_Web() { Rut = rut };
             return Json(await user_borrar.DeleteThisAsync(), JsonRequestBehavior.AllowGet);

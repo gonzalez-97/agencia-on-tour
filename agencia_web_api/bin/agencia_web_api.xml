@@ -506,6 +506,31 @@
             Borra la actividad (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.ColegioController.Get">
+            <summary>
+            Una lista de colegio :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ColegioController.GetById(System.Int32)">
+            <summary>
+            Filtro de colegio por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ColegioController.NuevoColegio(agencia_web_api.Models.Colegio_Api)">
+            <summary>
+            Crea un nuevo colegio (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ColegioController.EditarColegio(agencia_web_api.Models.Colegio_Api)">
+            <summary>
+            Actualiza el colegio (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ColegioController.BorrarColegio(System.Int32)">
+            <summary>
+            Borra el colegio (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.DestinoController.Get">
             <summary>
             Una lista de destinos :) (formato JSON)

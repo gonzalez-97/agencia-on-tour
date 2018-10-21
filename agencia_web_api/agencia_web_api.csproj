@@ -204,6 +204,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Api.cs" />
+    <Compile Include="Models\Colegio_Api.cs" />
     <Compile Include="Models\Destino_Api.cs" />
     <Compile Include="Models\Perfil_Api.cs" />
     <Compile Include="Models\Perfil_Asociado_Api.cs" />
