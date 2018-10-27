@@ -76,28 +76,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/11/2018 14:47:48</publishTime>
     </File>
     <File Include="bin/agencia_lib.dll">
-      <publishTime>10/15/2018 21:29:14</publishTime>
+      <publishTime>10/25/2018 09:44:11</publishTime>
     </File>
     <File Include="bin/agencia_lib.pdb">
-      <publishTime>10/15/2018 21:29:14</publishTime>
+      <publishTime>10/25/2018 09:44:11</publishTime>
     </File>
     <File Include="bin/agencia_web_api.dll">
-      <publishTime>10/15/2018 21:44:16</publishTime>
+      <publishTime>10/25/2018 09:44:11</publishTime>
     </File>
     <File Include="bin/agencia_web_api.pdb">
-      <publishTime>10/15/2018 21:44:16</publishTime>
+      <publishTime>10/25/2018 09:44:11</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>10/09/2013 16:29:20</publishTime>
+      <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>10/09/2013 16:29:20</publishTime>
+      <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>10/11/2018 14:47:58</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>05/16/2018 18:40:30</publishTime>
+    </File>
+    <File Include="bin/Dapper.Mapper.dll">
+      <publishTime>09/25/2017 20:30:42</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 11:59:34</publishTime>
@@ -274,43 +277,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2018 12:38:24</publishTime>
     </File>
     <File Include="bin/Slapper.dll">
-      <publishTime>12/06/2016 10:59:50</publishTime>
+      <publishTime>06/12/2016 10:59:50</publishTime>
     </File>
     <File Include="bin/Slapper.pdb">
-      <publishTime>12/06/2016 10:59:50</publishTime>
+      <publishTime>06/12/2016 10:59:50</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 09:01:30</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>01/02/2018 12:17:18</publishTime>
+      <publishTime>02/01/2018 12:17:18</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>01/02/2018 12:17:40</publishTime>
+      <publishTime>02/01/2018 12:17:40</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>01/02/2018 12:19:26</publishTime>
+      <publishTime>02/01/2018 12:19:26</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>01/02/2018 12:16:32</publishTime>
+      <publishTime>02/01/2018 12:16:32</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>11/02/2014 15:26:04</publishTime>
+      <publishTime>02/11/2014 15:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>01/02/2018 12:16:56</publishTime>
+      <publishTime>02/01/2018 12:16:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>01/02/2018 12:20:56</publishTime>
+      <publishTime>02/01/2018 12:20:56</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -406,7 +409,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/11/2018 14:47:48</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/13/2018 11:53:02</publishTime>
+      <publishTime>10/25/2018 09:44:12</publishTime>
     </File>
   </ItemGroup>
 </Project>

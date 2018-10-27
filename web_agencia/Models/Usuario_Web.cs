@@ -19,7 +19,7 @@ namespace web_agencia.Models
 
         HttpClient client;
         //The URL of the WEB API Service
-        Uri url = new Uri("http://localhost:49868/api");
+        Uri url = new Uri(Utiles.RutaWebAPI());
 
         //The HttpClient Class, this will be used for performing 
         //HTTP Operations, GET, POST, PUT, DELETE
@@ -160,13 +160,12 @@ namespace web_agencia.Models
             try
             {
                 bool salida = false;
-
                 HttpResponseMessage responseMessage = await client.PutAsJsonAsync(string.Format("{0}/{1}", url, "usuario/actualizar"), this);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     salida = await EliminarTodosPerfiles();
                     if (salida) salida = await AsociaPerfilesUsuarioAsync();
-                }  
+                }
                 return salida;
             }
             catch (Exception)

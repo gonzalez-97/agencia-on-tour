@@ -49,6 +49,9 @@
     <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper.Mapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Mapper.2.0.0\lib\net451\Dapper.Mapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
@@ -193,6 +196,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
+    <Compile Include="Controllers\ApoderadoController.cs" />
     <Compile Include="Controllers\ColegioController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
@@ -204,7 +208,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Api.cs" />
+    <Compile Include="Models\Apoderado_Api.cs" />
     <Compile Include="Models\Colegio_Api.cs" />
+    <Compile Include="Models\Curso_Api.cs" />
     <Compile Include="Models\Destino_Api.cs" />
     <Compile Include="Models\Perfil_Api.cs" />
     <Compile Include="Models\Perfil_Asociado_Api.cs" />

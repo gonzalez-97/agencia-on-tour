@@ -8,16 +8,16 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using web_agencia.Models.Servicios;
+using web_agencia.Models.Views;
 
 namespace web_agencia.Models
 {
-    public class Destino_Web : Destino
+    public class Curso_Web: Curso
     {
         HttpClient client;
-        //The URL of the WEB API Service
         Uri url = new Uri(Utiles.RutaWebAPI());
 
-        public Destino_Web()
+        public Curso_Web()
         {
             client = new HttpClient();
             client.BaseAddress = url;
@@ -25,11 +25,23 @@ namespace web_agencia.Models
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public async Task<bool> CreateFromViewAsync(CursoViewModel curso)
+        {
+            MappingThisFromViewModel(curso);
+            return await Create();
+        }
+
+        public async Task<bool> UpdateFromViewAsync(CursoViewModel curso)
+        {
+            MappingThisFromViewModel(curso);
+            return await Update();
+        }
+
         public async Task<bool> Create()
         {
             try
             {
-                HttpResponseMessage responseMessage = await client.PostAsJsonAsync(string.Format("{0}/{1}", url, "destino/crear"), this);
+                HttpResponseMessage responseMessage = await client.PostAsJsonAsync(string.Format("{0}/{1}", url, "curso/crear"), this);
                 return responseMessage.IsSuccessStatusCode;
             }
             catch (Exception)
@@ -38,16 +50,16 @@ namespace web_agencia.Models
                 throw;
             }
         }
+
         public async Task<bool> Read(int id)
         {
             try
             {
-                HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}/{2}", url, "destino", id));
+                HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}/{2}", url, "curso", id));
                 if (responseMessage.IsSuccessStatusCode)
                 {
-
                     var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    Destino_Web retorno = JsonConvert.DeserializeObject<Destino_Web>(responseData);
+                    Curso_Web retorno = JsonConvert.DeserializeObject<Curso_Web>(responseData);
 
                     MappingThisFromAnother(retorno);
                     return true;
@@ -59,14 +71,13 @@ namespace web_agencia.Models
                 return false;
                 throw;
             }
-
         }
 
-        public async Task<bool> Update()
+        private async Task<bool> Update()
         {
             try
             {
-                HttpResponseMessage responseMessage = await client.PutAsJsonAsync(string.Format("{0}/{1}", url, "destino/actualizar"), this);
+                HttpResponseMessage responseMessage = await client.PutAsJsonAsync(string.Format("{0}/{1}", url, "curso/actualizar"), this);
                 return responseMessage.IsSuccessStatusCode;
             }
             catch (Exception)
@@ -80,7 +91,7 @@ namespace web_agencia.Models
         {
             try
             {
-                HttpResponseMessage responseMessage = await client.DeleteAsync(string.Format("{0}/{1}/{2}", url, "destino/borrar", this.Id));
+                HttpResponseMessage responseMessage = await client.DeleteAsync(string.Format("{0}/{1}/{2}", url, "curso/borrar", this.Id));
                 return responseMessage.IsSuccessStatusCode;
             }
             catch (Exception)
@@ -90,13 +101,20 @@ namespace web_agencia.Models
             }
         }
 
-        public void MappingThisFromAnother(Destino_Web objeto)
+        public void MappingThisFromAnother(Curso_Web objeto)
         {
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
-            this.Valor = objeto.Valor;
+            this.TotalReunido = objeto.TotalReunido;
+            this.Colegio = objeto.Colegio;
         }
 
-
+        private void MappingThisFromViewModel(CursoViewModel objeto)
+        {
+            this.Id = objeto.Id;
+            this.Nombre = objeto.Nombre;
+            this.TotalReunido = objeto.TotalReunido;
+            this.Colegio = objeto.Colegio;
+        }
     }
 }

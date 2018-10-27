@@ -506,6 +506,26 @@
             Borra la actividad (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.ApoderadoController.Get">
+            <summary>
+            Una lista de apoderados (con su usuario) :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ApoderadoController.GetById(System.Int32)">
+            <summary>
+            Filtro de apoderado por RUT
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ApoderadoController.NuevoApoderado(agencia_web_api.Models.Apoderado_Api)">
+            <summary>
+            Crea un nuevo Apoderado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ApoderadoController.BorrarApoderado(System.Int32)">
+            <summary>
+            Borra el apoderado (por rut del usuario) (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.ColegioController.Get">
             <summary>
             Una lista de colegio :) (formato JSON)
@@ -529,6 +549,31 @@
         <member name="M:agencia_web_api.Controllers.ColegioController.BorrarColegio(System.Int32)">
             <summary>
             Borra el colegio (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.CursoController.Get">
+            <summary>
+            Una lista de cursos :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.CursoController.GetById(System.Int32)">
+            <summary>
+            Filtro de curso por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.CursoController.NuevoCurso(agencia_web_api.Models.Curso_Api)">
+            <summary>
+            Crea un nuevo curso (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.CursoController.EditarCurso(agencia_web_api.Models.Curso_Api)">
+            <summary>
+            Actualiza el curso (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.CursoController.BorrarColegio(System.Int32)">
+            <summary>
+            Borra el curso (actualiza el campo eliminado = 0)
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.DestinoController.Get">

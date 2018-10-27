@@ -1,0 +1,54 @@
+﻿@{ ViewBag.Title = "Editar Colegio";}
+@model web_agencia.Models.Views.CursoViewModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Editar Curso</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    @using (Html.BeginForm("ActualizarAsync", "Curso", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    @Html.HiddenFor(m => m.Id, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Total Reunido</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.TotalReunido, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <label class="col-sm-2 col-form-label">Colegio</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    @Html.DropDownListFor(m => m.Colegio.Id, Model.ColegiosDisponibles, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 ml-auto mr-auto text-center">
+                                <button type="submit" class="btn btn-rose">Guardar<div class="ripple-container"></div></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

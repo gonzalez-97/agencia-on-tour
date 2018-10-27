@@ -71,5 +71,45 @@ namespace agencia_web_api.Models.Servicios
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
             return Db.Query<Colegio>("sp_colegio_todos", p, commandType: CommandType.StoredProcedure);
         }
+
+        public IEnumerable<Curso> ListaCurso()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<Curso, Colegio, Curso>(
+                        "sp_curso_todos",
+                        map: (curso, colegio) =>
+                        {
+                            curso.Colegio = colegio;
+                            return curso;
+                        },
+                        splitOn: "Id",
+                        param: p,
+                        commandType: CommandType.StoredProcedure).Distinct();
+
+            return result;
+
+        }
+
+        public IEnumerable<Apoderado> ListaApoderados()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<Apoderado, Usuario, Apoderado>(
+                        "sp_apoderado_todos",
+                        map: (apoderado, usuario) =>
+                        {
+                            apoderado.Usuario = usuario;
+                            return apoderado;
+                        },
+                        splitOn: "Rut",
+                        param: p,
+                        commandType: CommandType.StoredProcedure).Distinct();
+
+            return result;
+        }
+
     }
 }

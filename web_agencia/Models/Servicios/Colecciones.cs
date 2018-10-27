@@ -14,7 +14,7 @@ namespace web_agencia.Models.Servicios
     {
         HttpClient client;
         //The URL of the WEB API Service
-        Uri url = new Uri("http://localhost:49868/api");
+        Uri url = new Uri(Utiles.RutaWebAPI());
 
         //The HttpClient Class, this will be used for performing 
         //HTTP Operations, GET, POST, PUT, DELETE
@@ -90,6 +90,18 @@ namespace web_agencia.Models.Servicios
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 salida = JsonConvert.DeserializeObject<List<Colegio>>(responseData);
+            }
+            return salida;
+        }
+
+        public async Task<List<Curso>> ListaCursos()
+        {
+            List<Curso> salida = new List<Curso>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "curso"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Curso>>(responseData);
             }
             return salida;
         }

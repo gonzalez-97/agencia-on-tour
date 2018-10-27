@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Cursos";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">Todos los cursos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="toolbar">
+                        <a href="@Url.Action("NuevoAsync", "Curso")" class="btn btn-fill btn-rose">
+                            Nuevo Curso
+                            <div class="ripple-container"></div>
+                        </a>
+                    </div>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th class="disabled-sorting text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th class="text-right">Acciones</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end content-->
+            </div>
+            <!--  end card  -->
+        </div>
+        <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('#datatables').DataTable({
+                pagingType: "full_numbers",
+                language: { url: "/Scripts/Spanish.json" },
+                ajax: {
+                    url: "/cursos/all",
+                    dataSrc : ""
+                },
+                columns: [
+                    { "data": "Id" },
+                    { "data": "Nombre" },
+                    {
+                        "data": "Id",
+                        "className": "disabled-sorting text-right",
+                        "render": function (data, type, full, meta)
+                        {
+                            return "<a href='/cursos/" + full.Id+"' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>\
+                                    <a href='#' id='"+ full.Id+ "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a> ";
+                        }
+                    }
+                ],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                ordering : true,
+                columnDefs: [{
+                    orderable: false,
+                    targets: "disabled-sorting"
+                }],
+                responsive: true
+            });
+
+
+            // Delete a record
+            table.on('click', '.remove', function (e)
+            {
+                var id = $(this).attr('id');
+                var respuesta = confirm("¿Desea borrar el curso " + id + "?");
+                if (respuesta == true)
+                {
+                    BorrarCurso(id);
+                    $tr = $(this).closest('tr');
+                    table.row($tr).remove().draw();
+                    e.preventDefault();
+                }
+            });
+
+        });
+
+        function BorrarCurso(id)
+        {
+            $.get("/cursos/borrar/" + id, function (data) {
+                var respuesta = JSON.parse(data);
+                if (respuesta)
+                    alert("El curso ha sido borrado exitosamente.");
+                else
+                    alert("Error al borrar el curso");
+            });
+        }
+
+    </script>
+}
+

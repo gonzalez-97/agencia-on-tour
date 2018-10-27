@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+using web_agencia.Models.Servicios;
 
 namespace web_agencia.Models
 {
@@ -14,7 +15,7 @@ namespace web_agencia.Models
     {
         HttpClient client;
         //The URL of the WEB API Service
-        Uri url = new Uri("http://localhost:49868/api");
+        Uri url = new Uri(Utiles.RutaWebAPI());
 
         public Actividad_Web()
         {
