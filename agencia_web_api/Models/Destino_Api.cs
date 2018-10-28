@@ -21,7 +21,7 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Nombre", this.Nombre);
                 p.Add("Valor", this.Valor);
-                Db.Execute("sp_destino_create", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Destino_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace agencia_web_api.Models
                 p.Add("Id", id);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
-                var retorno = Db.QuerySingle<Destino_Api>("sp_destino_por_id", p, commandType: CommandType.StoredProcedure);
+                var retorno = Db.QuerySingle<Destino_Api>(Procs.Destino_Por_Id, p, commandType: CommandType.StoredProcedure);
                 MappingThisFromAnother(retorno);
 
                 return true;
@@ -58,7 +58,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 AddParametersThis(p);
-                Db.Execute("sp_destino_update", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Destino_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -74,7 +74,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                Db.Execute("sp_destino_delete", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Destino_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)

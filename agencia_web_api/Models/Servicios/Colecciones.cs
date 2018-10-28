@@ -19,7 +19,7 @@ namespace agencia_web_api.Models.Servicios
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
-            List<Usuario> users_db = Db.Query<Usuario>("sp_usuarios_todos", p, commandType: CommandType.StoredProcedure).ToList();
+            List<Usuario> users_db = Db.Query<Usuario>(Procs.Usuario_Todos, p, commandType: CommandType.StoredProcedure).ToList();
 
             var usuarios = users_db.Select(n => new Usuario()
             {
@@ -40,7 +40,7 @@ namespace agencia_web_api.Models.Servicios
         {
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            return Db.Query<Perfil>("sp_perfiles_todos", p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Perfil>(Procs.Perfil_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Perfil> ListaPerfilesXUsuario(int rut)
@@ -48,28 +48,28 @@ namespace agencia_web_api.Models.Servicios
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
             p.Add("Rut", rut);
-            return Db.Query<Perfil>("sp_perfiles_por_rut", p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Perfil>(Procs.Perfil_Por_Rut, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Actividad> ListaActividad()
         {
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            return Db.Query<Actividad>("sp_actividad_todas", p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Actividad>(Procs.Actividad_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Destino> ListaDestino()
         {
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            return Db.Query<Destino>("sp_destino_todos", p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Destino>(Procs.Destino_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Colegio> ListaColegio()
         {
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            return Db.Query<Colegio>("sp_colegio_todos", p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Colegio>(Procs.Colegio_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Curso> ListaCurso()
@@ -78,7 +78,7 @@ namespace agencia_web_api.Models.Servicios
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
             var result = Db.Query<Curso, Colegio, Curso>(
-                        "sp_curso_todos",
+                        Procs.Curso_Todos,
                         map: (curso, colegio) =>
                         {
                             curso.Colegio = colegio;
@@ -98,7 +98,7 @@ namespace agencia_web_api.Models.Servicios
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
             var result = Db.Query<Apoderado, Usuario, Apoderado>(
-                        "sp_apoderado_todos",
+                        Procs.Apoderado_Todos,
                         map: (apoderado, usuario) =>
                         {
                             apoderado.Usuario = usuario;

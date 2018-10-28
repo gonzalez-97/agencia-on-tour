@@ -217,6 +217,7 @@
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\ConexionDb.cs" />
     <Compile Include="Models\Servicios\OracleDynamicParameters.cs" />
+    <Compile Include="Models\Servicios\Procs.cs" />
     <Compile Include="Models\Usuario_Api.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -260,7 +261,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

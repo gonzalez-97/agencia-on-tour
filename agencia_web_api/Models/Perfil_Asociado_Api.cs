@@ -19,7 +19,7 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Perfil", this.Perfil);
                 p.Add("Rut", this.Rut);
-                Db.Execute("sp_perfiles_asignados_crear", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Perfil_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Rut);
-                Db.Execute("sp_perfiles_asignados_borrar_todos_rut", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Perfil_Asociado_Borrar_Por_Rut, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)

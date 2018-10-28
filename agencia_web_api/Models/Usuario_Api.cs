@@ -22,7 +22,7 @@ namespace agencia_web_api.Models
             p.Add("Rut", rut);
             p.Add("Password", pass);
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            int retorno = Db.QuerySingle<int>("sp_existe_usuario", p, commandType: CommandType.StoredProcedure);
+            int retorno = Db.QuerySingle<int>(Procs.Usuario_Existe, p, commandType: CommandType.StoredProcedure);
             return (retorno > 0) ? true:  false;
         }
 
@@ -33,7 +33,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 AddParametersThis(p);
-                Db.Execute("sp_usuarios_create", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Usuario_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 AddParametersThis(p);
-                Db.Execute("sp_usuarios_update", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Usuario_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -78,9 +78,9 @@ namespace agencia_web_api.Models
                 p.Add("Rut", rut);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 //Usuario
-                var retorno = Db.QuerySingle<Usuario_Api>("sp_usuarios_por_rut", p, commandType: CommandType.StoredProcedure);
+                var retorno = Db.QuerySingle<Usuario_Api>(Procs.Usuario_Por_Rut, p, commandType: CommandType.StoredProcedure);
                 //Perfiles
-                retorno.Lista_Perfiles = Db.Query<Perfil>("sp_perfiles_por_rut", p, commandType: CommandType.StoredProcedure).ToList();
+                retorno.Lista_Perfiles = Db.Query<Perfil>(Procs.Perfil_Por_Rut, p, commandType: CommandType.StoredProcedure).ToList();
 
                 MappingThisFromAnother(retorno);
                 return true;
@@ -97,7 +97,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Rut);
-                Db.Execute("sp_usuarios_delete", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Usuario_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)

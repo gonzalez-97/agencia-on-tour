@@ -19,7 +19,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Usuario.Rut);
-                Db.Execute("sp_apoderado_create", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Apoderado_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace agencia_web_api.Models
 
 
                 var result = Db.Query<Apoderado, Usuario, Apoderado>(
-                            "sp_apoderado_por_rut",
+                            Procs.Apoderado_Por_Rut,
                             map: (apoderado, usuario) =>
                             {
                                 apoderado.Usuario = usuario;
@@ -66,7 +66,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Usuario.Rut);
-                Db.Execute("sp_apoderado_delete_por_rut", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Apoderado_Borrar_Por_Rut, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)

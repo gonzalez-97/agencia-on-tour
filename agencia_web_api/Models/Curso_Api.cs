@@ -22,7 +22,7 @@ namespace agencia_web_api.Models
                 p.Add("Nombre", this.Nombre);
                 p.Add("TotalReunido", this.TotalReunido);
                 p.Add("Colegio_Id", this.Colegio.Id);
-                Db.Execute("sp_curso_create", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Curso_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace agencia_web_api.Models
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
                 var result = Db.Query<Curso, Colegio, Curso>(
-                    "sp_curso_por_id",
+                    Procs.Curso_Borrar,
                     map: (curso, colegio) =>
                     {
                         curso.Colegio = colegio;
@@ -72,7 +72,7 @@ namespace agencia_web_api.Models
                 p.Add("Nombre", this.Nombre);
                 p.Add("TotalReunido", this.TotalReunido);
                 p.Add("Colegio_Id", this.Colegio.Id);
-                Db.Execute("sp_curso_update", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Curso_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                Db.Execute("sp_curso_delete", p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Curso_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
