@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+<div class="container-fluid">
+    <div class="col-md-8 col-12 mr-auto ml-auto">
+        <!--      Wizard container        -->
+        <div class="wizard-container">
+            <div class="card card-wizard" data-color="rose" id="wizardProfile">
+                <form action="" method="">
+                    <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                    <div class="card-header text-center">
+                        <h3 class="card-title">
+                            Registro de apoderado
+                        </h3>
+                        <h5 class="card-description">Esta información se usará para gestionar a tus pupilos y pagos asociados.</h5>
+                    </div>
+                    <div class="wizard-navigation">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                                    Información Basica
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                                    Información Alumno
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#address" data-toggle="tab" role="tab">
+                                    Finalizar
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="about">
+                                <h5 class="info-text"> Escribe acá tu rut de inicio de sesión</h5>
+                                <div class="row justify-content-center">
+                                        <div class="col-lg-10 mt-3">
+                                            <div class="input-group form-control-lg">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-user-alt"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Rut (*)</label>
+                                                    <input type="number" class="form-control" id="rut-apoderado">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="tab-pane" id="account">
+                                <h5 class="info-text"> Ingresa los datos del alumno (opcional) </h5>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10">
+                                        <div class="togglebutton">
+                                            <label>
+                                                <input type="checkbox">
+                                                <span class="toggle"></span>
+                                                Omitir este paso
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Rut (*)</label>
+                                                            <input type="number" class="form-control" id="rut-alumno">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Nombre (*)</label>
+                                                                    <input type="text" class="form-control" id="nombre-alumno" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Apellido paterno (*)</label>
+                                                                    <input type="text" class="form-control" id="apaterno-alumno">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Apellido materno (*)</label>
+                                                                    <input type="text" class="form-control" id="amaterno-alumno" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="address">
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-12">
+                                        <h5 class="info-text"> Solo un click mas! </h5>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <h6>Con esta información podras:</h6>
+                                        <ol>
+                                            <li>Registrar pagos para tus alumnos registrados</li>
+                                            <li>Conocer y consultar contratos de viajes</li>
+                                            <li>Revisar los pagos realizados y status del curso por alumno</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="mr-auto">
+                            <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Anterior">
+                        </div>
+                        <div class="ml-auto">
+                            <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Siguiente">
+                            <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finalizar" style="display: none;">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- wizard container -->
+    </div>
+</div>
+
+@section scripts {
+  <script>
+    $(document).ready(function() {
+      // Initialise the wizard
+      demo.initMaterialWizard();
+      setTimeout(function() {
+        $('.card.card-wizard').addClass('active');
+      }, 600);
+    });
+  </script>
+}

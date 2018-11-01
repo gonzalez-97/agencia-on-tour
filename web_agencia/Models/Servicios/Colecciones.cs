@@ -30,7 +30,9 @@ namespace web_agencia.Models.Servicios
         public List<Mantenedor_Ruta> ListaRutasMantenedores()
         {
             List<Mantenedor_Ruta> salida = new List<Mantenedor_Ruta>();
+            /*Rutas en duro para redireccion de 5 perfiles */
             salida.Add(new Mantenedor_Ruta { IdPerfil = 1, ControllerName = "Administrador", ActionName = "Index" });
+            salida.Add(new Mantenedor_Ruta { IdPerfil = 5, ControllerName = "Apoderado", ActionName = "Index" });
             return salida;
         }
 
@@ -102,6 +104,18 @@ namespace web_agencia.Models.Servicios
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 salida = JsonConvert.DeserializeObject<List<Curso>>(responseData);
+            }
+            return salida;
+        }
+
+        public async Task<List<Apoderado>> ListaApoderados()
+        {
+            List<Apoderado> salida = new List<Apoderado>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "apoderado"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Apoderado>>(responseData);
             }
             return salida;
         }

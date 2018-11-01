@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actividad.cs" />
+    <Compile Include="Alumno.cs" />
     <Compile Include="Apoderado.cs" />
     <Compile Include="Colegio.cs" />
     <Compile Include="Curso.cs" />

@@ -164,8 +164,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\ApoderadoController.cs" />
     <Compile Include="Controllers\ColegioController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
+    <Compile Include="Controllers\DepositoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -173,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Web.cs" />
+    <Compile Include="Models\Apoderado_Web.cs" />
     <Compile Include="Models\Colegio_Web.cs" />
     <Compile Include="Models\Curso_Web.cs" />
     <Compile Include="Models\Destino_Web.cs" />
@@ -196,7 +199,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\material-dashboard.css" />
     <Content Include="Content\css\material-dashboard.min.css" />
-    <Content Include="Content\css\sci-styles.css" />
+    <Content Include="Content\css\agencia-style.css" />
     <Content Include="Content\demo\demo.css" />
     <Content Include="Content\demo\demo.js" />
     <Content Include="Content\img\apple-icon.png" />
@@ -509,7 +512,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -553,9 +558,13 @@
     <Content Include="Views\Curso\Editar.cshtml" />
     <Content Include="Views\Curso\Index.cshtml" />
     <Content Include="Views\Curso\Nuevo.cshtml" />
+    <Content Include="Views\Apoderado\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutApoderado.cshtml" />
+    <Content Include="Views\Apoderado\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Deposito\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
