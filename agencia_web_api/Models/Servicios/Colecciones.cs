@@ -111,5 +111,35 @@ namespace agencia_web_api.Models.Servicios
             return result;
         }
 
+        public IEnumerable<Alumno> ListaAlumnos()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<dynamic>(Procs.Alumno_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Apoderado_Api apoderado = new Apoderado_Api();
+               apoderado.Read((int)n.APOID);
+
+                Curso_Api curso = new Curso_Api();
+                curso.Read((int)n.CURID);
+                return new Alumno()
+                {
+                    Rut = (int)n.RUT,
+                    DigitoV = n.DIGITOV,
+                    Nombre = n.NOMBRE,
+                    APaterno = n.APATERNO,
+                    AMaterno = n.AMATERNO,
+                    Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario },
+                    Curso = new Curso(){ Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
+               };
+            });
+
+            return salida;
+
+        }
+
     }
 }

@@ -506,9 +506,44 @@
             Borra la actividad (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.Get">
+            <summary>
+            Devuelve una lista da alumnos...
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.ExistePorRut(System.Int32)">
+            <summary>
+            Verifica que el alumno exista por RUT
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.GetByRut(System.Int32)">
+            <summary>
+            Busca un alumno, se envia SOLO el rut
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.NuevoAlumno(agencia_web_api.Models.Alumno_Api)">
+            <summary>
+            Crea un alumno, se deben enviar todos los datos con formato JSON serializando el objeto alumno...
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.EditarAlumno(agencia_web_api.Models.Alumno_Api)">
+            <summary>
+            Actualiza el alumno, se deben enviar todos los datos con formato JSON serializando el objeto usuario...
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.AlumnoController.BorrarAlumno(System.Int32)">
+            <summary>
+            Borra el usuario segun rut 
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.ApoderadoController.Get">
             <summary>
             Una lista de apoderados (con su usuario) :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ApoderadoController.ExistePorRut(System.Int32)">
+            <summary>
+            Verifica que el apoderado exista por RUT
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.ApoderadoController.GetById(System.Int32)">

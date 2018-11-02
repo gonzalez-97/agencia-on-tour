@@ -13,6 +13,16 @@ namespace agencia_web_api.Models
     public class Apoderado_Api : Apoderado
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+
+        public bool ExisteApoderado(int rut)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("Rut", rut);
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            int retorno = Db.QuerySingle<int>(Procs.Existe_Apoderado_Por_Rut, p, commandType: CommandType.StoredProcedure);
+            return (retorno > 0) ? true : false;
+        }
+
         public bool Create()
         {
             try
@@ -29,7 +39,37 @@ namespace agencia_web_api.Models
             }
         }
 
-        public bool Read(int rut)
+        public bool Read(int Id)
+        {
+            try
+            {
+                var p = new OracleDynamicParameters();
+                p.Add("Id", Id);
+                p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+                var result = Db.Query<Apoderado, Usuario, Apoderado>(
+                            Procs.Apoderado_Por_Id,
+                            map: (apoderado, usuario) =>
+                            {
+                                apoderado.Usuario = usuario;
+                                return apoderado;
+                            },
+                            splitOn: "Rut",
+                            param: p,
+                            commandType: CommandType.StoredProcedure).Distinct().FirstOrDefault();
+
+                MappingThisFromApoderado(result);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public bool ReadPorRut(int rut)
         {
             try
             {

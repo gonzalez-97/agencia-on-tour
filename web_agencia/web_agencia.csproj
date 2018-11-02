@@ -175,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Web.cs" />
+    <Compile Include="Models\Alumno_Web.cs" />
     <Compile Include="Models\Apoderado_Web.cs" />
     <Compile Include="Models\Colegio_Web.cs" />
     <Compile Include="Models\Curso_Web.cs" />

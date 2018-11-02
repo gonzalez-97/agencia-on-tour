@@ -16,6 +16,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Colegio_Todos = "sp_colegio_todos";
         public const string Curso_Todos = "sp_curso_todos";
         public const string Apoderado_Todos = "sp_apoderado_todos";
+        public const string Alumno_Todos = "sp_alumno_todos";
         #endregion
 
         #region Actividad
@@ -27,7 +28,9 @@ namespace agencia_web_api.Models.Servicios
 
         #region Apoderado
         public const string Apoderado_Crear = "sp_apoderado_create";
+        public const string Existe_Apoderado_Por_Rut = "sp_existe_apoderado_por_rut";
         public const string Apoderado_Por_Rut = "sp_apoderado_por_rut";
+        public const string Apoderado_Por_Id = "sp_apoderado_por_id";
         public const string Apoderado_Borrar_Por_Rut = "sp_apoderado_delete_por_rut";
         #endregion
 
@@ -63,6 +66,14 @@ namespace agencia_web_api.Models.Servicios
         public const string Usuario_Actualizar = "sp_usuarios_update";
         public const string Usuario_Por_Rut = "sp_usuarios_por_rut";
         public const string Usuario_Borrar = "sp_usuarios_delete";
+        #endregion
+
+        #region Alumno
+        public const string Alumno_Crear = "sp_alumno_create";
+        public const string Existe_Alumno_Por_Rut = "sp_existe_alumno_por_rut";
+        public const string Alumno_Borrar = "sp_alumno_delete";
+        public const string Alumno_Por_Rut = "sp_alumno_por_rut";
+        public const string Alumno_Actualizar = "sp_alumno_update";
         #endregion
     }
 }

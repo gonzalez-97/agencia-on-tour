@@ -25,6 +25,17 @@ namespace agencia_web_api.Controllers
         }
 
         /// <summary>
+        /// Verifica que el apoderado exista por RUT
+        /// </summary>
+        [Route("existe-por-rut/{rut:int}")]
+        [HttpGet]
+        public bool ExistePorRut(int rut)
+        {
+            Apoderado_Api apoderado = new Apoderado_Api();
+            return apoderado.ExisteApoderado(rut);
+        }
+
+        /// <summary>
         /// Filtro de apoderado por RUT
         /// </summary>
         [Route("{rut:int}")]
@@ -32,7 +43,7 @@ namespace agencia_web_api.Controllers
         public Apoderado_Api GetById(int rut)
         {
             Apoderado_Api apoderado = new Apoderado_Api();
-            apoderado.Read(rut);
+            apoderado.ReadPorRut(rut);
             return apoderado;
         }
 
