@@ -505,6 +505,7 @@
     <Content Include="Scripts\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pages\registro-alumno.js" />
     <Content Include="Scripts\pages\registro-apoderado-alumno.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -564,6 +565,7 @@
     <Content Include="Views\Shared\_LayoutApoderado.cshtml" />
     <Content Include="Views\Apoderado\Registro.cshtml" />
     <Content Include="Views\Alumno\Registro.cshtml" />
+    <Content Include="Views\Alumno\MisPupilos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

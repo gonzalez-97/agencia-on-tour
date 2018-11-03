@@ -119,5 +119,17 @@ namespace web_agencia.Models.Servicios
             }
             return salida;
         }
+
+        public async Task<List<Alumno>> ListaAlumnos()
+        {
+            List<Alumno> salida = new List<Alumno>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "alumno"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Alumno>>(responseData);
+            }
+            return salida;
+        }
     }
 }

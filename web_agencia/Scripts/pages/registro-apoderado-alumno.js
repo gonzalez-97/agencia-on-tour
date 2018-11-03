@@ -77,7 +77,7 @@
                     if (data === false) alerta = 'Error al guardar los datos del apoderado';
                     $this.generarAlerta(alerta);
 
-                    if (data === true) {
+                    if (data === true && !$this.alumnoOpcional()) {
                         $this.enviarAlumnoGuardar();
                         return;
                     }
