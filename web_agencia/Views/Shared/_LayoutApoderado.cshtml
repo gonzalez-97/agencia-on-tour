@@ -77,9 +77,9 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item active ">
-                        <a class="nav-link" href="../examples/dashboard.html">
+                        <a class="nav-link" href="@Url.Action("Index","Apoderado")">
                             <i class="material-icons">dashboard</i>
-                            <p> Dashboard </p>
+                            <p> Inicio | Apoderado </p>
                         </a>
                     </li>
                     <li class="nav-item ">
@@ -110,6 +110,33 @@
                         </div>
                     </li>
                     <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#alumnos-nav">
+                            <i class="fas fa-graduation-cap"></i>
+                            <p>
+                                Mis Pupilos
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="alumnos-nav">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Registro", "Alumno")">
+                                        <span class="sidebar-mini sidebar-mini-icon">
+                                            <i class="fas fa-plus-circle"></i>
+                                        </span>
+                                        <span class="sidebar-normal"> Registrar Pupilo </span>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("Index", "Alumno")">
+                                        <span class="sidebar-mini sidebar-mini-icon"> <i class="fas fa-users"></i> </span>
+                                        <span class="sidebar-normal"> Pupilos registrados </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    @*<li class="nav-item ">
                         <a class="nav-link" href="../examples/widgets.html">
                             <i class="material-icons">widgets</i>
                             <p> Widgets </p>
@@ -126,7 +153,7 @@
                             <i class="material-icons">date_range</i>
                             <p> Calendar </p>
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>

@@ -25,6 +25,24 @@ namespace web_agencia.Models
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public async Task<bool> ExisteApoderadoAsync(int rut)
+        {
+            try
+            {
+                HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}/{2}", url, "apoderado/existe-por-rut", rut));
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    return JsonConvert.DeserializeObject<bool>(responseData);
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> Create()
         {
             try

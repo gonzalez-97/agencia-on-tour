@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+<div class="container-fluid">
+    <div class="col-md-10 col-12 mr-auto ml-auto" id="formulario-alumno-registro">
+                    <div class="card-body">
+                        <form id="RegisterValidation" action="" method="">
+                            <div class="card ">
+                                <div class="card-header card-header-rose card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="fas fa-user-graduate fa-2x"></i>
+                                    </div>
+                                    <h4 class="card-title">Registro de alumno</h4>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Rut (*)</label>
+                                                <input type="number" class="form-control opcional-step" id="rut-alumno">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <select class="form-control opcional-step" id="curso-alumno">
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Nombre (*)</label>
+                                                        <input type="text" class="form-control opcional-step" id="nombre-alumno">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Apellido paterno (*)</label>
+                                                        <input type="text" class="form-control opcional-step" id="apaterno-alumno">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="bmd-label-floating">Apellido materno (*)</label>
+                                                        <input type="text" class="form-control opcional-step" id="amaterno-alumno">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label for="exampleEmail" class="bmd-label-floating"> Email Address *</label>
+                                        <input type="email" class="form-control" id="exampleEmail" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examplePassword" class="bmd-label-floating"> Password *</label>
+                                        <input type="password" class="form-control" id="examplePassword" required="true" name="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="examplePassword1" class="bmd-label-floating"> Confirm Password *</label>
+                                        <input type="password" class="form-control" id="examplePassword1" required="true" equalTo="#examplePassword" name="password_confirmation">
+                                    </div>*@
+                                    <div class="category form-category">* Campos requeridos</div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button type="submit" class="btn btn-rose">Registrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        (function ($, w, d) {
+            $(d).ready(function () {
+
+
+            });
+        })(jQuery, window, document);
+    </script>
+}

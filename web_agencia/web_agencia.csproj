@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ApoderadoController.cs" />
     <Compile Include="Controllers\ColegioController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
@@ -504,7 +505,7 @@
     <Content Include="Scripts\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\pages\configuracion\tablas.js" />
+    <Content Include="Scripts\pages\registro-apoderado-alumno.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -562,6 +563,7 @@
     <Content Include="Views\Apoderado\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutApoderado.cshtml" />
     <Content Include="Views\Apoderado\Registro.cshtml" />
+    <Content Include="Views\Alumno\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

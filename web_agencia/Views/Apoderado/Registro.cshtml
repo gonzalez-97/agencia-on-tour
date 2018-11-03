@@ -3,7 +3,7 @@
     ViewBag.Title = "Registro";
 }
 <div class="container-fluid">
-    <div class="col-md-8 col-12 mr-auto ml-auto">
+    <div class="col-md-8 col-12 mr-auto ml-auto" id="formulario-apoderado-registro">
         <!--      Wizard container        -->
         <div class="wizard-container">
             <div class="card card-wizard" data-color="rose" id="wizardProfile">
@@ -39,28 +39,28 @@
                             <div class="tab-pane active" id="about">
                                 <h5 class="info-text"> Escribe acá tu rut de inicio de sesión</h5>
                                 <div class="row justify-content-center">
-                                        <div class="col-lg-10 mt-3">
-                                            <div class="input-group form-control-lg">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-user-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="bmd-label-floating">Rut (*)</label>
-                                                    <input type="number" class="form-control" id="rut-apoderado">
-                                                </div>
+                                    <div class="col-lg-10 mt-3">
+                                        <div class="input-group form-control-lg">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-user-alt"></i>
+                                                </span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Rut (*)</label>
+                                                <input type="number" class="form-control" id="rut-apoderado" required="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             <div class="tab-pane" id="account">
                                 <h5 class="info-text"> Ingresa los datos del alumno (opcional) </h5>
                                 <div class="row justify-content-center">
                                     <div class="col-md-10">
                                         <div class="togglebutton">
                                             <label>
-                                                <input type="checkbox">
+                                                <input type="checkbox" id="alumno-omitido">
                                                 <span class="toggle"></span>
                                                 Omitir este paso
                                             </label>
@@ -70,34 +70,41 @@
                                 <div class="row justify-content-center">
                                     <div class="col-lg-10">
                                         <div class="row">
-                                                    <div class="col-sm-12">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Rut (*)</label>
+                                                    <input type="number" class="form-control opcional-step" id="rut-alumno">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <select class="form-control opcional-step" id="curso-alumno">
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label class="bmd-label-floating">Rut (*)</label>
-                                                            <input type="number" class="form-control" id="rut-alumno">
+                                                            <label class="bmd-label-floating">Nombre (*)</label>
+                                                            <input type="text" class="form-control opcional-step" id="nombre-alumno">
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Nombre (*)</label>
-                                                                    <input type="text" class="form-control" id="nombre-alumno" >
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Apellido paterno (*)</label>
-                                                                    <input type="text" class="form-control" id="apaterno-alumno">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="bmd-label-floating">Apellido materno (*)</label>
-                                                                    <input type="text" class="form-control" id="amaterno-alumno" >
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Apellido paterno (*)</label>
+                                                            <input type="text" class="form-control opcional-step" id="apaterno-alumno">
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="bmd-label-floating">Apellido materno (*)</label>
+                                                            <input type="text" class="form-control opcional-step" id="amaterno-alumno">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,11 +128,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="mr-auto">
-                            <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Anterior">
+                            <button type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled"  name="previous">
+                                Anterior
+                            </button>
                         </div>
                         <div class="ml-auto">
-                            <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Siguiente">
-                            <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finalizar" style="display: none;">
+                            <button type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next">
+                                Siguiente
+                            </button>
+                            <button type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" id="finalizar-input" style="display: none;">
+                                Finalizar
+                            </button>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -134,16 +147,41 @@
         </div>
         <!-- wizard container -->
     </div>
+    <div id="tiene-apoderado" class="col-md-8 col-12" style="display: none;">
+        <h5>Este usuario ya tiene un apoderado registrado.</h5>
+        <a href="javascript: window.history.back();">Volver atras</a>
+    </div>
 </div>
 
 @section scripts {
-  <script>
-    $(document).ready(function() {
-      // Initialise the wizard
-      demo.initMaterialWizard();
-      setTimeout(function() {
-        $('.card.card-wizard').addClass('active');
-      }, 600);
-    });
-  </script>
+    @Scripts.Render("~/Scripts/pages/registro-apoderado-alumno.js")
+    <script>
+        (function ($, w, d) {
+            $(d).ready(function () {
+
+                var p = w.thisPage();
+                p.cargarCursosSelect();
+
+                // Initialise the wizard
+                demo.initMaterialWizard();
+
+                $.when(p.tieneApoderadoAjax()).then(function (data, textStatus, jqXHR)
+                {
+                    if (!data) $('.card.card-wizard').addClass('active');
+                    else {
+                        $('#tiene-apoderado').show();
+                        $('#formulario-apoderado-registro').hide();
+                    }
+                });
+
+                $('#finalizar-input').click(function (e) {
+                    p.botonFinalizar();
+                });
+
+                $('#alumno-omitido').change(function (e) {
+                    p.checkOpcionalAlumno();
+                });
+            });
+        })(jQuery, window, document);
+    </script>
 }

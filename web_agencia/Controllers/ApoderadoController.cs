@@ -28,6 +28,23 @@ namespace web_agencia.Controllers
             return Json(salida, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [Route("crear-ajax")]
+        public async Task<ActionResult> CrearApoderadoAsync(Apoderado_Web apoderado)
+        {
+            //Estas dos lineas verifican que el usuario no tenga otro apoderado...
+            var existe = await Utiles.ExisteApoderadoFromSesionAsync();
+            if (existe) return Json("El usuario ya posee un apoderado registrado.", JsonRequestBehavior.AllowGet);
+            //Se obtiene el usuario desde sesion...
+            var sesion = new SessionUser();
+            Usuario_Web usuarioSesion = sesion.SesionWeb;
+            //Si el rut es diferente al ingresado tampoco se crea verifica el rut ingresado debe coincidir!!
+            if (usuarioSesion.Rut != apoderado.Usuario.Rut)
+                return Json("El rut ingresado no coincide con el usuario actual.", JsonRequestBehavior.AllowGet);
+            //Se envia a crear el apoderado a la web-api
+            return Json(await apoderado.Create(), JsonRequestBehavior.AllowGet);
+        }
+
         [Route("registro")]
         public ActionResult Registro()
         {

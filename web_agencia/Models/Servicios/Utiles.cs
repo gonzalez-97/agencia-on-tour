@@ -17,9 +17,8 @@ namespace web_agencia.Models.Servicios
         public static async Task<bool> ExisteApoderadoFromSesionAsync()
         {
             var usuarioConectado = new SessionUser();
-            Colecciones col = new Colecciones();
-            var apoderados = await col.ListaApoderados();
-            return apoderados.Where(m => m.Usuario.Rut == usuarioConectado.SesionWeb.Rut).Any();
+            var apoderado = new Apoderado_Web();
+            return await apoderado.ExisteApoderadoAsync(usuarioConectado.SesionWeb.Rut);
         }
     }
 }
