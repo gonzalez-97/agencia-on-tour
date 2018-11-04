@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agencia_web_api", "agencia_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web_agencia", "web_agencia\web_agencia.csproj", "{4E1B32B5-3AC1-4B47-AD2D-0E28425496ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aseguradora_web_api", "aseguradora_web_api\aseguradora_web_api.csproj", "{808CD947-4874-4F2A-87AB-CEA10CDC7E7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4E1B32B5-3AC1-4B47-AD2D-0E28425496ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1B32B5-3AC1-4B47-AD2D-0E28425496ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1B32B5-3AC1-4B47-AD2D-0E28425496ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{808CD947-4874-4F2A-87AB-CEA10CDC7E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{808CD947-4874-4F2A-87AB-CEA10CDC7E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{808CD947-4874-4F2A-87AB-CEA10CDC7E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{808CD947-4874-4F2A-87AB-CEA10CDC7E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
