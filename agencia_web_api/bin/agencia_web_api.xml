@@ -586,6 +586,31 @@
             Borra el colegio (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.ContratoController.Get">
+            <summary>
+            Una lista de contratos :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ContratoController.GetById(System.Int32)">
+            <summary>
+            Filtro de contrato por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ContratoController.Nuevo(agencia_web_api.Models.Contrato_Api)">
+            <summary>
+            Crea un nuevo contrato (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ContratoController.Editar(agencia_web_api.Models.Contrato_Api)">
+            <summary>
+            Actualiza el contrato (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ContratoController.Borrar(System.Int32)">
+            <summary>
+            Borra el contrato (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.CursoController.Get">
             <summary>
             Una lista de cursos :) (formato JSON)
@@ -634,6 +659,16 @@
         <member name="M:agencia_web_api.Controllers.DestinoController.BorrarDestino(System.Int32)">
             <summary>
             Borra el destino (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroController.Get">
+            <summary>
+            Una lista de seguros :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroController.GetById(System.Int32)">
+            <summary>
+            Filtro de seguro por ID
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.UsuarioController.Get">

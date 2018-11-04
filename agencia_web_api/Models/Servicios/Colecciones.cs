@@ -141,5 +141,36 @@ namespace agencia_web_api.Models.Servicios
 
         }
 
+        public IEnumerable<Seguro> ListaSeguro()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            return Db.Query<Seguro>(Procs.Seguro_Todos, p, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<Contrato> ListaContrato()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<dynamic>(Procs.Contrato_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Curso_Api curso = new Curso_Api();
+                curso.Read((int)n.CURSOID);
+                return new Contrato()
+                {
+                    Id = (int)n.ID,
+                    Nombre = n.NOMBRE,
+                    Descripcion = n.DESCRIPCION,
+                    Fecha_Viaje = (DateTime)n.FECHA_VIAJE,
+                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
+                };
+            });
+
+            return salida;
+        }
+
     }
 }

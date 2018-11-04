@@ -199,10 +199,12 @@
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ApoderadoController.cs" />
     <Compile Include="Controllers\ColegioController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\SeguroController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,10 +214,12 @@
     <Compile Include="Models\Alumno_Api.cs" />
     <Compile Include="Models\Apoderado_Api.cs" />
     <Compile Include="Models\Colegio_Api.cs" />
+    <Compile Include="Models\Contrato_Api.cs" />
     <Compile Include="Models\Curso_Api.cs" />
     <Compile Include="Models\Destino_Api.cs" />
     <Compile Include="Models\Perfil_Api.cs" />
     <Compile Include="Models\Perfil_Asociado_Api.cs" />
+    <Compile Include="Models\Seguro_Api.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\ConexionDb.cs" />
     <Compile Include="Models\Servicios\OracleDynamicParameters.cs" />

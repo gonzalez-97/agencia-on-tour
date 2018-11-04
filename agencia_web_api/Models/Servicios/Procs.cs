@@ -17,6 +17,8 @@ namespace agencia_web_api.Models.Servicios
         public const string Curso_Todos = "sp_curso_todos";
         public const string Apoderado_Todos = "sp_apoderado_todos";
         public const string Alumno_Todos = "sp_alumno_todos";
+        public const string Seguro_Todos = "sp_seguro_todos";
+        public const string Contrato_Todos = "sp_contrato_todos";
         #endregion
 
         #region Actividad
@@ -74,6 +76,18 @@ namespace agencia_web_api.Models.Servicios
         public const string Alumno_Borrar = "sp_alumno_delete";
         public const string Alumno_Por_Rut = "sp_alumno_por_rut";
         public const string Alumno_Actualizar = "sp_alumno_update";
+        #endregion
+
+        #region Seguros
+        public const string Seguro_Por_Id = "sp_seguro_por_id";
+
+        #endregion
+
+        #region Contrato
+        public const string Contrato_Crear = "sp_contrato_create";
+        public const string Contrato_Por_Id = "sp_contrato_por_id";
+        public const string Contrato_Borrar = "sp_contrato_delete";
+        public const string Contrato_Actualizar = "sp_contrato_update";
         #endregion
     }
 }
