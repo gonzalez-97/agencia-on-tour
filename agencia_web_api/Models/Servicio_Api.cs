@@ -10,7 +10,7 @@ using System.Web;
 
 namespace agencia_web_api.Models
 {
-    public class Contrato_Api: Contrato
+    public class Servicio_Api: Servicio
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Create()
@@ -18,12 +18,10 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
-                p.Add("Curso", this.Curso.Id);
                 p.Add("Nombre", this.Nombre);
                 p.Add("Descripcion", this.Descripcion);
-                p.Add("Fecha_Viaje", this.Fecha_Viaje);
-                p.Add("Total", this.Valor);
-                Db.Execute(Procs.Contrato_Crear, p, commandType: CommandType.StoredProcedure);
+                p.Add("Valor", this.Valor);
+                Db.Execute(Procs.Servicio_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -41,23 +39,14 @@ namespace agencia_web_api.Models
                 p.Add("Id", id);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
-                var result = Db.QuerySingle<dynamic>(Procs.Contrato_Por_Id, param: p, commandType: CommandType.StoredProcedure);
-                Colecciones col = new Colecciones();
-                Curso_Api curso = new Curso_Api();
-                curso.Read((int)result.CURSOID);
-
-                Id = (int)result.ID;
-                Fecha_Viaje = (DateTime)result.FECHA_VIAJE;
-                Nombre = result.NOMBRE;
-                Descripcion = result.DESCRIPCION;
-                Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
-                ListaSeguroAsociados = col.ListaSeguroAsociadosXContrato(id).ToList();
-                ListaServiciosAsociados = col.ListaServiciosAsociadosXContrato(id).ToList();
+                var retorno = Db.QuerySingle<Servicio_Api>(Procs.Servicio_Por_Id, p, commandType: CommandType.StoredProcedure);
+                MappingThisFromAnother(retorno);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
+                throw;
             }
         }
 
@@ -67,12 +56,10 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                p.Add("Curso", this.Curso.Id);
                 p.Add("Nombre", this.Nombre);
                 p.Add("Descripcion", this.Descripcion);
-                p.Add("Fecha_Viaje", this.Fecha_Viaje);
                 p.Add("Valor", this.Valor);
-                Db.Execute(Procs.Contrato_Actualizar, p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Servicio_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -88,14 +75,22 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                Db.Execute(Procs.Contrato_Borrar, p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Servicio_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
             {
                 return false;
-                throw;
             }
+        }
+
+        private void MappingThisFromAnother(Servicio_Api objeto)
+        {
+
+            this.Id = objeto.Id;
+            this.Nombre = objeto.Nombre;
+            this.Descripcion = objeto.Descripcion;
+            this.Valor = objeto.Valor;
         }
     }
 }

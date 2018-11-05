@@ -10,7 +10,7 @@ using System.Web;
 
 namespace agencia_web_api.Models
 {
-    public class Contrato_Api: Contrato
+    public class Servicio_Asociado_Api: Servicio_Asociado
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Create()
@@ -18,12 +18,9 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
-                p.Add("Curso", this.Curso.Id);
-                p.Add("Nombre", this.Nombre);
-                p.Add("Descripcion", this.Descripcion);
-                p.Add("Fecha_Viaje", this.Fecha_Viaje);
-                p.Add("Total", this.Valor);
-                Db.Execute(Procs.Contrato_Crear, p, commandType: CommandType.StoredProcedure);
+                p.Add("ContratoID", this.Contrato.Id);
+                p.Add("ServicioID", this.Servicio.Id);
+                Db.Execute(Procs.Servicio_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -41,18 +38,31 @@ namespace agencia_web_api.Models
                 p.Add("Id", id);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
-                var result = Db.QuerySingle<dynamic>(Procs.Contrato_Por_Id, param: p, commandType: CommandType.StoredProcedure);
-                Colecciones col = new Colecciones();
-                Curso_Api curso = new Curso_Api();
-                curso.Read((int)result.CURSOID);
+                var result = Db.QuerySingle<dynamic>(Procs.Servicio_Asociado_Por_Id, param: p, commandType: CommandType.StoredProcedure);
+
+                Contrato_Api contrato = new Contrato_Api();
+                contrato.Read((int)result.CONTRATOID);
+
+                Servicio_Api servicio = new Servicio_Api();
+                servicio.Read((int)result.SERVICIOID);
 
                 Id = (int)result.ID;
-                Fecha_Viaje = (DateTime)result.FECHA_VIAJE;
-                Nombre = result.NOMBRE;
-                Descripcion = result.DESCRIPCION;
-                Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
-                ListaSeguroAsociados = col.ListaSeguroAsociadosXContrato(id).ToList();
-                ListaServiciosAsociados = col.ListaServiciosAsociadosXContrato(id).ToList();
+                Contrato = new Contrato()
+                {
+                    Id = contrato.Id,
+                    Curso = contrato.Curso,
+                    Nombre = contrato.Nombre,
+                    Descripcion = contrato.Descripcion,
+                    Fecha_Viaje = contrato.Fecha_Viaje,
+                    Valor = contrato.Valor
+                };
+                Servicio = new Servicio()
+                {
+                    Id = servicio.Id,
+                    Nombre = servicio.Nombre,
+                    Descripcion = servicio.Descripcion,
+                    Valor = servicio.Valor
+                };
                 return true;
             }
             catch (Exception ex)
@@ -67,12 +77,9 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                p.Add("Curso", this.Curso.Id);
-                p.Add("Nombre", this.Nombre);
-                p.Add("Descripcion", this.Descripcion);
-                p.Add("Fecha_Viaje", this.Fecha_Viaje);
-                p.Add("Valor", this.Valor);
-                Db.Execute(Procs.Contrato_Actualizar, p, commandType: CommandType.StoredProcedure);
+                p.Add("ContratoID", this.Contrato.Id);
+                p.Add("ServicioID", this.Servicio.Id);
+                Db.Execute(Procs.Servicio_Asociado_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
@@ -88,13 +95,12 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                Db.Execute(Procs.Contrato_Borrar, p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Servicio_Asociado_Borrar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
             {
                 return false;
-                throw;
             }
         }
     }

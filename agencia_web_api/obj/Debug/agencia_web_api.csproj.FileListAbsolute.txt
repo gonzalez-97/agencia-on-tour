@@ -158,6 +158,7 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\roslyn\
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\agencia_lib.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Antlr3.Runtime.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Dapper.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Dapper.Mapper.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -205,12 +206,6 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microso
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.AI.Web.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csprojAssemblyReference.cache
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csproj.CoreCompileInputs.cache
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csproj.CopyComplete
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.dll
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.pdb
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\Dapper.Mapper.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.Helpers.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.Http.resources.dll
@@ -221,3 +216,8 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\Syst
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csprojAssemblyReference.cache
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csproj.CoreCompileInputs.cache
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csproj.CopyComplete
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.pdb

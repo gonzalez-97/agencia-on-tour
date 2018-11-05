@@ -16,7 +16,7 @@ namespace agencia_web_api.Controllers
         Colecciones col = new Colecciones();
 
         /// <summary>
-        /// Devuelve una lista da alumnos...
+        /// Devuelve una lista de alumnos...
         /// </summary>
         [Route]
         public IEnumerable<Alumno> Get()

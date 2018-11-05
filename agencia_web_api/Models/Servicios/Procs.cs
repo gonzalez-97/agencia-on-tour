@@ -19,6 +19,9 @@ namespace agencia_web_api.Models.Servicios
         public const string Alumno_Todos = "sp_alumno_todos";
         public const string Seguro_Todos = "sp_seguro_todos";
         public const string Contrato_Todos = "sp_contrato_todos";
+        public const string Seguros_Asociado_Todos = "sp_seguros_asignados_todos";
+        public const string Servicio_Todos = "sp_servicio_todos";
+        public const string Servicios_Asociado_Todos = "sp_servicio_asignado_todos";
         #endregion
 
         #region Actividad
@@ -83,11 +86,33 @@ namespace agencia_web_api.Models.Servicios
 
         #endregion
 
+        #region Seguros Asociados
+        public const string Seguro_Asociado_Crear = "sp_seguros_asignados_crear";
+        public const string Seguro_Asociado_Actualizar = "sp_seguros_asignados_update";
+        public const string Seguro_Asociado_Borrar = "sp_seguros_asignados_delete";
+        public const string Seguro_Asociado_Por_Id = "sp_seguros_asignados_por_id";
+
+        #endregion
+
         #region Contrato
         public const string Contrato_Crear = "sp_contrato_create";
         public const string Contrato_Por_Id = "sp_contrato_por_id";
         public const string Contrato_Borrar = "sp_contrato_delete";
         public const string Contrato_Actualizar = "sp_contrato_update";
+        #endregion
+
+        #region Servicio
+        public const string Servicio_Crear = "sp_servicio_create";
+        public const string Servicio_Actualizar = "sp_servicio_update";
+        public const string Servicio_Borrar = "sp_servicio_delete";
+        public const string Servicio_Por_Id = "sp_servicio_por_id";
+        #endregion
+
+        #region Servicio
+        public const string Servicio_Asociado_Crear = "sp_servicio_asignado_create";
+        public const string Servicio_Asociado_Actualizar = "sp_servicio_asignado_update";
+        public const string Servicio_Asociado_Borrar = "sp_servicio_asignado_delete";
+        public const string Servicio_Asociado_Por_Id = "sp_servicio_asignado_por_id";
         #endregion
     }
 }

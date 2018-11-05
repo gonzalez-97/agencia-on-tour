@@ -148,6 +148,81 @@ namespace agencia_web_api.Models.Servicios
             return Db.Query<Seguro>(Procs.Seguro_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
+        public IEnumerable<Seguro_Asociado> ListaSeguroAsociados()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+
+            var result = Db.Query<dynamic>(Procs.Seguros_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Contrato_Api contrato = new Contrato_Api();
+                contrato.Read((int)n.CONTRATOID);
+
+                Seguro_Api seguro = new Seguro_Api();
+                seguro.Read((int)n.SEGUROID);
+
+                return new Seguro_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Valor = (int)n.VALOR,
+                    Tipo_Seguro = (int)n.TIPO_SEGURO,
+                    Contrato = new Contrato()
+                    {
+                        Id = contrato.Id,
+                        Curso = contrato.Curso,
+                        Nombre = contrato.Nombre,
+                        Descripcion = contrato.Descripcion,
+                        Fecha_Viaje = contrato.Fecha_Viaje,
+                        Valor = contrato.Valor
+                    },
+                    Seguro = new Seguro()
+                    {
+                        Id = seguro.Id,
+                        Nombre = seguro.Nombre,
+                        Descripcion = seguro.Descripcion,
+                        Dias_Cobertura = seguro.Dias_Cobertura
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Seguro_Asociado> ListaSeguroAsociadosXContrato(int Id)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+
+            var result = Db.Query<dynamic>(Procs.Seguros_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Where(aux => (int)aux.CONTRATOID == Id).Select(n =>
+            {
+
+                Seguro_Api seguro = new Seguro_Api();
+                seguro.Read((int)n.SEGUROID);
+
+                return new Seguro_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Valor = (int)n.VALOR,
+                    Tipo_Seguro = (int)n.TIPO_SEGURO,
+                    Seguro = new Seguro()
+                    {
+                        Id = seguro.Id,
+                        Nombre = seguro.Nombre,
+                        Descripcion = seguro.Descripcion,
+                        Dias_Cobertura = seguro.Dias_Cobertura
+                    }
+                };
+            });
+
+            return salida;
+        }
+
         public IEnumerable<Contrato> ListaContrato()
         {
             var p = new OracleDynamicParameters();
@@ -165,11 +240,86 @@ namespace agencia_web_api.Models.Servicios
                     Nombre = n.NOMBRE,
                     Descripcion = n.DESCRIPCION,
                     Fecha_Viaje = (DateTime)n.FECHA_VIAJE,
-                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
+                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio },
+                    ListaSeguroAsociados = ListaSeguroAsociadosXContrato((int)n.ID).ToList(),
+                    ListaServiciosAsociados = ListaServiciosAsociadosXContrato((int)n.ID).ToList()
                 };
             });
 
             return salida;
+        }
+
+        public IEnumerable<Servicio> ListaServicios()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            return Db.Query<Servicio>(Procs.Servicio_Todos, p, commandType: CommandType.StoredProcedure);
+        }
+
+        public IEnumerable<Servicio_Asociado> ListaServiciosAsociadosXContrato(int Id)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Servicios_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Where(aux => (int)aux.CONTRATOID == Id).Select(n =>
+            {
+                Servicio_Api servicio = new Servicio_Api();
+                servicio.Read((int)n.SERVICIOID);
+                return new Servicio_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Servicio = new Servicio()
+                    {
+                        Id = servicio.Id,
+                        Nombre = servicio.Nombre,
+                        Descripcion = servicio.Descripcion,
+                        Valor = servicio.Valor
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Servicio_Asociado> ListaServiciosAsociados()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Servicios_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Contrato_Api contrato = new Contrato_Api();
+                contrato.Read((int)n.CONTRATOID);
+
+                Servicio_Api servicio = new Servicio_Api();
+                servicio.Read((int)n.SERVICIOID);
+                return new Servicio_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Contrato = new Contrato()
+                    {
+                        Id = contrato.Id,
+                        Curso = contrato.Curso,
+                        Nombre = contrato.Nombre,
+                        Descripcion = contrato.Descripcion,
+                        Fecha_Viaje = contrato.Fecha_Viaje,
+                        Valor = contrato.Valor
+                    },
+                    Servicio = new Servicio()
+                    {
+                        Id = servicio.Id,
+                        Nombre = servicio.Nombre,
+                        Descripcion = servicio.Descripcion,
+                        Valor = servicio.Valor
+                    }
+                };
+            });
+
+            return salida;
+
+
         }
 
     }

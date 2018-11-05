@@ -508,7 +508,7 @@
         </member>
         <member name="M:agencia_web_api.Controllers.AlumnoController.Get">
             <summary>
-            Devuelve una lista da alumnos...
+            Devuelve una lista de alumnos...
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.AlumnoController.ExistePorRut(System.Int32)">
@@ -661,6 +661,31 @@
             Borra el destino (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.Get">
+            <summary>
+            Una lista de seguros asociados al contrato :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.GetById(System.Int32)">
+            <summary>
+            Filtro de seguro asociado por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.Nuevo(agencia_web_api.Models.Seguro_Asociado_Api)">
+            <summary>
+            Crea un seguro asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.Editar(agencia_web_api.Models.Seguro_Asociado_Api)">
+            <summary>
+            Actualiza el seguro asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.Borrar(System.Int32)">
+            <summary>
+            Borra el seguro asociado (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.SeguroController.Get">
             <summary>
             Una lista de seguros :) (formato JSON)
@@ -669,6 +694,56 @@
         <member name="M:agencia_web_api.Controllers.SeguroController.GetById(System.Int32)">
             <summary>
             Filtro de seguro por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioAsociadoController.Get">
+            <summary>
+            Una lista de servicios :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioAsociadoController.GetById(System.Int32)">
+            <summary>
+            Filtro de servicio por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioAsociadoController.Nuevo(agencia_web_api.Models.Servicio_Asociado_Api)">
+            <summary>
+            Crea un servicio asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioAsociadoController.Editar(agencia_web_api.Models.Servicio_Asociado_Api)">
+            <summary>
+            Actualiza el servicio asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioAsociadoController.Borrar(System.Int32)">
+            <summary>
+            Borra el servicio asociado (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioController.Get">
+            <summary>
+            Una lista de servicios :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioController.GetById(System.Int32)">
+            <summary>
+            Filtro de servicio por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioController.Nuevo(agencia_web_api.Models.Servicio_Api)">
+            <summary>
+            Crea un servicio asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioController.Editar(agencia_web_api.Models.Servicio_Api)">
+            <summary>
+            Actualiza el servicio asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ServicioController.Borrar(System.Int32)">
+            <summary>
+            Borra el servicio (actualiza el campo eliminado = 0)
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.UsuarioController.Get">

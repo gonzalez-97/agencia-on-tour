@@ -54,6 +54,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguro.cs" />
     <Compile Include="Seguro_Asociado.cs" />
+    <Compile Include="Servicio.cs" />
+    <Compile Include="Servicio_Asociado.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
