@@ -14,6 +14,11 @@ namespace web_agencia.Models.Servicios
             return ConfigurationManager.AppSettings["web_api_service"];
         }
 
+        public static string RutaWebAPI_Seguro()
+        {
+            return ConfigurationManager.AppSettings["web_api_seguro"];
+        }
+
         public static async Task<bool> ExisteApoderadoFromSesionAsync()
         {
             var usuarioConectado = new SessionUser();

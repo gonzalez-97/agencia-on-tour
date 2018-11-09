@@ -167,10 +167,15 @@
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ApoderadoController.cs" />
     <Compile Include="Controllers\ColegioController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DepositoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
+    <Compile Include="Controllers\EjecutivoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrimaSegurosController.cs" />
+    <Compile Include="Controllers\SeguroController.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,10 +187,12 @@
     <Compile Include="Models\Curso_Web.cs" />
     <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
+    <Compile Include="Models\Seguro_Web.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\SessionAuthorizeAttribute.cs" />
     <Compile Include="Models\Servicios\SessionUser.cs" />
     <Compile Include="Models\Servicios\Utiles.cs" />
+    <Compile Include="Models\Servicio_Web.cs" />
     <Compile Include="Models\Tarea_Terminada.cs" />
     <Compile Include="Models\Usuario_Web.cs" />
     <Compile Include="Models\Views\CursoViewModel.cs" />
@@ -505,6 +512,7 @@
     <Content Include="Scripts\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pages\contrato.js" />
     <Content Include="Scripts\pages\registro-alumno.js" />
     <Content Include="Scripts\pages\registro-apoderado-alumno.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -566,10 +574,16 @@
     <Content Include="Views\Apoderado\Registro.cshtml" />
     <Content Include="Views\Alumno\Registro.cshtml" />
     <Content Include="Views\Alumno\MisPupilos.cshtml" />
+    <Content Include="Views\Ejecutivo\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutEjecutivo.cshtml" />
+    <Content Include="Views\Contrato\Nuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Deposito\" />
+    <Folder Include="Views\PrimaSeguros\" />
+    <Folder Include="Views\Seguro\" />
+    <Folder Include="Views\Servicio\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

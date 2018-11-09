@@ -27,11 +27,31 @@ namespace web_agencia.Models.Servicios
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public async Task<List<Prima_Seguro>> ListaPrimaSeguros()
+        {
+            List<Prima_Seguro> salida = new List<Prima_Seguro>();
+
+            Uri urlAseguradora = new Uri(Utiles.RutaWebAPI_Seguro());
+            HttpClient clientAseguradora = new HttpClient();
+            clientAseguradora.BaseAddress = urlAseguradora;
+            clientAseguradora.DefaultRequestHeaders.Accept.Clear();
+            clientAseguradora.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage responseMessage = await clientAseguradora.GetAsync(string.Format("{0}/{1}", urlAseguradora, "seguros"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Prima_Seguro>>(responseData);
+            }
+            return salida;
+        }
+
         public List<Mantenedor_Ruta> ListaRutasMantenedores()
         {
             List<Mantenedor_Ruta> salida = new List<Mantenedor_Ruta>();
             /*Rutas en duro para redireccion de 5 perfiles */
             salida.Add(new Mantenedor_Ruta { IdPerfil = 1, ControllerName = "Administrador", ActionName = "Index" });
+            salida.Add(new Mantenedor_Ruta { IdPerfil = 2, ControllerName = "Ejecutivo", ActionName = "Index" });
             salida.Add(new Mantenedor_Ruta { IdPerfil = 5, ControllerName = "Apoderado", ActionName = "Index" });
             return salida;
         }
@@ -128,6 +148,30 @@ namespace web_agencia.Models.Servicios
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 salida = JsonConvert.DeserializeObject<List<Alumno>>(responseData);
+            }
+            return salida;
+        }
+
+        public async Task<List<Seguro>> ListaSeguros()
+        {
+            List<Seguro> salida = new List<Seguro>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "seguro"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Seguro>>(responseData);
+            }
+            return salida;
+        }
+
+        public async Task<List<Servicio>> ListaServicios()
+        {
+            List<Servicio> salida = new List<Servicio>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "servicio"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Servicio>>(responseData);
             }
             return salida;
         }
