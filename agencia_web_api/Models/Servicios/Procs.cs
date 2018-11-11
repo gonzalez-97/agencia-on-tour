@@ -22,6 +22,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Seguros_Asociado_Todos = "sp_seguros_asignados_todos";
         public const string Servicio_Todos = "sp_servicio_todos";
         public const string Servicios_Asociado_Todos = "sp_servicio_asignado_todos";
+        public const string Destinos_Asociado_Todos = "sp_destinos_asignados_todos";
         #endregion
 
         #region Actividad
@@ -58,6 +59,13 @@ namespace agencia_web_api.Models.Servicios
         public const string Destino_Por_Id = "sp_destino_por_id";
         public const string Destino_Actualizar = "sp_destino_update";
         public const string Destino_Borrar = "sp_destino_delete";
+        #endregion
+
+        #region Destino Asociado
+        public const string Destino_Asociado_Crear = "sp_destinos_asignados_crear";
+        public const string Destino_Asociado_Actualizar = "sp_destinos_asignados_update";
+        public const string Destino_Asociado_Borrar = "sp_destinos_asignados_delete";
+        public const string Destino_Asociado_Por_Id = "sp_destinos_asignados_por_id";
         #endregion
 
         #region Perfil Asociado
@@ -108,7 +116,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Servicio_Por_Id = "sp_servicio_por_id";
         #endregion
 
-        #region Servicio
+        #region Servicio Asociado
         public const string Servicio_Asociado_Crear = "sp_servicio_asignado_create";
         public const string Servicio_Asociado_Actualizar = "sp_servicio_asignado_update";
         public const string Servicio_Asociado_Borrar = "sp_servicio_asignado_delete";

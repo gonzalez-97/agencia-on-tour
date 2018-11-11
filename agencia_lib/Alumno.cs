@@ -14,6 +14,7 @@ namespace agencia_lib
         public string Nombre { get; set; }
         public string APaterno { get; set; }
         public string AMaterno { get; set; }
+        public int? Total_Reunido {get; set;}
         public Curso Curso { get; set; }
         public Apoderado Apoderado { get; set; }
     }

@@ -636,6 +636,31 @@
             Borra el curso (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.DestinoAsociadoController.Get">
+            <summary>
+            Una lista de destinos asociados al contrato :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.DestinoAsociadoController.GetById(System.Int32)">
+            <summary>
+            Filtro de destino asociado por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.DestinoAsociadoController.Nuevo(agencia_web_api.Models.Destino_Asociado_Api)">
+            <summary>
+            Crea un destino asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.DestinoAsociadoController.Editar(agencia_web_api.Models.Destino_Asociado_Api)">
+            <summary>
+            Actualiza el destino asociado (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.DestinoAsociadoController.Borrar(System.Int32)">
+            <summary>
+            Borra el destino asociado (Lo borra directamente no es necesario borrado logico...)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.DestinoController.Get">
             <summary>
             Una lista de destinos :) (formato JSON)

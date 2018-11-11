@@ -19,6 +19,9 @@ namespace agencia_web_api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+           // config.Formatters.XmlFormatter.UseXmlSerializer = false;
+
         }
+
     }
 }

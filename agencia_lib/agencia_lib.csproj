@@ -49,6 +49,7 @@
     <Compile Include="Contrato.cs" />
     <Compile Include="Curso.cs" />
     <Compile Include="Destino.cs" />
+    <Compile Include="Destino_Asociado.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Perfil_Asociado.cs" />
     <Compile Include="Prima_Seguro.cs" />

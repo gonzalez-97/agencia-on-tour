@@ -42,8 +42,8 @@ namespace agencia_web_api.Controllers
         [Route("crear")]
         public IHttpActionResult Nuevo(Contrato_Api contrato_crear)
         {
-            if (contrato_crear.Create()) return Ok();
-
+            if (contrato_crear.Create())
+                return Ok(contrato_crear);
             return BadRequest("No se ha podido crear el contrato.");
         }
 

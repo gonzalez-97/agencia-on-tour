@@ -30,7 +30,7 @@
                         <label class="col-sm-2 col-form-label">Descripción</label>
                         <div class="col-sm-10">
                             <div class="form-group">
-                                <textarea  class="form-control" id="descripcion-contrato">
+                                <textarea class="form-control" id="descripcion-contrato">
 
                                 </textarea>
                             </div>
@@ -40,9 +40,31 @@
                         <label class="col-sm-2 col-form-label">Fecha del viaje</label>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input class="form-control" type="datetime" />
+                                <input class="form-control" type="datetime-local" id="fecha-viaje" />
                             </div>
                         </div>
+                        <label class="col-sm-2 col-form-label">Valor</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input class="form-control disabled" type="text" id="valor-contrato" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-seguro" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir seguro
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-seguros">
+
                     </div>
                 </div>
             </div>
@@ -58,81 +80,52 @@
                         </div>
                     </div>
                     <div id="contenedor-servicios">
-                        <div class="row div-servicios">
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <select class="form-control servicios-contrato">
-                                        <option></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-1">
-                                <button class="btn btn-outline-danger btn-round btn-sm btn-fab">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="card ">
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-sm-1">
-                            <button id="add-seguro" class="btn btn-primary btn-round btn-sm">
-                                <i class="fas fa-plus"></i> Añadir seguro
+                            <button id="add-destino" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir destino
                             </button>
                         </div>
                     </div>
-                    <div id="contenedor-seguros">
-                        <div class="row div-seguros">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <select class="form-control seguros-contrato">
-                                        <option></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <select class="form-control tipo-seguro">
-                                        <option></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <input class="form-control" type="number" style=" padding: 1.255rem 0;" />
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <p>Valor: <span class="valor-seguro">0</span></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-1">
-                                <button class="btn btn-outline-danger btn-round btn-sm btn-fab">
-                                    <i class="material-icons">close</i>
-                                </button>
-                            </div>
-                        </div>
+                    <div id="contenedor-destinos">
+
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-servicio" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir documento
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-servicios">
 
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-lg-12 ml-auto mr-auto text-center">
-                    <button type="button" class="btn btn-rose">Generar Contrato<div class="ripple-container"></div></button>
+                    <button type="button" id="registrar-input" class="btn btn-rose">Generar Contrato<div class="ripple-container"></div></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @section scripts {
     @Scripts.Render("~/Scripts/pages/contrato.js")
     <script>
@@ -150,6 +143,13 @@
                     p.addSeguro();
                 });
 
+                $('#add-destino').click(function (e) {
+                    p.addDestino();
+                });
+
+                $('#registrar-input').click(function (e) {
+                    p.botonFinalizar();
+                });
             });
         })(jQuery, window, document);
     </script>

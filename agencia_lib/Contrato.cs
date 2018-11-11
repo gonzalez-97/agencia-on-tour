@@ -14,8 +14,10 @@ namespace agencia_lib
         public DateTime Fecha_Viaje { get; set; }
         public int Valor { get; set; }
         public Curso Curso { get; set; }
+        public bool Estado { get; set; }
         public List<Seguro_Asociado> ListaSeguroAsociados {get; set;}
         public List<Servicio_Asociado> ListaServiciosAsociados { get; set; }
+        public List<Destino_Asociado> ListaDestinosAsociados { get; set; }
 
     }
 

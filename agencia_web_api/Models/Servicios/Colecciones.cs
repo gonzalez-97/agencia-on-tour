@@ -132,6 +132,7 @@ namespace agencia_web_api.Models.Servicios
                     Nombre = n.NOMBRE,
                     APaterno = n.APATERNO,
                     AMaterno = n.AMATERNO,
+                    Total_Reunido = (int?)n.TOTAL,
                     Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario },
                     Curso = new Curso(){ Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
                };
@@ -223,6 +224,7 @@ namespace agencia_web_api.Models.Servicios
             return salida;
         }
 
+
         public IEnumerable<Contrato> ListaContrato()
         {
             var p = new OracleDynamicParameters();
@@ -240,9 +242,11 @@ namespace agencia_web_api.Models.Servicios
                     Nombre = n.NOMBRE,
                     Descripcion = n.DESCRIPCION,
                     Fecha_Viaje = (DateTime)n.FECHA_VIAJE,
+                    Estado = ((int)n.ESTADO > 0)? true : false,
                     Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio },
                     ListaSeguroAsociados = ListaSeguroAsociadosXContrato((int)n.ID).ToList(),
-                    ListaServiciosAsociados = ListaServiciosAsociadosXContrato((int)n.ID).ToList()
+                    ListaServiciosAsociados = ListaServiciosAsociadosXContrato((int)n.ID).ToList(),
+                    ListaDestinosAsociados = ListaDestinosAsociadosXContrato((int)n.ID).ToList()
                 };
             });
 
@@ -318,9 +322,71 @@ namespace agencia_web_api.Models.Servicios
             });
 
             return salida;
-
-
         }
+
+        public IEnumerable<Destino_Asociado> ListaDestinosAsociados()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Destinos_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Contrato_Api contrato = new Contrato_Api();
+                contrato.Read((int)n.CONTRATOID);
+
+                Destino_Api destino = new Destino_Api();
+                destino.Read((int)n.DESTINOID);
+                return new Destino_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Contrato = new Contrato()
+                    {
+                        Id = contrato.Id,
+                        Curso = contrato.Curso,
+                        Nombre = contrato.Nombre,
+                        Descripcion = contrato.Descripcion,
+                        Fecha_Viaje = contrato.Fecha_Viaje,
+                        Valor = contrato.Valor
+                    },
+                    Destino = new Destino()
+                    {
+                        Id = destino.Id,
+                        Nombre = destino.Nombre,
+                        Valor = destino.Valor
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Destino_Asociado> ListaDestinosAsociadosXContrato(int IdContrato)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Destinos_Asociado_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Where(n => (int)n.CONTRATOID == IdContrato).Select(n =>
+            {
+                Destino_Api destino = new Destino_Api();
+                destino.Read((int)n.DESTINOID);
+                return new Destino_Asociado()
+                {
+                    Id = (int)n.ID,
+                    Destino = new Destino()
+                    {
+                        Id = destino.Id,
+                        Nombre = destino.Nombre,
+                        Valor = destino.Valor
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+
 
     }
 }

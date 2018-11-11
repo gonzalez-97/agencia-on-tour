@@ -1,4 +1,5 @@
-﻿using agencia_lib;
+﻿
+using agencia_lib;
 using agencia_web_api.Models.Servicios;
 using Dapper;
 using Oracle.ManagedDataAccess.Client;
@@ -18,12 +19,15 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
+                p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
                 p.Add("Curso", this.Curso.Id);
                 p.Add("Nombre", this.Nombre);
                 p.Add("Descripcion", this.Descripcion);
                 p.Add("Fecha_Viaje", this.Fecha_Viaje);
                 p.Add("Total", this.Valor);
-                Db.Execute(Procs.Contrato_Crear, p, commandType: CommandType.StoredProcedure);
+
+                var retorno = Db.QuerySingle<Contrato_Api>(Procs.Contrato_Crear, param: p, commandType: CommandType.StoredProcedure);
+                this.Id = retorno.Id;
                 return true;
             }
             catch (Exception ex)
@@ -50,9 +54,11 @@ namespace agencia_web_api.Models
                 Fecha_Viaje = (DateTime)result.FECHA_VIAJE;
                 Nombre = result.NOMBRE;
                 Descripcion = result.DESCRIPCION;
+                Estado = ((int)result.ESTADO > 0) ? true : false;
                 Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
                 ListaSeguroAsociados = col.ListaSeguroAsociadosXContrato(id).ToList();
                 ListaServiciosAsociados = col.ListaServiciosAsociadosXContrato(id).ToList();
+                ListaDestinosAsociados = col.ListaDestinosAsociadosXContrato(id).ToList();
                 return true;
             }
             catch (Exception ex)

@@ -66,6 +66,7 @@ namespace agencia_web_api.Models
                 Nombre = result.NOMBRE;
                 APaterno = result.APATERNO;
                 AMaterno = result.AMATERNO;
+                Total_Reunido = (int?)result.TOTAL;
                 Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario };
                 Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
 
@@ -89,6 +90,7 @@ namespace agencia_web_api.Models
                 p.Add("AMaterno", this.AMaterno);
                 p.Add("Apoderado_Id", this.Apoderado.Id);
                 p.Add("Curso", this.Curso.Id);
+                p.Add("Total_Reunido", this.Total_Reunido);
                 Db.Execute(Procs.Alumno_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
