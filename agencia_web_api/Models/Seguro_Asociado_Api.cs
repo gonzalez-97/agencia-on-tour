@@ -22,6 +22,7 @@ namespace agencia_web_api.Models
                 p.Add("SeguroID", this.Seguro.Id);
                 p.Add("Valor", this.Valor);
                 p.Add("Tipo_Seguro", this.Tipo_Seguro);
+                p.Add("Total_Dias", this.Total_Dias);
                 Db.Execute(Procs.Seguro_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
@@ -51,6 +52,7 @@ namespace agencia_web_api.Models
                 Id = (int)result.ID;
                 Valor = (int)result.VALOR;
                 Tipo_Seguro = (int)result.TIPO_SEGURO;
+                Total_Dias = (int)result.TOTAL_DIAS;
                 Contrato = new Contrato() {
                     Id =contrato.Id,
                     Curso = contrato.Curso,
@@ -84,6 +86,7 @@ namespace agencia_web_api.Models
                 p.Add("SeguroID", this.Seguro.Id);
                 p.Add("Valor", this.Valor);
                 p.Add("Tipo_Seguro", this.Tipo_Seguro);
+                p.Add("Total_Dias", this.Total_Dias);
                 Db.Execute(Procs.Seguro_Asociado_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
             }

@@ -217,6 +217,7 @@
     <Compile Include="Models\Actividad_Api.cs" />
     <Compile Include="Models\Alumno_Api.cs" />
     <Compile Include="Models\Apoderado_Api.cs" />
+    <Compile Include="Models\Archivo_Api.cs" />
     <Compile Include="Models\Colegio_Api.cs" />
     <Compile Include="Models\Contrato_Api.cs" />
     <Compile Include="Models\Curso_Api.cs" />

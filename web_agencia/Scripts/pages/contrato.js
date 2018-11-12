@@ -55,19 +55,54 @@
                             .attr('value', item.Id)
                             .html(item.Nombre));
                     });
-
-
                 });
             },
-            cargarPrimasSelect: function (seguroSelect) {
+            cargarPrimasSelect: function (primaSelect) {
+                var $thisObject = this;
                 $.when(this.loadPrimas_SegurosAjax()).then(function (data, textStatus, jqXHR) {
-                    $(seguroSelect).empty();
+                    $(primaSelect).empty();
                     $.each(data, function (i, item) {
-                        $(seguroSelect).append($('<option>')
+                        $(primaSelect).append($('<option>')
                             .attr('value', item.Id_Tipo)
                             .attr('data-valor', item.Valor_Prima_Individual)
                             .html(item.Nombre_Tipo));
                     });
+
+                    //Volvemos a recalcular el contrato
+                    $thisObject.calcularValorContrato();
+                    //Cuando cambie el select recalculamos
+                    $thisObject.addEventCalculoContrato(primaSelect);
+
+                });
+            },
+            cargarSeguro_PrimaSelect: function (seguroSelect, primaSelect)
+            {
+                var $thisObject = this;
+                $.when(this.loadSeguroAjax(), this.loadPrimas_SegurosAjax()).then(function (dataSeguro, dataPrima) {
+
+                    var seguros = dataSeguro[0];
+                    $(seguroSelect).empty();
+                    $.each(seguros, function (i, item) {
+                        $(seguroSelect).append($('<option>')
+                            .attr('value', item.Id)
+                            .html(item.Nombre));
+                    });
+                    //Cuando cambie el select recalculamos
+                    $thisObject.addEventCalculoContrato(seguroSelect);
+
+                    var primas = dataPrima[0];
+                    $(primaSelect).empty();
+                    $.each(primas, function (i, item) {
+                        $(primaSelect).append($('<option>')
+                            .attr('value', item.Id_Tipo)
+                            .attr('data-valor', item.Valor_Prima_Individual)
+                            .html(item.Nombre_Tipo));
+                    });
+                    //Cuando cambie el select recalculamos
+                    $thisObject.addEventCalculoContrato(primaSelect);
+
+                    //Volvemos a recalcular el contrato
+                    $thisObject.calcularValorContrato();
                 });
             },
             cargarDestinosSelect: function (destinoSelect) {
@@ -91,12 +126,46 @@
                     $this.calcularValorContrato();
                 });
             },
+            addEventOnlyNumberMin: function (e)
+            {
+                $(e).change(function () {
+                    var min = parseInt($(this).attr('min'));
+                    if ($(this).val() < min) 
+                        $(this).val(min);
+
+                    if (!parseInt($(this).val())) 
+                        $(this).val(min);
+                });
+            },
             calcularValorContrato: function ()
             {
                 var totalContrato = 0;
                 totalContrato += this.calcularTotalServicios();
                 totalContrato += this.calcularTotalDestinos();
+                totalContrato += this.calcularTotalSeguros();
                 $('#valor-contrato').val(totalContrato);
+            },
+            calcularTotalSeguros: function ()
+            {
+                var salida = 0;
+                var $thisObject = this;
+                $.each($('.div-seguros'), function (i, item) {
+                    var select = $(item).find('.tipo-seguro').first();
+                    var dias = parseInt($(item).find('.input-dias').first().val()) || 1;
+                    var totalPorSeguro = $thisObject.calcularTotalSegurosSingle(select, dias);
+                    $(item).find('.total-seguro').first().val(totalPorSeguro);
+                    salida += totalPorSeguro;
+                });
+
+                return salida;
+            },
+            calcularTotalSegurosSingle: function (selectPrima, dias)
+            {
+                var salida = 0;
+                var diasFinal = parseInt(dias) || 1;
+                var valorPrima = parseInt($(selectPrima).children("option:selected").data('valor')) || 1;
+                salida = valorPrima * diasFinal;
+                return salida;
             },
             calcularTotalServicios: function ()
             {
@@ -104,7 +173,7 @@
                 $.each($('.div-servicios'), function (i, item)
                 {
                     var select = $(item).find('.servicios-contrato').first();
-                    var value = parseInt($(select).children("option:selected").data('valor'));
+                    var value = parseInt($(select).children("option:selected").data('valor')) || 1;
                     salida += value;
                 });
 
@@ -114,7 +183,7 @@
                 var salida = 0;
                 $.each($('.div-destinos'), function (i, item) {
                     var select = $(item).find('.destinos-contrato').first();
-                    var value = parseInt($(select).children("option:selected").data('valor'));
+                    var value = parseInt($(select).children("option:selected").data('valor')) || 1;
                     salida += value;
                 });
 
@@ -164,24 +233,34 @@
                 var $contenedorSeguros = $('#contenedor-seguros');
                 var $row = $('<div>').addClass('row div-seguros');
 
+                var $selectPrimaSeguro = $('<select>').addClass('form-control tipo-seguro');
                 var $selectSeguro = $('<select>').addClass('form-control seguros-contrato');
+                this.cargarPrimasSelect($selectPrimaSeguro);
                 this.cargarSegurosSelect($selectSeguro);
+                //para que al cambiar saquemos el total del contrato...
+                this.addEventCalculoContrato($selectPrimaSeguro);
+                
+
+                //this.cargarSegurosSelect($selectSeguro);
                 var $formGroupSeguro = $('<div>').addClass('form-group').append($selectSeguro);
                 var $colSeguro = $('<div>').addClass('col-sm-3').append($formGroupSeguro);
                 $colSeguro.appendTo($row);
 
-                var $selectPrimaSeguro = $('<select>').addClass('form-control tipo-seguro');
-                this.cargarPrimasSelect($selectPrimaSeguro);
+                
+                //this.cargarPrimasSelect($selectPrimaSeguro);
                 var $formGroupPrimas = $('<div>').addClass('form-group').append($selectPrimaSeguro);
                 var $colPrima = $('<div>').addClass('col-sm-4').append($formGroupPrimas);
                 $colPrima.appendTo($row);
 
-                var $inputDias = $('<input type="number">').addClass('form-control');
+                var $inputDias = $('<input type="number" min="1">').addClass('form-control input-dias').val(1);
+                this.addEventOnlyNumberMin($inputDias);
+                this.addEventCalculoContrato($inputDias);
+
                 var $formGroupDias = $('<div>').addClass('form-group').append($inputDias);
                 var $colDias = $('<div>').addClass('col-sm-2').append($formGroupDias);
                 $colDias.appendTo($row);
 
-                var $inputValor = $('<input type="number">').addClass('form-control');
+                var $inputValor = $('<input type="text">').addClass('form-control disabled total-seguro');
                 var $formGroupValor = $('<div>').addClass('form-group').append($inputValor);
                 var $colValor = $('<div>').addClass('col-sm-2').append($formGroupValor);
                 $colValor.appendTo($row);
@@ -218,6 +297,22 @@
                 });
                 return array;
             },
+            obtenerListaSeguros: function () {
+                var array = new Array();
+                var $thisObject = this;
+                $.each($('.div-seguros'), function (i, item) {
+                    var selectSeguro = $(item).find('.seguros-contrato').first();
+                    var selectPrima = $(item).find('.tipo-seguro').first();
+                    var dias = parseInt($(item).find('.input-dias').first().val()) || 1;
+                    var total = $thisObject.calcularTotalSegurosSingle(selectPrima, dias);
+                    var elemento = {
+                        Valor: total, Total_Dias: dias, Tipo_Seguro: parseInt($(selectPrima).val()),
+                        Seguro: { Id: parseInt($(selectSeguro).val()) }
+                    };
+                    array.push(elemento);
+                });
+                return array;
+            },
             obtenerContrato: function () {
                 var contrato = {
                     Nombre: $('#nombre-contrato').val(),
@@ -226,7 +321,8 @@
                     Valor: $('#valor-contrato').val(),
                     Curso: this.obtenerCurso(),
                     ListaServiciosAsociados: this.obtenerListaServicios(),
-                    ListaDestinosAsociados: this.obtenerListaDestinos()
+                    ListaDestinosAsociados: this.obtenerListaDestinos(),
+                    ListaSeguroAsociados : this.obtenerListaSeguros()
                 };
                 return contrato;
             },

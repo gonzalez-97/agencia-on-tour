@@ -45,6 +45,7 @@
     <Compile Include="Actividad.cs" />
     <Compile Include="Alumno.cs" />
     <Compile Include="Apoderado.cs" />
+    <Compile Include="Archivo.cs" />
     <Compile Include="Colegio.cs" />
     <Compile Include="Contrato.cs" />
     <Compile Include="Curso.cs" />

@@ -170,6 +170,7 @@ namespace agencia_web_api.Models.Servicios
                     Id = (int)n.ID,
                     Valor = (int)n.VALOR,
                     Tipo_Seguro = (int)n.TIPO_SEGURO,
+                    Total_Dias = (int)n.TOTAL_DIAS,
                     Contrato = new Contrato()
                     {
                         Id = contrato.Id,
@@ -211,6 +212,7 @@ namespace agencia_web_api.Models.Servicios
                     Id = (int)n.ID,
                     Valor = (int)n.VALOR,
                     Tipo_Seguro = (int)n.TIPO_SEGURO,
+                    Total_Dias = (int)n.TOTAL_DIAS,
                     Seguro = new Seguro()
                     {
                         Id = seguro.Id,

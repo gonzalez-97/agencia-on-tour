@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace agencia_lib
 {
-    public class Seguro_Asociado
+    public class Archivo
     {
         public int Id { get; set; }
-        public int Valor { get; set; }
-        public int Tipo_Seguro { get; set; }
-        public int Total_Dias { get; set; }
-        public Seguro Seguro { get; set; }
+        public string Nombre { get; set; }
         public Contrato Contrato { get; set; }
     }
 }

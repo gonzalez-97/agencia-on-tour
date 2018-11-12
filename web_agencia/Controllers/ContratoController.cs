@@ -42,9 +42,10 @@ namespace web_agencia.Controllers
                 {
                     Servicio_Asociado_Web servicio_create = new Servicio_Asociado_Web() { Contrato = contrato, Servicio = item.Servicio };
                     if (!await servicio_create.Create())
-                        return Json(false, JsonRequestBehavior.AllowGet);
+                        return Json("Error al crear un servicio asociado", JsonRequestBehavior.AllowGet);
                 }
             }
+
             //Se crean los destinos relacionados...
             if (contrato.ListaDestinosAsociados != null && contrato.ListaDestinosAsociados.Any())
             {
@@ -52,7 +53,26 @@ namespace web_agencia.Controllers
                 {
                     Destino_Asociado_Web destino_create = new Destino_Asociado_Web() { Contrato = contrato, Destino = item.Destino };
                     if (!await destino_create.Create())
-                        return Json(false, JsonRequestBehavior.AllowGet);
+                        return Json("Error al crear un destino asociado", JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            //Se crean los seguros asociados...
+            if (contrato.ListaSeguroAsociados != null && contrato.ListaSeguroAsociados.Any())
+            {
+                foreach (var item in contrato.ListaSeguroAsociados)
+                {
+                    Seguro_Asociado_Web seguro_create = new Seguro_Asociado_Web()
+                    {
+                        Total_Dias = item.Total_Dias,
+                        Tipo_Seguro = item.Tipo_Seguro,
+                        Valor = item.Valor,
+                        Contrato = contrato,
+                        Seguro = item.Seguro
+                    };
+
+                    if (!await seguro_create.Create())
+                        return Json("Error al crear un seguro asociado", JsonRequestBehavior.AllowGet);
                 }
             }
 

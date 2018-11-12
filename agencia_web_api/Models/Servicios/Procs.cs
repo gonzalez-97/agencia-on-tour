@@ -23,6 +23,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Servicio_Todos = "sp_servicio_todos";
         public const string Servicios_Asociado_Todos = "sp_servicio_asignado_todos";
         public const string Destinos_Asociado_Todos = "sp_destinos_asignados_todos";
+        public const string Archivos_Todos = "sp_archivo_todos";
         #endregion
 
         #region Actividad
@@ -121,6 +122,12 @@ namespace agencia_web_api.Models.Servicios
         public const string Servicio_Asociado_Actualizar = "sp_servicio_asignado_update";
         public const string Servicio_Asociado_Borrar = "sp_servicio_asignado_delete";
         public const string Servicio_Asociado_Por_Id = "sp_servicio_asignado_por_id";
+        #endregion
+
+        #region Archivo Contrato
+        public const string Archivo_Crear = "sp_archivo_create";
+        public const string Archivo_Por_Id = "sp_archivo_por_id";
+        public const string Archivo_Borrar = "sp_archivo_delete";
         #endregion
     }
 }
