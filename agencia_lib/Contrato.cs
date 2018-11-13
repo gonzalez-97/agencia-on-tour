@@ -18,6 +18,7 @@ namespace agencia_lib
         public List<Seguro_Asociado> ListaSeguroAsociados {get; set;}
         public List<Servicio_Asociado> ListaServiciosAsociados { get; set; }
         public List<Destino_Asociado> ListaDestinosAsociados { get; set; }
+        public List<Archivo> ListaArchivos { get; set; }
 
     }
 

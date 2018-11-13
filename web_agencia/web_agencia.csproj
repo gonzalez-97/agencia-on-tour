@@ -183,6 +183,7 @@
     <Compile Include="Models\Actividad_Web.cs" />
     <Compile Include="Models\Alumno_Web.cs" />
     <Compile Include="Models\Apoderado_Web.cs" />
+    <Compile Include="Models\Archivo_Web.cs" />
     <Compile Include="Models\Colegio_Web.cs" />
     <Compile Include="Models\Contrato_Web.cs" />
     <Compile Include="Models\Curso_Web.cs" />
@@ -584,6 +585,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\contrato\temp\" />
     <Folder Include="Views\Deposito\" />
     <Folder Include="Views\PrimaSeguros\" />
     <Folder Include="Views\Seguro\" />

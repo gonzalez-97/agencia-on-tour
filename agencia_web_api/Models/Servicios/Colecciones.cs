@@ -121,7 +121,7 @@ namespace agencia_web_api.Models.Servicios
             var salida = result.Select(n =>
             {
                 Apoderado_Api apoderado = new Apoderado_Api();
-               apoderado.Read((int)n.APOID);
+                apoderado.Read((int)n.APOID);
 
                 Curso_Api curso = new Curso_Api();
                 curso.Read((int)n.CURID);
@@ -134,8 +134,8 @@ namespace agencia_web_api.Models.Servicios
                     AMaterno = n.AMATERNO,
                     Total_Reunido = (int?)n.TOTAL,
                     Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario },
-                    Curso = new Curso(){ Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
-               };
+                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
+                };
             });
 
             return salida;
@@ -244,11 +244,13 @@ namespace agencia_web_api.Models.Servicios
                     Nombre = n.NOMBRE,
                     Descripcion = n.DESCRIPCION,
                     Fecha_Viaje = (DateTime)n.FECHA_VIAJE,
-                    Estado = ((int)n.ESTADO > 0)? true : false,
+                    Estado = ((int)n.ESTADO > 0) ? true : false,
+                    Valor = (int)n.TOTAL,
                     Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio },
                     ListaSeguroAsociados = ListaSeguroAsociadosXContrato((int)n.ID).ToList(),
                     ListaServiciosAsociados = ListaServiciosAsociadosXContrato((int)n.ID).ToList(),
-                    ListaDestinosAsociados = ListaDestinosAsociadosXContrato((int)n.ID).ToList()
+                    ListaDestinosAsociados = ListaDestinosAsociadosXContrato((int)n.ID).ToList(),
+                    ListaArchivos = ListaArchivosXContrato((int)n.ID).ToList()
                 };
             });
 
@@ -388,7 +390,53 @@ namespace agencia_web_api.Models.Servicios
             return salida;
         }
 
+        public IEnumerable<Archivo> ListaArchivos()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Archivos_Todos, param: p, commandType: CommandType.StoredProcedure);
 
+            var salida = result.Select(n =>
+            {
+                Contrato_Api contrato = new Contrato_Api();
+                contrato.Read((int)n.CONTRATOID);
+                return new Archivo()
+                {
+                    Id = (int)n.ID,
+                    Nombre = n.NOMBRE,
+                    Contrato = new Contrato()
+                    {
+                        Id = contrato.Id,
+                        Nombre = contrato.Nombre,
+                        Descripcion = contrato.Descripcion,
+                        Fecha_Viaje = contrato.Fecha_Viaje,
+                        Valor = contrato.Valor,
+                        Curso = contrato.Curso,
+                        Estado = contrato.Estado
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Archivo> ListaArchivosXContrato(int Id)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Archivos_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Where(n => (int)n.CONTRATOID == Id).Select(n =>
+            {
+                return new Archivo()
+                {
+                    Id = (int)n.ID,
+                    Nombre = n.NOMBRE
+                };
+            });
+
+            return salida;
+        }
 
     }
 }

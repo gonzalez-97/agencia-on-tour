@@ -137,6 +137,30 @@
                         $(this).val(min);
                 });
             },
+            addEventUploadFile: function (e)
+            {
+                $(e).change(function () {
+                    var formData = new FormData();
+                    formData.append('file', $(this)[0].files[0]);
+                    $.ajax({
+                        type: 'post',
+                        url: '/contrato/subir-archivo-temp',
+                        data: formData,
+                        success: function (response)
+                        {
+                            if (response !== ''){
+                                console.log('El archivo temporal ' + response + 'se ha subido');
+                                $(e).attr('data-temp', response);
+                            }
+                        },
+                        processData: false,
+                        contentType: false,
+                        error: function () {
+                            console.log("Error al guardar el archivo temporal!");
+                        }
+                    });
+                })
+            },
             calcularValorContrato: function ()
             {
                 var totalContrato = 0;
@@ -206,8 +230,6 @@
                 $col1.appendTo($row);
 
                 $row.appendTo($contenedorServicios);
-
-
             },
             addDestino: function () {
                 var $contenedorDestinos = $('#contenedor-destinos');
@@ -225,8 +247,24 @@
                 $col1.appendTo($row);
 
                 $row.appendTo($contenedorDestinos);
+            },
+            addDocumento: function ()
+            {
+                var $contenedorDocumentos = $('#contenedor-documentos');
 
+                var $row = $('<div>').addClass('row div-documentos');
+                var $inputFile = $('<input type="file">').addClass('form-control input-archivo').css({ position: 'initial', opacity: 'initial' });
+                this.addEventUploadFile($inputFile);
+                var $formGroup = $('<div>').addClass('form-group').append($inputFile);
+                var $col10 = $('<div>').addClass('col-sm-10').append($formGroup);
+                $col10.appendTo($row);
 
+                var $icono = $('<i>').addClass('material-icons').html('close');
+                var $botonCerrar = $('<button type="button">').addClass('btn btn-outline-danger btn-round btn-sm btn-fab').append($icono);
+                var $col1 = $('<div>').addClass('col-sm-1').append($botonCerrar);
+                $col1.appendTo($row);
+
+                $row.appendTo($contenedorDocumentos);
             },
             addSeguro: function () {
 
@@ -313,6 +351,18 @@
                 });
                 return array;
             },
+            obtenerListaArchivos: function ()
+            {
+                var array = new Array();
+                $.each($('.div-documentos'), function (i, item) {
+                    var inputArchivo = $(item).find('.input-archivo').first();
+                    if ($(inputArchivo).data('temp')) {
+                        var archivo = { Nombre: $(inputArchivo).data('temp') };
+                        array.push(archivo);
+                    };
+                });
+                return array;
+            },
             obtenerContrato: function () {
                 var contrato = {
                     Nombre: $('#nombre-contrato').val(),
@@ -322,7 +372,8 @@
                     Curso: this.obtenerCurso(),
                     ListaServiciosAsociados: this.obtenerListaServicios(),
                     ListaDestinosAsociados: this.obtenerListaDestinos(),
-                    ListaSeguroAsociados : this.obtenerListaSeguros()
+                    ListaSeguroAsociados: this.obtenerListaSeguros(),
+                    ListaArchivos : this.obtenerListaArchivos()
                 };
                 return contrato;
             },

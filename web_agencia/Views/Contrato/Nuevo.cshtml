@@ -119,12 +119,12 @@
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-sm-1">
-                            <button id="add-servicio" class="btn btn-primary btn-round btn-sm">
+                            <button id="add-documento" class="btn btn-primary btn-round btn-sm">
                                 <i class="fas fa-plus"></i> Añadir documento
                             </button>
                         </div>
                     </div>
-                    <div id="contenedor-servicios">
+                    <div id="contenedor-documentos">
 
                     </div>
                 </div>
@@ -158,6 +158,10 @@
 
                 $('#add-destino').click(function (e) {
                     p.addDestino();
+                });
+
+                $('#add-documento').click(function (e) {
+                    p.addDocumento();
                 });
 
                 $('#registrar-input').click(function (e) {

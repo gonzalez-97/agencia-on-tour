@@ -55,10 +55,12 @@ namespace agencia_web_api.Models
                 Nombre = result.NOMBRE;
                 Descripcion = result.DESCRIPCION;
                 Estado = ((int)result.ESTADO > 0) ? true : false;
+                Valor = (int)result.TOTAL;
                 Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
                 ListaSeguroAsociados = col.ListaSeguroAsociadosXContrato(id).ToList();
                 ListaServiciosAsociados = col.ListaServiciosAsociadosXContrato(id).ToList();
                 ListaDestinosAsociados = col.ListaDestinosAsociadosXContrato(id).ToList();
+                ListaArchivos = col.ListaArchivosXContrato(id).ToList();
                 return true;
             }
             catch (Exception ex)

@@ -561,6 +561,26 @@
             Borra el apoderado (por rut del usuario) (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.ArchivoController.Get">
+            <summary>
+            Una lista de archivos del contrato :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ArchivoController.GetById(System.Int32)">
+            <summary>
+            Filtro de contrato por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ArchivoController.Nuevo(agencia_web_api.Models.Archivo_Api)">
+            <summary>
+            Crea un nuevo archivo (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ArchivoController.Borrar(System.Int32)">
+            <summary>
+            Borra el archivo  (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.ColegioController.Get">
             <summary>
             Una lista de colegio :) (formato JSON)

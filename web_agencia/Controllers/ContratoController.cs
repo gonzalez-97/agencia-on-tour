@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -78,5 +79,50 @@ namespace web_agencia.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        [Route("subir-archivo-temp")]
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult SaveArchivoTemp(HttpPostedFileBase file)
+        {
+            try
+            {
+                string filename = string.Empty;
+                if (file != null)
+                {
+                    filename = file.FileName + DateTime.Now.Ticks + Path.GetExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/contrato/temp/"), filename);
+                    file.SaveAs(path);
+                }
+                return Json(filename, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private JsonResult SaveArchivoContrato()
+        {
+            //This method has been copied from here:https://stackoverflow.com/a/15140431/5202777 
+            string fileName = "";
+            string destFile = "";
+            string sourcePath = Server.MapPath("~/Temp/");
+            string targetPath = Server.MapPath("~/[Your Destination Folder Name]/");
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+                // Copy the files. 
+                foreach (string file in files)
+                {
+                    fileName = System.IO.Path.GetFileName(file);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(file, destFile, true);
+                }
+               // RemoveFiles();
+            }
+            return Json("All Files saved Successfully.", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
