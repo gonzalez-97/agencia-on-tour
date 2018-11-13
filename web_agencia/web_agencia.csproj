@@ -505,6 +505,7 @@
     <Content Include="Scripts\js\plugins\bootstrap-selectpicker.js" />
     <Content Include="Scripts\js\plugins\bootstrap-tagsinput.js" />
     <Content Include="Scripts\js\plugins\chartist.min.js" />
+    <Content Include="Scripts\js\plugins\es.js" />
     <Content Include="Scripts\js\plugins\fullcalendar.min.js" />
     <Content Include="Scripts\js\plugins\jasny-bootstrap.min.js" />
     <Content Include="Scripts\js\plugins\jquery-jvectormap.js" />

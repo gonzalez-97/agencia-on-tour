@@ -14,8 +14,6 @@ namespace web_agencia.Controllers
     [RoutePrefix("contrato")]
     public class ContratoController : Controller
     {
-        public object Contrato_Api { get; private set; }
-
         // GET: Contrato
         public ActionResult Index()
         {
@@ -25,6 +23,7 @@ namespace web_agencia.Controllers
         [Route("nuevo")]
         public ActionResult Nuevo()
         {
+            RemoveFiles();
             return View("Nuevo", "_LayoutEjecutivo");
         }
 
@@ -77,6 +76,23 @@ namespace web_agencia.Controllers
                 }
             }
 
+            //Se guardar los archivos subidos...
+            if (contrato.ListaArchivos != null && contrato.ListaArchivos.Any())
+            {
+                var archivos_contrato = ArchivosTemporales().Where(p => !contrato.ListaArchivos.Any(p2 => p2.Nombre == p));
+                foreach (var item in archivos_contrato)
+                {
+                    if(!SaveArchivoContrato(contrato.Id, item))
+                        return Json("Error al guardar el archivo en carpeta", JsonRequestBehavior.AllowGet);
+
+                    Archivo_Web archivo_create = new Archivo_Web() { Nombre = Path.GetFileName(item), Contrato = contrato };
+
+                    if (!await archivo_create.Create())
+                        return Json("Error al registrar el archivo ", JsonRequestBehavior.AllowGet);                                      
+                }
+                RemoveFiles();
+            }
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
@@ -90,7 +106,7 @@ namespace web_agencia.Controllers
                 string filename = string.Empty;
                 if (file != null)
                 {
-                    filename = file.FileName + DateTime.Now.Ticks + Path.GetExtension(file.FileName);
+                    filename = DateTime.Now.Ticks + "_" + file.FileName;
                     var path = Path.Combine(Server.MapPath("~/Content/contrato/temp/"), filename);
                     file.SaveAs(path);
                 }
@@ -102,26 +118,50 @@ namespace web_agencia.Controllers
             }
         }
 
-        private JsonResult SaveArchivoContrato()
+        private List<string> ArchivosTemporales()
         {
+            List<string> salida = new List<string>();
+            string sourcePath = Server.MapPath("~/Content/contrato/temp/");
+            if (Directory.Exists(sourcePath))
+                salida = Directory.GetFiles(sourcePath).ToList();
+
+            return salida;
+        }
+
+        private bool SaveArchivoContrato(int IdContrato, string archivoGuardar)
+        {
+            if (!System.IO.File.Exists(archivoGuardar))
+                return false;
+
             //This method has been copied from here:https://stackoverflow.com/a/15140431/5202777 
-            string fileName = "";
-            string destFile = "";
-            string sourcePath = Server.MapPath("~/Temp/");
-            string targetPath = Server.MapPath("~/[Your Destination Folder Name]/");
-            if (System.IO.Directory.Exists(sourcePath))
+            string targetPath = Server.MapPath(String.Format("~/Content/contrato/{0}/", IdContrato));
+            if (!Directory.Exists(targetPath))
+                Directory.CreateDirectory(targetPath);
+
+            string fileName = Path.GetFileName(archivoGuardar);
+            string destFile = Path.Combine(targetPath, fileName);
+            System.IO.File.Copy(archivoGuardar, destFile, true);
+            return true;
+        }
+
+        public void RemoveFiles()
+        {
+            string sourcePath = Server.MapPath("~/Content/contrato/temp/");
+            string[] files = Directory.GetFiles(sourcePath);
+            foreach (string file in files)
             {
-                string[] files = System.IO.Directory.GetFiles(sourcePath);
-                // Copy the files. 
-                foreach (string file in files)
+                if (System.IO.File.Exists(System.IO.Path.Combine(sourcePath, file)))
                 {
-                    fileName = System.IO.Path.GetFileName(file);
-                    destFile = System.IO.Path.Combine(targetPath, fileName);
-                    System.IO.File.Copy(file, destFile, true);
+                    try
+                    {
+                        System.IO.File.Delete(file);
+                    }
+                    catch (System.IO.IOException e)
+                    {
+                        return;
+                    }
                 }
-               // RemoveFiles();
             }
-            return Json("All Files saved Successfully.", JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -314,3 +314,4 @@ C:\Users\David\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agenci
 C:\Users\David\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agencia.dll
 C:\Users\David\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agencia.pdb
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\es\System.Web.Optimization.resources.dll
+C:\Users\David\Documents\GitHub\agencia-on-tour\web_agencia\bin\es\System.Web.Optimization.resources.dll

@@ -4,9 +4,29 @@
         return {
             init: function () {
                 this.cargarCursosSelect();
+                this.loadDatePicker();
                 //this.cargarSegurosSelect();
                 //this.cargarServiciosSelect();
-                this.cargarPrimasSelect();
+                //this.cargarPrimasSelect();
+            },
+            loadDatePicker: function () {
+                $('.datepicker').datetimepicker({
+                    format: 'DD/MM/YYYY',
+                    showTodayButton: true,
+                    defaultDate: moment(),
+                    locale: 'es',
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-chevron-up",
+                        down: "fa fa-chevron-down",
+                        previous: 'fa fa-chevron-left',
+                        next: 'fa fa-chevron-right',
+                        today: 'fa fa-screenshot',
+                        clear: 'fa fa-trash',
+                        close: 'fa fa-remove'
+                    }
+                });
             },
             loadCursoAjax: function () {
                 return $.get("/cursos/all");
@@ -146,9 +166,8 @@
                         type: 'post',
                         url: '/contrato/subir-archivo-temp',
                         data: formData,
-                        success: function (response)
-                        {
-                            if (response !== ''){
+                        success: function (response) {
+                            if (response !== '') {
                                 console.log('El archivo temporal ' + response + 'se ha subido');
                                 $(e).attr('data-temp', response);
                             }
@@ -159,7 +178,21 @@
                             console.log("Error al guardar el archivo temporal!");
                         }
                     });
-                })
+                });
+            },
+            addEventButtonDelete: function (button)
+            {
+                $(button).click(function () {
+                    $(button).parent().parent().remove();
+                });
+            },
+            addEventButtonDelWithCalcularContrato: function (button)
+            {
+                var $thisObject = this;
+                $(button).click(function () {
+                    $(button).parent().parent().remove();
+                    $thisObject.calcularValorContrato();
+                });
             },
             calcularValorContrato: function ()
             {
@@ -226,6 +259,7 @@
 
                 var $icono = $('<i>').addClass('material-icons').html('close');
                 var $botonCerrar = $('<button type="button">').addClass('btn btn-outline-danger btn-round btn-sm btn-fab').append($icono);
+                this.addEventButtonDelWithCalcularContrato($botonCerrar);
                 var $col1 = $('<div>').addClass('col-sm-1').append($botonCerrar);
                 $col1.appendTo($row);
 
@@ -243,6 +277,7 @@
 
                 var $icono = $('<i>').addClass('material-icons').html('close');
                 var $botonCerrar = $('<button type="button">').addClass('btn btn-outline-danger btn-round btn-sm btn-fab').append($icono);
+                this.addEventButtonDelWithCalcularContrato($botonCerrar);
                 var $col1 = $('<div>').addClass('col-sm-1').append($botonCerrar);
                 $col1.appendTo($row);
 
@@ -261,6 +296,7 @@
 
                 var $icono = $('<i>').addClass('material-icons').html('close');
                 var $botonCerrar = $('<button type="button">').addClass('btn btn-outline-danger btn-round btn-sm btn-fab').append($icono);
+                this.addEventButtonDelete($botonCerrar);
                 var $col1 = $('<div>').addClass('col-sm-1').append($botonCerrar);
                 $col1.appendTo($row);
 
@@ -305,6 +341,7 @@
 
                 var $icono = $('<i>').addClass('material-icons').html('close');
                 var $botonCerrar = $('<button type="button">').addClass('btn btn-outline-danger btn-round btn-sm btn-fab').append($icono);
+                this.addEventButtonDelWithCalcularContrato($botonCerrar);
                 var $colCerrar = $('<div>').addClass('col-sm-1').append($botonCerrar);
                 $colCerrar.appendTo($row);
 
@@ -359,7 +396,7 @@
                     if ($(inputArchivo).data('temp')) {
                         var archivo = { Nombre: $(inputArchivo).data('temp') };
                         array.push(archivo);
-                    };
+                    }
                 });
                 return array;
             },
@@ -367,7 +404,7 @@
                 var contrato = {
                     Nombre: $('#nombre-contrato').val(),
                     Descripcion: $('#descripcion-contrato').val(),
-                    Fecha_Viaje: $('#fecha-viaje').val(),
+                    Fecha_Viaje: $('#fecha-viaje').data('DateTimePicker').date()._d,
                     Valor: $('#valor-contrato').val(),
                     Curso: this.obtenerCurso(),
                     ListaServiciosAsociados: this.obtenerListaServicios(),
@@ -376,6 +413,16 @@
                     ListaArchivos : this.obtenerListaArchivos()
                 };
                 return contrato;
+            },
+            validarObjeto: function (objeto) {
+                var salida = true;
+                for (var key in objeto) {
+                    if (objeto[key] === "" || objeto[key] === null || objeto[key] === undefined) {
+                        this.generarAlerta('El campo ' + key + " no puede ser vacio");
+                        salida = false;
+                    }
+                }
+                return salida;
             },
             guardaContratoAjax: function (contrato) {
                 return $.ajax({
@@ -389,7 +436,12 @@
                 this.cargandoEnFinalizar();
                 var $this = this;
 
-                $.when($this.guardaContratoAjax(this.obtenerContrato())).then(function (data, textStatus, jqXHR) {
+                var contrato = this.obtenerContrato();
+
+                if (!$this.validarObjeto(contrato))
+                    return $this.normalTextEnFinalizar();
+
+                $.when($this.guardaContratoAjax(contrato)).then(function (data, textStatus, jqXHR) {
                     var alerta = data;
                     if (data === true) alerta = 'Se ha guardado el contrato existosamente';
                     if (data === false) alerta = 'Error al guardar los datos del contrato';
@@ -397,16 +449,6 @@
                     return $this.normalTextEnFinalizar();
                 });
 
-            },
-            validarObjeto: function (objeto) {
-                var salida = true;
-                for (var key in objeto) {
-                    if (objeto[key] === "" || objeto[key] === null || objeto[key] === undefined) {
-                        this.generarAlerta('El campo ' + key + " no puede ser vacio");
-                        salida = false;
-                    }
-                }
-                return salida;
             },
             generarAlerta: function (message) {
                 var type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
