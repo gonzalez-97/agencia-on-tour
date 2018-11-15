@@ -35,7 +35,8 @@ namespace web_agencia
                        "~/Scripts/jquery-{version}.js",
                        "~/Scripts/js/core/popper.min.js",
                        "~/Scripts/js/core/bootstrap-material-design.min.js",
-                       "~/Scripts/js/plugins/perfect-scrollbar.jquery.min.js"));
+                       "~/Scripts/js/plugins/perfect-scrollbar.jquery.min.js",
+                       "~/Scripts/pages/all.js"));
 
             /*FIN ESTILOS Y JAVASCRIPT DASHBOARD*/
 

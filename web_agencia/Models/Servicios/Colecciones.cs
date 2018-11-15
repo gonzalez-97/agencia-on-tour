@@ -176,6 +176,18 @@ namespace web_agencia.Models.Servicios
             return salida;
         }
 
+        public async Task<List<Contrato>> ListaContratos()
+        {
+            List<Contrato> salida = new List<Contrato>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "contrato"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Contrato>>(responseData);
+            }
+            return salida;
+        }
+
         public async Task<List<Archivo>> ListaArchivos()
         {
             List<Archivo> salida = new List<Archivo>();

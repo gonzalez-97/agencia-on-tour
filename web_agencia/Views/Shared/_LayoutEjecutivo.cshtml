@@ -101,7 +101,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Index", "Colegio")">
+                                    <a class="nav-link" href="@Url.Action("Index", "Contrato")">
                                         <span class="sidebar-mini sidebar-mini-icon"><i class="far fa-list-alt"></i></span>
                                         <span class="sidebar-normal">Contratos Actuales </span>
                                     </a>
@@ -109,51 +109,51 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" data-toggle="collapse" href="#alumnos-nav">
-                            <i class="fas fa-graduation-cap"></i>
-                            <p>
-                                Mis Pupilos
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="alumnos-nav">
-                            <ul class="nav">
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("Registro", "Alumno")">
-                                        <span class="sidebar-mini sidebar-mini-icon">
-                                            <i class="fas fa-plus-circle"></i>
-                                        </span>
-                                        <span class="sidebar-normal"> Registrar Pupilo </span>
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="@Url.Action("MisPupilos", "Alumno")">
-                                        <span class="sidebar-mini sidebar-mini-icon"> <i class="fas fa-users"></i> </span>
-                                        <span class="sidebar-normal"> Pupilos registrados </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
                     @*<li class="nav-item ">
-                            <a class="nav-link" href="../examples/widgets.html">
-                                <i class="material-icons">widgets</i>
-                                <p> Widgets </p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/charts.html">
-                                <i class="material-icons">timeline</i>
-                                <p> Charts </p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/calendar.html">
-                                <i class="material-icons">date_range</i>
-                                <p> Calendar </p>
-                            </a>
-                        </li>*@
+            <a class="nav-link" data-toggle="collapse" href="#alumnos-nav">
+                <i class="fas fa-graduation-cap"></i>
+                <p>
+                    Mis Pupilos
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="alumnos-nav">
+                <ul class="nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("Registro", "Alumno")">
+                            <span class="sidebar-mini sidebar-mini-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </span>
+                            <span class="sidebar-normal"> Registrar Pupilo </span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("MisPupilos", "Alumno")">
+                            <span class="sidebar-mini sidebar-mini-icon"> <i class="fas fa-users"></i> </span>
+                            <span class="sidebar-normal"> Pupilos registrados </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        x<li class="nav-item ">
+                <a class="nav-link" href="../examples/widgets.html">
+                    <i class="material-icons">widgets</i>
+                    <p> Widgets </p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="../examples/charts.html">
+                    <i class="material-icons">timeline</i>
+                    <p> Charts </p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="../examples/calendar.html">
+                    <i class="material-icons">date_range</i>
+                    <p> Calendar </p>
+                </a>
+            </li>*@
                 </ul>
             </div>
         </div>
@@ -213,7 +213,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a id="logout-link" class="nav-link" href="#">
                                     <i class="fas fa-sign-out-alt fa"></i>
                                     <p class="d-lg-none d-md-block">
                                         Account
@@ -417,6 +417,11 @@
 
     <script>
         $(document).ready(function () {
+
+            //Cierra sesion
+            var p = thisPage();
+            p.closeSesion();
+
             $().ready(function () {
                 $sidebar = $('.sidebar');
 

@@ -23,6 +23,14 @@ namespace web_agencia.Controllers
             return View();
         }
 
+        [Route("cerrar-sesion")]
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return Json(new { status = "done" });
+        }
+
         [Route("ingreso")]
         [HttpPost]
         public async Task<ActionResult> LoginAsync(UsuarioViewModel user)

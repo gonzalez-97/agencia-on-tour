@@ -15,9 +15,25 @@ namespace web_agencia.Controllers
     public class ContratoController : Controller
     {
         // GET: Contrato
+        [Route]
         public ActionResult Index()
         {
-            return View();
+            return View("Index", "_LayoutEjecutivo");
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult> AllAjaxAsync()
+        {
+            Colecciones col = new Colecciones();
+            var salida = await col.ListaContratos();
+            return Json(salida, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("{id:int}")]
+        public ActionResult Editar(int id)
+        {
+            return View("Editar", "_LayoutEjecutivo");
         }
 
         [Route("nuevo")]
