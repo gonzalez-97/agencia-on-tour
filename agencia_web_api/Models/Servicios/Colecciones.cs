@@ -403,7 +403,7 @@ namespace agencia_web_api.Models.Servicios
                 return new Archivo()
                 {
                     Id = (int)n.ID,
-                    Nombre = n.NOMBRE,
+                    Nombre = n.ARCHIVO,
                     Contrato = new Contrato()
                     {
                         Id = contrato.Id,
@@ -431,7 +431,7 @@ namespace agencia_web_api.Models.Servicios
                 return new Archivo()
                 {
                     Id = (int)n.ID,
-                    Nombre = n.NOMBRE
+                    Nombre = n.ARCHIVO
                 };
             });
 

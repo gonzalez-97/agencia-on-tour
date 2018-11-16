@@ -171,7 +171,9 @@
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DepositoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
+    <Compile Include="Controllers\DuenioController.cs" />
     <Compile Include="Controllers\EjecutivoController.cs" />
+    <Compile Include="Controllers\EncargadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrimaSegurosController.cs" />
     <Compile Include="Controllers\SeguroController.cs" />
@@ -518,7 +520,6 @@
     <Content Include="Scripts\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\pages\all.js" />
     <Content Include="Scripts\pages\contrato.js" />
     <Content Include="Scripts\pages\registro-alumno.js" />
     <Content Include="Scripts\pages\registro-apoderado-alumno.js" />
@@ -584,6 +585,10 @@
     <Content Include="Views\Ejecutivo\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEjecutivo.cshtml" />
     <Content Include="Views\Contrato\Nuevo.cshtml" />
+    <Content Include="Views\Shared\_LayoutDuenio.cshtml" />
+    <Content Include="Views\Duenio\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutEncargado.cshtml" />
+    <Content Include="Views\Encargado\Index.cshtml" />
     <Content Include="Views\Contrato\Index.cshtml" />
     <Content Include="Views\Contrato\Editar.cshtml" />
   </ItemGroup>

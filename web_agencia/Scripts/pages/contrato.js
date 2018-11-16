@@ -446,6 +446,10 @@
                     if (data === true) alerta = 'Se ha guardado el contrato existosamente';
                     if (data === false) alerta = 'Error al guardar los datos del contrato';
                     $this.generarAlerta(alerta);
+
+                    if (data === true) 
+                        return $this.reloadPageAfter3sec();
+                   
                     return $this.normalTextEnFinalizar();
                 });
 
@@ -468,6 +472,13 @@
                         }
                     });
                 return;
+            },
+            reloadPageAfter3sec: function ()
+            {
+                $('#registrar-input').html('Contrato guardado!');
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
             },
             normalTextEnFinalizar: function () {
                 $('#registrar-input').html('Finalizar');
