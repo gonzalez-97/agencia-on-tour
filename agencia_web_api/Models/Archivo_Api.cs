@@ -44,7 +44,7 @@ namespace agencia_web_api.Models
                 contrato.Read((int)result.CONTRATOID);
 
                 Id = (int)result.ID;
-                Nombre = result.NOMBRE;
+                Nombre = result.ARCHIVO;
                 Contrato = new Contrato()
                 {
                     Id = contrato.Id,

@@ -1,0 +1,172 @@
+﻿@{ ViewBag.Title = "Nuevo Contrato";}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Crear Contrato</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Nombre</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="nombre-contrato" />
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Curso</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control" id="curso-alumno">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Descripción</label>
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <textarea class="form-control" id="descripcion-contrato"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Fecha del viaje</label>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" id="fecha-viaje" class="form-control datepicker">
+                            </div>
+                        </div>
+                        <label class="col-md-2 col-form-label">Valor</label>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input class="form-control disabled" type="text" id="valor-contrato" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-seguro" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir seguro
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-seguros">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Seguro</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Tipo seguro (prima)</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>Cantidad Dias</p>
+                            </div>
+                            <div class="col-md-2">
+                                <p>Total por seguro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-servicio" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir servicio
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-servicios">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-destino" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir destino
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-destinos">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <button id="add-documento" class="btn btn-primary btn-round btn-sm">
+                                <i class="fas fa-plus"></i> Añadir documento
+                            </button>
+                        </div>
+                    </div>
+                    <div id="contenedor-documentos">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12 ml-auto mr-auto text-center">
+                    <button type="button" id="registrar-input" class="btn btn-rose">Generar Contrato<div class="ripple-container"></div></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/Scripts/js/plugins/es.js")
+    @Scripts.Render("~/Scripts/pages/contrato.js")
+    <script>
+        (function ($, w, d) {
+            $(d).ready(function () {
+
+                var p = w.thisPage();
+                p.init();
+
+                $('#add-servicio').click(function (e) {
+                    p.addServicio();
+                });
+
+                $('#add-seguro').click(function (e) {
+                    p.addSeguro();
+                });
+
+                $('#add-destino').click(function (e) {
+                    p.addDestino();
+                });
+
+                $('#add-documento').click(function (e) {
+                    p.addDocumento();
+                });
+
+                $('#registrar-input').click(function (e) {
+                    p.botonFinalizar();
+                });
+            });
+        })(jQuery, window, document);
+    </script>
+}

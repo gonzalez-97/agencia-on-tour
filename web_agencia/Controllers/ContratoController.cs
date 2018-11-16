@@ -15,9 +15,19 @@ namespace web_agencia.Controllers
     public class ContratoController : Controller
     {
         // GET: Contrato
+        [Route]
         public ActionResult Index()
         {
-            return View();
+            return View("Index", "_LayoutEjecutivo");
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult> AllAjaxAsync()
+        {
+            Colecciones col = new Colecciones();
+            var salida = await col.ListaColegios();
+            return Json(salida, JsonRequestBehavior.AllowGet);
         }
 
         [Route("nuevo")]
@@ -79,7 +89,7 @@ namespace web_agencia.Controllers
             //Se guardar los archivos subidos...
             if (contrato.ListaArchivos != null && contrato.ListaArchivos.Any())
             {
-                var archivos_contrato = ArchivosTemporales().Where(p => !contrato.ListaArchivos.Any(p2 => p2.Nombre == p));
+                List<string> archivos_contrato = ArchivosTemporales().Where(p =>  contrato.ListaArchivos.Any(p2 => p2.Nombre == Path.GetFileName(p))).ToList();
                 foreach (var item in archivos_contrato)
                 {
                     if(!SaveArchivoContrato(contrato.Id, item))
@@ -103,12 +113,21 @@ namespace web_agencia.Controllers
         {
             try
             {
+                SessionUser sessionUser = new SessionUser();
+                List<string> archivos_sesion = sessionUser.ArchivosEnSesion;
+
+                if (archivos_sesion == null)
+                    archivos_sesion = new List<string>();
+
                 string filename = string.Empty;
                 if (file != null)
                 {
                     filename = DateTime.Now.Ticks + "_" + file.FileName;
                     var path = Path.Combine(Server.MapPath("~/Content/contrato/temp/"), filename);
                     file.SaveAs(path);
+                    //Se guardan en una sesion los archivos del usuario...
+                    archivos_sesion.Add(filename);
+                    sessionUser.ArchivosEnSesion = archivos_sesion;
                 }
                 return Json(filename, JsonRequestBehavior.AllowGet);
             }
@@ -146,8 +165,14 @@ namespace web_agencia.Controllers
 
         public void RemoveFiles()
         {
+            SessionUser sessionUser = new SessionUser();
+            
+            if (sessionUser.ArchivosEnSesion == null)
+                return;
+
             string sourcePath = Server.MapPath("~/Content/contrato/temp/");
-            string[] files = Directory.GetFiles(sourcePath);
+
+            List<string> files = Directory.GetFiles(sourcePath).Where(p => !sessionUser.ArchivosEnSesion.Any(p2 => p2 == p)).ToList();
             foreach (string file in files)
             {
                 if (System.IO.File.Exists(System.IO.Path.Combine(sourcePath, file)))
@@ -162,6 +187,7 @@ namespace web_agencia.Controllers
                     }
                 }
             }
+            sessionUser.ArchivosEnSesion = null;
         }
 
     }

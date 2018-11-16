@@ -29,6 +29,18 @@ namespace web_agencia.Models.Servicios
             {
                 HttpContext.Current.Session["sesion-termino-tarea"] = value;
             }
+       }
+
+        public List<string> ArchivosEnSesion
+        {
+            get
+            {
+                return (List<string>)HttpContext.Current.Session["sesion-archivos-contrato"];
+            }
+            set
+            {
+                HttpContext.Current.Session["sesion-archivos-contrato"] = value;
+            }
         }
     }
 }

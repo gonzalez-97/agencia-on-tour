@@ -53,6 +53,8 @@ namespace web_agencia.Models.Servicios
             salida.Add(new Mantenedor_Ruta { IdPerfil = 1, ControllerName = "Administrador", ActionName = "Index" });
             salida.Add(new Mantenedor_Ruta { IdPerfil = 2, ControllerName = "Ejecutivo", ActionName = "Index" });
             salida.Add(new Mantenedor_Ruta { IdPerfil = 5, ControllerName = "Apoderado", ActionName = "Index" });
+            salida.Add(new Mantenedor_Ruta { IdPerfil = 3, ControllerName = "Duenio", ActionName = "Index" });
+            salida.Add(new Mantenedor_Ruta { IdPerfil = 4, ControllerName = "Encargado", ActionName = "Index" });
             return salida;
         }
 

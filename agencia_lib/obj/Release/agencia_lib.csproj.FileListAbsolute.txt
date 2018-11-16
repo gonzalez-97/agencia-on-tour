@@ -6,7 +6,6 @@ C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Release\agencia
 C:\Users\Portafolio\source\repos\agencia-on-tour\agencia_lib\obj\Release\agencia_lib.pdb
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\bin\Release\agencia_lib.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\bin\Release\agencia_lib.pdb
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Release\agencia_lib.csprojAssemblyReference.cache
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Release\agencia_lib.csproj.CoreCompileInputs.cache
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Release\agencia_lib.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Release\agencia_lib.pdb

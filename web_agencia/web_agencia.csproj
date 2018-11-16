@@ -171,7 +171,9 @@
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DepositoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
+    <Compile Include="Controllers\DuenioController.cs" />
     <Compile Include="Controllers\EjecutivoController.cs" />
+    <Compile Include="Controllers\EncargadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrimaSegurosController.cs" />
     <Compile Include="Controllers\SeguroController.cs" />
@@ -583,6 +585,12 @@
     <Content Include="Views\Ejecutivo\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEjecutivo.cshtml" />
     <Content Include="Views\Contrato\Nuevo.cshtml" />
+    <Content Include="Views\Shared\_LayoutDuenio.cshtml" />
+    <Content Include="Views\Duenio\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutEncargado.cshtml" />
+    <Content Include="Views\Encargado\Index.cshtml" />
+    <Content Include="Views\Contrato\Index.cshtml" />
+    <Content Include="Views\Contrato\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
