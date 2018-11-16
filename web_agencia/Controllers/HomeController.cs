@@ -20,6 +20,7 @@ namespace web_agencia.Controllers
         [Route]
         public ActionResult Index()
         {
+            Session.Abandon();
             return View();
         }
 
