@@ -39,27 +39,32 @@ namespace web_agencia.Controllers
         [Route("crear")]
         public async Task<ActionResult> CrearAsync(Colegio_Web colegio)
         {
-            bool retorno = await colegio.Create();
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            Colegio_Web c = new Colegio_Web();
+            if (c.ValidarColegio(colegio, true)) {
+                bool retorno = await colegio.Create();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Colegio Creado",
-                    Mensaje = "El colegio ha sido creado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Colegio",
-                    LinkTexto = "Volver a la lista de colegios"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Colegio Creado",
+                        Mensaje = "El colegio ha sido creado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Colegio",
+                        LinkTexto = "Volver a la lista de colegios"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
+            foreach(var item in c._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
 
-            return View();
+            return View("Nuevo", "_LayoutAdmin", colegio);
         }
 
         [Route("{id:int}")]
@@ -74,26 +79,30 @@ namespace web_agencia.Controllers
         [Route("actualizar")]
         public async Task<ActionResult> ActualizarAsync(Colegio_Web colegio)
         {
-            bool retorno = await colegio.Update();
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            Colegio_Web c = new Colegio_Web();
+            if (c.ValidarColegio(colegio, false)) {
+                bool retorno = await colegio.Update();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Colegio Actualizado",
-                    Mensaje = "El colegio ha sido actualizado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Colegio",
-                    LinkTexto = "Volver a la lista de colegios"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Colegio Actualizado",
+                        Mensaje = "El colegio ha sido actualizado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Colegio",
+                        LinkTexto = "Volver a la lista de colegios"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
-
+            foreach (var item in colegio._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
             return View();
         }
 

@@ -39,27 +39,32 @@ namespace web_agencia.Controllers
         [Route("crear")]
         public async Task<ActionResult> CrearAsync(Destino_Web destino)
         {
-            bool retorno = await destino.Create();
-            if (retorno)
+            if (destino.ValidarDestino(destino, true))
             {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+                bool retorno = await destino.Create();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Destino Creado",
-                    Mensaje = "El destino ha sido creado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Destino",
-                    LinkTexto = "Volver a la lista de destinos"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Destino Creado",
+                        Mensaje = "El destino ha sido creado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Destino",
+                        LinkTexto = "Volver a la lista de destinos"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
+            foreach (var item in destino._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
 
-            return View();
+            return View("Nuevo", "_LayoutAdmin", destino);
         }
 
         [Route("{id:int}")]
@@ -74,27 +79,32 @@ namespace web_agencia.Controllers
         [Route("actualizar")]
         public async Task<ActionResult> ActualizarAsync(Destino_Web destino)
         {
-            bool retorno = await destino.Update();
-            if (retorno)
+            if (destino.ValidarDestino(destino, false))
             {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+                bool retorno = await destino.Update();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Destino Actualizado",
-                    Mensaje = "El destino ha sido actualizado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Destino",
-                    LinkTexto = "Volver a la lista de destinos"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Destino Actualizado",
+                        Mensaje = "El destino ha sido actualizado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Destino",
+                        LinkTexto = "Volver a la lista de destinos"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
+           foreach (var item in destino._dictionaryError)
+               ModelState.AddModelError(item.Key, item.Value);
 
-            return View();
+           return View("Editar", "_LayoutAdmin", destino);
         }
 
         [HttpGet]

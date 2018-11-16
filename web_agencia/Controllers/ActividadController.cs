@@ -39,27 +39,30 @@ namespace web_agencia.Controllers
         [Route("crear")]
         public async Task<ActionResult> CrearAsync(Actividad_Web actividad)
         {
-            bool retorno = await actividad.Create();
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            if (actividad.ValidarActividad(actividad, true)) {
+                bool retorno = await actividad.Create();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Creada",
-                    Mensaje = "La actividad ha sido creada exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Actividad Creada",
+                        Mensaje = "La actividad ha sido creada exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Actividad",
+                        LinkTexto = "Volver a la lista de actividades"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
-
-            return View();
+            foreach (var item in actividad._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Nuevo", "_LayoutAdmin", actividad);
         }
 
         [Route("{id:int}")]
@@ -74,27 +77,30 @@ namespace web_agencia.Controllers
         [Route("actualizar")]
         public async Task<ActionResult> ActualizarAsync(Actividad_Web actividad)
         {
-            bool retorno = await actividad.Update();
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            if (actividad.ValidarActividad(actividad, false)) {
+                bool retorno = await actividad.Update();
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Actividad Actualizada",
-                    Mensaje = "La actividad ha sido actualizada exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Actividad",
-                    LinkTexto = "Volver a la lista de actividades"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Actividad Actualizada",
+                        Mensaje = "La actividad ha sido actualizada exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Actividad",
+                        LinkTexto = "Volver a la lista de actividades"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
-
-            return View();
+            foreach (var item in actividad._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Editar", "_LayoutAdmin", actividad);
         }
 
         [HttpGet]

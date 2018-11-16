@@ -26,16 +26,19 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.TextBoxFor(m => m.Nombre, new { @class="form-control", @placeholder ="Nombre" })
+                                            <span class="helpblock text-danger">@Html.ValidationMessageFor(m =>m.Nombre)</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.TextBoxFor(m => m.APaterno, new { @class = "form-control", @placeholder = "Apellido paterno" })
+                                            <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.APaterno)</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.TextBoxFor(m => m.AMaterno, new { @class = "form-control", @placeholder = "Apellido materno" })
+                                            <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.AMaterno)</span>
                                         </div>
                                     </div>
                                 </div>
@@ -46,6 +49,7 @@
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     @Html.PasswordFor(x => x.Password, new { @class = "form-control", @value = Model.Password })
+                                    <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
                                 </div>
                             </div>
                         </div>
@@ -54,6 +58,7 @@
                             <div class="col-sm-10">
                                 <div class="form-group">
                                     @Html.TextBoxFor(m => m.Correo, new { @class = "form-control" })
+                                    <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.Correo)</span>
                                 </div>
                             </div>
                         </div>

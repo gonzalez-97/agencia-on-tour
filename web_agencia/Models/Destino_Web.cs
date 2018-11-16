@@ -16,6 +16,7 @@ namespace web_agencia.Models
         HttpClient client;
         //The URL of the WEB API Service
         Uri url = new Uri(Utiles.RutaWebAPI());
+        public Dictionary<string, string> _dictionaryError { get; set; }
 
         public Destino_Web()
         {
@@ -97,6 +98,19 @@ namespace web_agencia.Models
             this.Valor = objeto.Valor;
         }
 
+        internal bool ValidarDestino(Destino_Web destino, bool esCrear)
+        {
+            _dictionaryError = new Dictionary<string, string>();
 
+            if (string.IsNullOrEmpty(destino.Nombre) || string.IsNullOrWhiteSpace(destino.Nombre))
+            {
+                _dictionaryError.Add("Nombre", "Este campo es obligatorio.");
+            }
+            if (destino.Valor <= 0)
+            {
+                _dictionaryError.Add("Valor", "Este campo es obligatorio.");
+            }
+            return _dictionaryError.Count() == 0;
+        }
     }
 }

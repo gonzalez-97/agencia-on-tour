@@ -16,6 +16,7 @@ namespace web_agencia.Models
     {
         HttpClient client;
         Uri url = new Uri(Utiles.RutaWebAPI());
+        public Dictionary<string, string> _dictionaryError { get; set; }
 
         public Curso_Web()
         {
@@ -115,6 +116,22 @@ namespace web_agencia.Models
             this.Nombre = objeto.Nombre;
             this.TotalReunido = objeto.TotalReunido;
             this.Colegio = objeto.Colegio;
+        }
+        internal bool ValidarCursoViewModel(CursoViewModel curso, bool v)
+        {
+            Usuario_Web uw = new Usuario_Web();
+
+            _dictionaryError = new Dictionary<string, string>();
+            if (string.IsNullOrEmpty(curso.Nombre) || string.IsNullOrWhiteSpace(curso.Nombre))
+            {
+                _dictionaryError.Add("Nombre", "Este campo es obligatorio.");
+            }
+
+            if (curso.TotalReunido == 0)
+            {
+                _dictionaryError.Add("TotalReunido", "Debe ingresar un monto.");
+            }
+            return _dictionaryError.Count == 0;
         }
     }
 }

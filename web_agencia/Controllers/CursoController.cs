@@ -47,27 +47,33 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> CrearAsync(CursoViewModel curso)
         {
             Curso_Web curso_crear = new Curso_Web();
-            bool retorno = await curso_crear.CreateFromViewAsync(curso);
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            if (curso_crear.ValidarCursoViewModel(curso, true)) {
+                bool retorno = await curso_crear.CreateFromViewAsync(curso);
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Curso Creado",
-                    Mensaje = "El curso ha sido creado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Curso",
-                    LinkTexto = "Volver a la lista de cursos"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Curso Creado",
+                        Mensaje = "El curso ha sido creado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Curso",
+                        LinkTexto = "Volver a la lista de cursos"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
-
-            return View();
+            Colecciones col = new Colecciones();
+            var colegios = await col.ListaColegios();
+            curso.ColegiosDisponibles = colegios.Select(n => new SelectListItem { Value = n.Id.ToString(), Text = n.Nombre }).ToList();
+            foreach (var item in curso_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Nuevo", "_LayoutAdmin", curso);
         }
 
         [Route("{id:int}")]
@@ -95,27 +101,33 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> ActualizarAsync(CursoViewModel curso)
         {
             Curso_Web curso_editar = new Curso_Web();
-            bool retorno = await curso_editar.UpdateFromViewAsync(curso);
-            if (retorno)
-            {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+            if (curso_editar.ValidarCursoViewModel(curso, true)) {
+                bool retorno = await curso_editar.UpdateFromViewAsync(curso);
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Curso Actualizado",
-                    Mensaje = "El curso ha sido actualizado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Curso",
-                    LinkTexto = "Volver a la lista de cursos"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Curso Actualizado",
+                        Mensaje = "El curso ha sido actualizado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Curso",
+                        LinkTexto = "Volver a la lista de cursos"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
-
-            return View();
+            Colecciones col = new Colecciones();
+            var colegios = await col.ListaColegios();
+            curso.ColegiosDisponibles = colegios.Select(n => new SelectListItem { Value = n.Id.ToString(), Text = n.Nombre }).ToList();
+            foreach (var item in curso_editar._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Editar", "_LayoutAdmin", curso);
         }
 
         [HttpGet]

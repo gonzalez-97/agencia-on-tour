@@ -16,6 +16,7 @@ namespace web_agencia.Models
         HttpClient client;
         //The URL of the WEB API Service
         Uri url = new Uri(Utiles.RutaWebAPI());
+        public Dictionary<string, string> _dictionaryError { get; set; }
 
         public Colegio_Web()
         {
@@ -95,6 +96,17 @@ namespace web_agencia.Models
         {
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
+        }
+        public bool ValidarColegio(Colegio_Web colegio, bool esCrear)
+        {
+            Colegio_Web cw = new Colegio_Web();
+
+            _dictionaryError = new Dictionary<string, string>();
+            if (string.IsNullOrWhiteSpace(colegio.Nombre) || string.IsNullOrEmpty(colegio.Nombre))
+            {
+                _dictionaryError.Add("Nombre", "Este campo es obligatorio.");
+            }
+            return _dictionaryError.Count == 0;
         }
     }
 }

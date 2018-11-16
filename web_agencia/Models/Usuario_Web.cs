@@ -21,6 +21,8 @@ namespace web_agencia.Models
         //The URL of the WEB API Service
         Uri url = new Uri(Utiles.RutaWebAPI());
 
+        public Dictionary<string, string> _dictionaryError { get; set; }
+
         //The HttpClient Class, this will be used for performing 
         //HTTP Operations, GET, POST, PUT, DELETE
         //Set the base address and the Header Formatter
@@ -225,5 +227,25 @@ namespace web_agencia.Models
             }
         }
 
+        public async Task<bool> ValidarUsuarioModel(UsuarioViewModel user, bool esCrear)
+        {
+            Usuario_Web uw = new Usuario_Web();
+
+            _dictionaryError = new Dictionary<string, string>();
+            if (user.Rut == 0) { _dictionaryError.Add("Rut", "Este campo es obligatorio."); }
+            else if (((bool)await uw.Read(user.Rut) && esCrear) ||
+                     (!(bool)await uw.Read(user.Rut) && !esCrear))
+            {
+                _dictionaryError.Add("Rut", "El Rut existe. Intente con otro Rut nuevamente.");
+            }
+
+            if (string.IsNullOrEmpty(user.Correo) || string.IsNullOrWhiteSpace(user.Correo)) { _dictionaryError.Add("Correo", "Este campo es obligatorio."); }
+            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrWhiteSpace(user.Password)) { _dictionaryError.Add("Password", "Este campo es obligatorio."); }
+            if (string.IsNullOrEmpty(user.Nombre) || string.IsNullOrWhiteSpace(user.Nombre)) { _dictionaryError.Add("Nombre", "Este campo es obligatorio."); }
+            if (string.IsNullOrEmpty(user.APaterno) || string.IsNullOrWhiteSpace(user.APaterno)) { _dictionaryError.Add("APaterno", "Este campo es obligatorio."); }
+            if (string.IsNullOrEmpty(user.AMaterno) || string.IsNullOrWhiteSpace(user.AMaterno)) { _dictionaryError.Add("AMaterno", "Este campo es obligatorio."); }
+
+            return _dictionaryError.Count == 0;
+        }
     }
 }

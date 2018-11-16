@@ -48,27 +48,40 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> CrearAsync(UsuarioViewModel user)
         {
             Usuario_Web user_crear = new Usuario_Web();
-            bool retorno = await user_crear.CreateFromViewAsync(user);
-            if (retorno)
+            if (await user_crear.ValidarUsuarioModel(user, true))
             {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+                bool retorno = await user_crear.CreateFromViewAsync(user);
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Usuario Creado",
-                    Mensaje = "El usuario ha sido creado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Usuario",
-                    LinkTexto = "Volver a la lista de usuarios"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Usuario Creado",
+                        Mensaje = "El usuario ha sido creado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Usuario",
+                        LinkTexto = "Volver a la lista de usuarios"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
+
             }
-           
-            return View();
+            Colecciones col = new Colecciones();
+            var perfiles = await col.ListaPerfilesAsync();
+            user.PerfilesDisponibles = perfiles.Select(n => new SelectListItem
+            {
+                Value = n.Id.ToString(),
+                Text = n.Tipo
+            }).ToList();
+
+            foreach (var item in user_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Nuevo", "_LayoutAdmin", user);
         }
 
         [Route("{rut:int}")]
@@ -100,27 +113,43 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> ActualizarAsync(UsuarioViewModel user)
         {
             Usuario_Web user_crear = new Usuario_Web();
-            bool retorno = await user_crear.UpdateFromViewAsync(user);
-            if (retorno)
+            if (await user_crear.ValidarUsuarioModel(user, true))
             {
-                SessionUser userSesion = new SessionUser();
-
-                Tarea_Terminada task = new Tarea_Terminada()
+                bool retorno = await user_crear.UpdateFromViewAsync(user);
+                if (retorno)
                 {
-                    LayoutNombre = "_LayoutAdmin",
-                    Titulo = "Usuario Actualizado",
-                    Mensaje = "El usuario ha sido actualizado exitosamente.",
-                    ActionName = "Index",
-                    ControllerName = "Usuario",
-                    LinkTexto = "Volver a la lista de usuarios"
-                };
+                    SessionUser userSesion = new SessionUser();
 
-                userSesion.SesionTareaTerminada = task;
+                    Tarea_Terminada task = new Tarea_Terminada()
+                    {
+                        LayoutNombre = "_LayoutAdmin",
+                        Titulo = "Usuario Actualizado",
+                        Mensaje = "El usuario ha sido actualizado exitosamente.",
+                        ActionName = "Index",
+                        ControllerName = "Usuario",
+                        LinkTexto = "Volver a la lista de usuarios"
+                    };
 
-                return RedirectToAction("Exito", "Home");
+                    userSesion.SesionTareaTerminada = task;
+
+                    return RedirectToAction("Exito", "Home");
+                }
             }
+            Usuario_Web user2 = new Usuario_Web();
+            await user2.Read(user.Rut);
 
-            return View();
+            Colecciones col = new Colecciones();
+            var perfiles = await col.ListaPerfilesAsync();
+            user.PerfilesDisponibles = perfiles.Select(n => new SelectListItem
+            {
+                Value = n.Id.ToString(),
+                Text = n.Tipo
+            }).ToList();
+            user.Lista_Perfiles = user2.Lista_Perfiles;
+
+            foreach (var item in user_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+            return View("Editar", "_LayoutAdmin", user);
         }
 
         [HttpGet]
