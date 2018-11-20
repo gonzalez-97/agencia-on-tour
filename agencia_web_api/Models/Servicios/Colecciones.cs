@@ -142,11 +142,11 @@ namespace agencia_web_api.Models.Servicios
 
         }
 
-        public IEnumerable<Seguro> ListaSeguro()
+        public IEnumerable<Tipo_Seguro> ListaTipoSeguro()
         {
             var p = new OracleDynamicParameters();
             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
-            return Db.Query<Seguro>(Procs.Seguro_Todos, p, commandType: CommandType.StoredProcedure);
+            return Db.Query<Tipo_Seguro>(Procs.Seguro_Todos, p, commandType: CommandType.StoredProcedure);
         }
 
         public IEnumerable<Seguro_Asociado> ListaSeguroAsociados()
@@ -162,15 +162,15 @@ namespace agencia_web_api.Models.Servicios
                 Contrato_Api contrato = new Contrato_Api();
                 contrato.Read((int)n.CONTRATOID);
 
-                Seguro_Api seguro = new Seguro_Api();
+                Tipo_Seguro_Api seguro = new Tipo_Seguro_Api();
                 seguro.Read((int)n.SEGUROID);
 
                 return new Seguro_Asociado()
                 {
                     Id = (int)n.ID,
                     Valor = (int)n.VALOR,
-                    Tipo_Seguro = (int)n.TIPO_SEGURO,
                     Total_Dias = (int)n.TOTAL_DIAS,
+                    Seguro = (int)n.SEGUROID,
                     Contrato = new Contrato()
                     {
                         Id = contrato.Id,
@@ -180,12 +180,11 @@ namespace agencia_web_api.Models.Servicios
                         Fecha_Viaje = contrato.Fecha_Viaje,
                         Valor = contrato.Valor
                     },
-                    Seguro = new Seguro()
+                    Tipo_Seguro = new Tipo_Seguro()
                     {
                         Id = seguro.Id,
                         Nombre = seguro.Nombre,
-                        Descripcion = seguro.Descripcion,
-                        Dias_Cobertura = seguro.Dias_Cobertura
+                        Tipo_Aseguradora = seguro.Tipo_Aseguradora
                     }
                 };
             });
@@ -204,21 +203,20 @@ namespace agencia_web_api.Models.Servicios
             var salida = result.Where(aux => (int)aux.CONTRATOID == Id).Select(n =>
             {
 
-                Seguro_Api seguro = new Seguro_Api();
+                Tipo_Seguro_Api seguro = new Tipo_Seguro_Api();
                 seguro.Read((int)n.SEGUROID);
 
                 return new Seguro_Asociado()
                 {
                     Id = (int)n.ID,
                     Valor = (int)n.VALOR,
-                    Tipo_Seguro = (int)n.TIPO_SEGURO,
+                    Seguro = (int)n.SEGUROID,
                     Total_Dias = (int)n.TOTAL_DIAS,
-                    Seguro = new Seguro()
+                    Tipo_Seguro = new Tipo_Seguro()
                     {
                         Id = seguro.Id,
                         Nombre = seguro.Nombre,
-                        Descripcion = seguro.Descripcion,
-                        Dias_Cobertura = seguro.Dias_Cobertura
+                        Tipo_Aseguradora = seguro.Tipo_Aseguradora
                     }
                 };
             });

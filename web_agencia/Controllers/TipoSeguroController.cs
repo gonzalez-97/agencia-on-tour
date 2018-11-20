@@ -9,10 +9,11 @@ using web_agencia.Models.Servicios;
 namespace web_agencia.Controllers
 {
     [SessionAuthorize]
-    [RoutePrefix("primas-seguros")]
-    public class PrimaSegurosController : Controller
+    [RoutePrefix("tipos-seguros")]
+    public class TipoSeguroController : Controller
     {
-        // GET: PrimaSeguros
+        // GET: Seguro
+        [Route]
         public ActionResult Index()
         {
             return View();
@@ -23,7 +24,7 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> AllAjaxAsync()
         {
             Colecciones col = new Colecciones();
-            var salida = await col.ListaPrimaSeguros();
+            var salida = await col.ListaTiposSeguros();
             return Json(salida, JsonRequestBehavior.AllowGet);
         }
     }

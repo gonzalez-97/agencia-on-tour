@@ -4,49 +4,51 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Aseguradora_Modelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="PRIMA_TIPO_SEGURO">
+    <Schema Namespace="Aseguradora_Modelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SEGURO">
           <Key>
-            <PropertyRef Name="ID_TIPO" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_TIPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE_TIPO" Type="varchar" MaxLength="256" />
-          <Property Name="VALOR_PRIMA_INDIVIDUAL" Type="int" Nullable="false" />
-          <Property Name="PORC_AUMENTO_DIA" Type="float" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_TIPO_SEGURO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="VALOR_UF" Type="float" Nullable="false" />
+          <Property Name="POLIZA_DESCRIPCION" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityContainer Name="Aseguradora_ModeloStoreContainer">
-          <EntitySet Name="PRIMA_TIPO_SEGURO" EntityType="Self.PRIMA_TIPO_SEGURO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEGURO" EntityType="Self.SEGURO" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Aseguradora_Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="PRIMA_TIPO_SEGURO">
-          <Key>
-            <PropertyRef Name="ID_TIPO" />
-          </Key>
-          <Property Name="ID_TIPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_TIPO" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="VALOR_PRIMA_INDIVIDUAL" Type="Int32" Nullable="false" />
-          <Property Name="PORC_AUMENTO_DIA" Type="Double" />
-        </EntityType>
         <EntityContainer Name="Aseguradora_Entidades" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="PRIMA_TIPO_SEGURO" EntityType="Self.PRIMA_TIPO_SEGURO" />
+          <EntitySet Name="SEGURO" EntityType="Aseguradora_Modelo.SEGURO" />
         </EntityContainer>
+        <EntityType Name="SEGURO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TIPO_SEGURO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="POLIZA_DESCRIPCION" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="VALOR_UF" Type="Double" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Aseguradora_ModeloStoreContainer" CdmEntityContainer="Aseguradora_Entidades">
-          <EntitySetMapping Name="PRIMA_TIPO_SEGURO">
-            <EntityTypeMapping TypeName="Aseguradora_Modelo.PRIMA_TIPO_SEGURO">
-              <MappingFragment StoreEntitySet="PRIMA_TIPO_SEGURO">
-                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
-                <ScalarProperty Name="NOMBRE_TIPO" ColumnName="NOMBRE_TIPO" />
-                <ScalarProperty Name="VALOR_PRIMA_INDIVIDUAL" ColumnName="VALOR_PRIMA_INDIVIDUAL" />
-                <ScalarProperty Name="PORC_AUMENTO_DIA" ColumnName="PORC_AUMENTO_DIA" />
+          <EntitySetMapping Name="SEGURO">
+            <EntityTypeMapping TypeName="Aseguradora_Modelo.SEGURO">
+              <MappingFragment StoreEntitySet="SEGURO">
+                <ScalarProperty Name="VALOR_UF" ColumnName="VALOR_UF" />
+                <ScalarProperty Name="POLIZA_DESCRIPCION" ColumnName="POLIZA_DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_TIPO_SEGURO" ColumnName="ID_TIPO_SEGURO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

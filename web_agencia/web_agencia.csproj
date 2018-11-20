@@ -175,8 +175,8 @@
     <Compile Include="Controllers\EjecutivoController.cs" />
     <Compile Include="Controllers\EncargadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PrimaSegurosController.cs" />
     <Compile Include="Controllers\SeguroController.cs" />
+    <Compile Include="Controllers\TipoSeguroController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,7 +193,7 @@
     <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
     <Compile Include="Models\Seguro_Asociado_Web.cs" />
-    <Compile Include="Models\Seguro_Web.cs" />
+    <Compile Include="Models\Tipo_Seguro_Web.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\SessionAuthorizeAttribute.cs" />
     <Compile Include="Models\Servicios\SessionUser.cs" />
@@ -521,6 +521,7 @@
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\pages\all.js" />
+    <Content Include="Scripts\pages\contrato-edit.js" />
     <Content Include="Scripts\pages\contrato.js" />
     <Content Include="Scripts\pages\registro-alumno.js" />
     <Content Include="Scripts\pages\registro-apoderado-alumno.js" />
@@ -528,6 +529,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />

@@ -19,9 +19,9 @@ namespace agencia_web_api.Controllers
         /// Una lista de seguros :) (formato JSON)
         /// </summary>
         [Route]
-        public IEnumerable<Seguro> Get()
+        public IEnumerable<Tipo_Seguro> Get()
         {
-            return col.ListaSeguro();
+            return col.ListaTipoSeguro();
         }
 
 
@@ -30,9 +30,9 @@ namespace agencia_web_api.Controllers
         /// </summary>
         [Route("{id:int}")]
         [HttpGet]
-        public Seguro_Api GetById(int id)
+        public Tipo_Seguro_Api GetById(int id)
         {
-            Seguro_Api seguro = new Seguro_Api();
+            Tipo_Seguro_Api seguro = new Tipo_Seguro_Api();
             seguro.Read(id);
             return seguro;
         }

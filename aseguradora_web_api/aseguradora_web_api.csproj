@@ -210,7 +210,7 @@
       <DependentUpon>aseguradora-ado.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ConexionDB.cs" />
-    <Compile Include="Models\PRIMA_TIPO_SEGURO.cs">
+    <Compile Include="Models\SEGURO.cs">
       <DependentUpon>aseguradora-ado.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

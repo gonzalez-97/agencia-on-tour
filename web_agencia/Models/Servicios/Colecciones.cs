@@ -27,9 +27,9 @@ namespace web_agencia.Models.Servicios
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<List<Prima_Seguro>> ListaPrimaSeguros()
+        public async Task<List<Seguro>> ListaSegurosAseguradora()
         {
-            List<Prima_Seguro> salida = new List<Prima_Seguro>();
+            List<Seguro> salida = new List<Seguro>();
 
             Uri urlAseguradora = new Uri(Utiles.RutaWebAPI_Seguro());
             HttpClient clientAseguradora = new HttpClient();
@@ -41,7 +41,7 @@ namespace web_agencia.Models.Servicios
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                salida = JsonConvert.DeserializeObject<List<Prima_Seguro>>(responseData);
+                salida = JsonConvert.DeserializeObject<List<Seguro>>(responseData);
             }
             return salida;
         }
@@ -154,14 +154,14 @@ namespace web_agencia.Models.Servicios
             return salida;
         }
 
-        public async Task<List<Seguro>> ListaSeguros()
+        public async Task<List<Tipo_Seguro>> ListaTiposSeguros()
         {
-            List<Seguro> salida = new List<Seguro>();
+            List<Tipo_Seguro> salida = new List<Tipo_Seguro>();
             HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "seguro"));
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                salida = JsonConvert.DeserializeObject<List<Seguro>>(responseData);
+                salida = JsonConvert.DeserializeObject<List<Tipo_Seguro>>(responseData);
             }
             return salida;
         }

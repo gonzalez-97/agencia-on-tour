@@ -10,7 +10,7 @@ using System.Web;
 
 namespace agencia_web_api.Models
 {
-    public class Seguro_Api : Seguro
+    public class Tipo_Seguro_Api : Tipo_Seguro
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Read(int id)
@@ -21,7 +21,7 @@ namespace agencia_web_api.Models
                 p.Add("Id", id);
                 p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
 
-                var retorno = Db.QuerySingle<Seguro_Api>(Procs.Seguro_Por_Id, p, commandType: CommandType.StoredProcedure);
+                var retorno = Db.QuerySingle<Tipo_Seguro_Api>(Procs.Seguro_Por_Id, p, commandType: CommandType.StoredProcedure);
                 MappingThisFromAnother(retorno);
                 return true;
             }
@@ -32,12 +32,11 @@ namespace agencia_web_api.Models
             }
         }
 
-        public void MappingThisFromAnother(Seguro_Api objeto)
+        public void MappingThisFromAnother(Tipo_Seguro_Api objeto)
         {
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
-            this.Descripcion = objeto.Descripcion;
-            this.Dias_Cobertura = objeto.Dias_Cobertura;
+            this.Tipo_Aseguradora = objeto.Tipo_Aseguradora;
         }
     }
 }

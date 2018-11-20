@@ -44,6 +44,14 @@ namespace web_agencia.Controllers
         }
 
         [HttpPost]
+        [Route("cargar-ajax")]
+        public async Task<ActionResult> CargarContratoAsync(Contrato_Web contrato)
+        {
+            await contrato.Read(contrato.Id);
+            return Json(contrato, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         [Route("crear-ajax")]
         public async Task<ActionResult> CrearContratoAsync(Contrato_Web contrato)
         {

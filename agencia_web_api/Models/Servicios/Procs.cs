@@ -17,7 +17,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Curso_Todos = "sp_curso_todos";
         public const string Apoderado_Todos = "sp_apoderado_todos";
         public const string Alumno_Todos = "sp_alumno_todos";
-        public const string Seguro_Todos = "sp_seguro_todos";
+        public const string Seguro_Todos = "sp_tipo_seguro_todos";
         public const string Contrato_Todos = "sp_contrato_todos";
         public const string Seguros_Asociado_Todos = "sp_seguros_asignados_todos";
         public const string Servicio_Todos = "sp_servicio_todos";
@@ -91,7 +91,7 @@ namespace agencia_web_api.Models.Servicios
         #endregion
 
         #region Seguros
-        public const string Seguro_Por_Id = "sp_seguro_por_id";
+        public const string Seguro_Por_Id = "sp_tipo_seguro_por_id";
 
         #endregion
 

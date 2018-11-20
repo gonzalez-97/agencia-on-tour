@@ -10,9 +10,9 @@ namespace agencia_lib
     {
         public int Id { get; set; }
         public int Valor { get; set; }
-        public int Tipo_Seguro { get; set; }
+        public Tipo_Seguro Tipo_Seguro { get; set; }
         public int Total_Dias { get; set; }
-        public Seguro Seguro { get; set; }
+        public int Seguro { get; set; }
         public Contrato Contrato { get; set; }
     }
 }

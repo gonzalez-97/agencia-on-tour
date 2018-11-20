@@ -113,7 +113,7 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> ActualizarAsync(UsuarioViewModel user)
         {
             Usuario_Web user_crear = new Usuario_Web();
-            if (await user_crear.ValidarUsuarioModel(user, true))
+            if (await user_crear.ValidarUsuarioModel(user, false))
             {
                 bool retorno = await user_crear.UpdateFromViewAsync(user);
                 if (retorno)

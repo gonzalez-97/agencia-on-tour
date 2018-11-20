@@ -137,36 +137,8 @@
         </div>
     </div>
 </div>
-@section scripts {
+@section scripts
+{
     @Scripts.Render("~/Scripts/js/plugins/es.js")
-    @Scripts.Render("~/Scripts/pages/contrato.js")
-    <script>
-        (function ($, w, d) {
-            $(d).ready(function () {
-
-                var p = w.thisPage();
-                p.init();
-
-                $('#add-servicio').click(function (e) {
-                    p.addServicio();
-                });
-
-                $('#add-seguro').click(function (e) {
-                    p.addSeguro();
-                });
-
-                $('#add-destino').click(function (e) {
-                    p.addDestino();
-                });
-
-                $('#add-documento').click(function (e) {
-                    p.addDocumento();
-                });
-
-                $('#registrar-input').click(function (e) {
-                    p.botonFinalizar();
-                });
-            });
-        })(jQuery, window, document);
-    </script>
+    <script data-main="/Scripts/pages/contrato-edit" src="/Scripts/require.js"></script>
 }

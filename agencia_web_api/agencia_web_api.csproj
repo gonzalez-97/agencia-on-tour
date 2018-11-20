@@ -226,7 +226,7 @@
     <Compile Include="Models\Destino_Asociado_Api.cs" />
     <Compile Include="Models\Perfil_Api.cs" />
     <Compile Include="Models\Perfil_Asociado_Api.cs" />
-    <Compile Include="Models\Seguro_Api.cs" />
+    <Compile Include="Models\Tipo_Seguro_Api.cs" />
     <Compile Include="Models\Seguro_Asociado_Api.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
     <Compile Include="Models\Servicios\ConexionDb.cs" />

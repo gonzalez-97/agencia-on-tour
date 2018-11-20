@@ -11,12 +11,12 @@ using web_agencia.Models.Servicios;
 
 namespace web_agencia.Models
 {
-    public class Seguro_Web : Seguro
+    public class Tipo_Seguro_Web : Tipo_Seguro
     {
         HttpClient client;
         Uri url = new Uri(Utiles.RutaWebAPI());
 
-        public Seguro_Web()
+        public Tipo_Seguro_Web()
         {
             client = new HttpClient();
             client.BaseAddress = url;
@@ -46,7 +46,7 @@ namespace web_agencia.Models
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    Seguro_Web retorno = JsonConvert.DeserializeObject<Seguro_Web>(responseData);
+                    Tipo_Seguro_Web retorno = JsonConvert.DeserializeObject<Tipo_Seguro_Web>(responseData);
 
                     MappingThisFromAnother(retorno);
                     return true;
@@ -88,12 +88,11 @@ namespace web_agencia.Models
             }
         }
 
-        private void MappingThisFromAnother(Seguro_Web objeto)
+        private void MappingThisFromAnother(Tipo_Seguro_Web objeto)
         {
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
-            this.Descripcion = objeto.Descripcion;
-            this.Dias_Cobertura = objeto.Dias_Cobertura;
+            this.Tipo_Aseguradora = objeto.Tipo_Aseguradora;
         }
     }
 }

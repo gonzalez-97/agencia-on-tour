@@ -64,10 +64,10 @@
                     <div id="contenedor-seguros">
                         <div class="row">
                             <div class="col-md-3">
-                                <p>Seguro</p>
+                                <p>Tipo seguro</p>
                             </div>
                             <div class="col-md-4">
-                                <p>Tipo seguro (prima)</p>
+                                <p>Seguros disponibles</p>
                             </div>
                             <div class="col-md-2">
                                 <p>Cantidad Dias</p>
@@ -139,34 +139,33 @@
 </div>
 @section scripts {
     @Scripts.Render("~/Scripts/js/plugins/es.js")
-    @Scripts.Render("~/Scripts/pages/contrato.js")
+    <script data-main="/Scripts/pages/contrato" src="/Scripts/require.js"></script>
     <script>
-        (function ($, w, d) {
-            $(d).ready(function () {
 
-                var p = w.thisPage();
-                p.init();
+        require(['contrato'], function (contrato) {
 
-                $('#add-servicio').click(function (e) {
-                    p.addServicio();
-                });
+            contrato.cargarCursosSelect();
+            contrato.loadDatePicker();
 
-                $('#add-seguro').click(function (e) {
-                    p.addSeguro();
-                });
-
-                $('#add-destino').click(function (e) {
-                    p.addDestino();
-                });
-
-                $('#add-documento').click(function (e) {
-                    p.addDocumento();
-                });
-
-                $('#registrar-input').click(function (e) {
-                    p.botonFinalizar();
-                });
+            $('#add-servicio').click(function (e) {
+                contrato.addServicio();
             });
-        })(jQuery, window, document);
+
+            $('#add-seguro').click(function (e) {
+                contrato.addSeguro();
+            });
+
+            $('#add-destino').click(function (e) {
+                contrato.addDestino();
+            });
+
+            $('#add-documento').click(function (e) {
+                contrato.addDocumento();
+            });
+
+            $('#registrar-input').click(function (e) {
+                contrato.botonFinalizar();
+            });
+        });
     </script>
 }

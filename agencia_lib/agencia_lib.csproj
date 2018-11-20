@@ -53,9 +53,9 @@
     <Compile Include="Destino_Asociado.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Perfil_Asociado.cs" />
-    <Compile Include="Prima_Seguro.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguro.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tipo_Seguro.cs" />
     <Compile Include="Seguro_Asociado.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Servicio_Asociado.cs" />
