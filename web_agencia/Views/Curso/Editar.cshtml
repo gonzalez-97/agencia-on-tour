@@ -36,6 +36,15 @@
                                     <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.TotalReunido)</span>
                                 </div>
                             </div>
+                            <label class="col-sm-2 col-form-label">Total Pagar</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.TotalPagar, new { @class = "form-control" })
+                                    <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.TotalPagar)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-2 col-form-label">Colegio</label>
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -43,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-lg-12 ml-auto mr-auto text-center">
                                 <button type="submit" class="btn btn-rose">Guardar<div class="ripple-container"></div></button>

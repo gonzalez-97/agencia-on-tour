@@ -205,6 +205,7 @@
     <Compile Include="Controllers\DestinoAsociadoController.cs" />
     <Compile Include="Controllers\DestinoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeguroAsociadoController.cs" />
     <Compile Include="Controllers\SeguroController.cs" />
@@ -216,6 +217,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actividad_Api.cs" />
+    <Compile Include="Models\Actividad_Asociada_Api.cs" />
     <Compile Include="Models\Alumno_Api.cs" />
     <Compile Include="Models\Apoderado_Api.cs" />
     <Compile Include="Models\Archivo_Api.cs" />
@@ -224,6 +226,8 @@
     <Compile Include="Models\Curso_Api.cs" />
     <Compile Include="Models\Destino_Api.cs" />
     <Compile Include="Models\Destino_Asociado_Api.cs" />
+    <Compile Include="Models\Pago_Actividad_Api.cs" />
+    <Compile Include="Models\Pago_Api.cs" />
     <Compile Include="Models\Perfil_Api.cs" />
     <Compile Include="Models\Perfil_Asociado_Api.cs" />
     <Compile Include="Models\Tipo_Seguro_Api.cs" />

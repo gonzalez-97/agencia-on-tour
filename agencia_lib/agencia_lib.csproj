@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actividad.cs" />
+    <Compile Include="Actividad_Asociada.cs" />
     <Compile Include="Alumno.cs" />
     <Compile Include="Apoderado.cs" />
     <Compile Include="Archivo.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Curso.cs" />
     <Compile Include="Destino.cs" />
     <Compile Include="Destino_Asociado.cs" />
+    <Compile Include="Pago.cs" />
+    <Compile Include="Pago_Actividad.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Perfil_Asociado.cs" />
     <Compile Include="Seguro.cs" />

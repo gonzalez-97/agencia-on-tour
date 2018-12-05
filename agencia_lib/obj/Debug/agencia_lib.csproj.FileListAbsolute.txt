@@ -15,3 +15,4 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\bin\Debug\agenc
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.csproj.CoreCompileInputs.cache
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.pdb
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_lib\obj\Debug\agencia_lib.csprojAssemblyReference.cache

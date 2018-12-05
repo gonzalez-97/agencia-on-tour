@@ -201,5 +201,17 @@ namespace web_agencia.Models.Servicios
             }
             return salida;
         }
+
+        public async Task<List<Pago>> ListaPagos()
+        {
+            List<Pago> salida = new List<Pago>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "pago"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Pago>>(responseData);
+            }
+            return salida;
+        }
     }
 }

@@ -79,7 +79,7 @@
                     <li class="nav-item active ">
                         <a class="nav-link" href="@Url.Action("Index","Apoderado")">
                             <i class="material-icons">dashboard</i>
-                            <p> Inicio | Apoderado </p>
+                            <p> Inicio | Ejecutivo </p>
                         </a>
                     </li>
                     <li class="nav-item ">
@@ -104,6 +104,27 @@
                                     <a class="nav-link" href="@Url.Action("Index", "Contrato")">
                                         <span class="sidebar-mini sidebar-mini-icon"><i class="far fa-list-alt"></i></span>
                                         <span class="sidebar-normal">Contratos Actuales </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="collapse" href="#pagos">
+                            <i class="fas fa-list-alt"></i>
+                            <p>
+                                Pagos
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                        <div class="collapse" id="pagos">
+                            <ul class="nav">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="@Url.Action("TodosLosPagos", "Pago")">
+                                        <span class="sidebar-mini sidebar-mini-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                        <span class="sidebar-normal"> Todos los pagos</span>
                                     </a>
                                 </li>
                             </ul>

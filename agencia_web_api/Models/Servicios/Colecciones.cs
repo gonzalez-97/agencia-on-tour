@@ -132,9 +132,10 @@ namespace agencia_web_api.Models.Servicios
                     Nombre = n.NOMBRE,
                     APaterno = n.APATERNO,
                     AMaterno = n.AMATERNO,
-                    Total_Reunido = (int?)n.TOTAL,
+                    TotalReunido = (int?)n.TOTALREUNIDO,
+                    TotalPagar = (int?)n.TOTALPAGAR,
                     Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario },
-                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio }
+                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, TotalPagar = curso.TotalPagar, Colegio = curso.Colegio }
                 };
             });
 
@@ -163,7 +164,7 @@ namespace agencia_web_api.Models.Servicios
                 contrato.Read((int)n.CONTRATOID);
 
                 Tipo_Seguro_Api seguro = new Tipo_Seguro_Api();
-                seguro.Read((int)n.SEGUROID);
+                seguro.Read((int)n.TIPO_SEGUROID);
 
                 return new Seguro_Asociado()
                 {
@@ -204,7 +205,7 @@ namespace agencia_web_api.Models.Servicios
             {
 
                 Tipo_Seguro_Api seguro = new Tipo_Seguro_Api();
-                seguro.Read((int)n.SEGUROID);
+                seguro.Read((int)n.TIPO_SEGUROID);
 
                 return new Seguro_Asociado()
                 {
@@ -244,7 +245,7 @@ namespace agencia_web_api.Models.Servicios
                     Fecha_Viaje = (DateTime)n.FECHA_VIAJE,
                     Estado = ((int)n.ESTADO > 0) ? true : false,
                     Valor = (int)n.TOTAL,
-                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio },
+                    Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, TotalPagar = curso.TotalPagar, Colegio = curso.Colegio },
                     ListaSeguroAsociados = ListaSeguroAsociadosXContrato((int)n.ID).ToList(),
                     ListaServiciosAsociados = ListaServiciosAsociadosXContrato((int)n.ID).ToList(),
                     ListaDestinosAsociados = ListaDestinosAsociadosXContrato((int)n.ID).ToList(),
@@ -430,6 +431,41 @@ namespace agencia_web_api.Models.Servicios
                 {
                     Id = (int)n.ID,
                     Nombre = n.ARCHIVO
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Pago> ListaPagos()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+            var result = Db.Query<dynamic>(Procs.Pago_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Alumno_Api alumno = new Alumno_Api();
+                alumno.Read((int)n.ALUMNO_RUT);
+
+                return new Pago()
+                {
+                    Id = (int)n.ID,
+                    Alumno = new Alumno()
+                    {
+                        Rut = alumno.Rut,
+                        DigitoV = alumno.DigitoV,
+                        Nombre = alumno.Nombre,
+                        APaterno = alumno.APaterno,
+                        AMaterno = alumno.AMaterno,
+                        TotalReunido = alumno.TotalReunido,
+                        TotalPagar = alumno.TotalPagar,
+                        Curso = alumno.Curso,
+                        Apoderado = alumno.Apoderado
+                    },
+                    Valor_Pago = (int)n.VALOR_PAGO,
+                    Total_Cuenta = (int)n.TOTAL_CUENTA,
+                    Fecha_Pago = (DateTime)n.FECHA_PAGO
                 };
             });
 

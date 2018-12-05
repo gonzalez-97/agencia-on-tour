@@ -199,7 +199,15 @@
             });
         },
         addEventUploadFile: function (e) {
+
+            var $this = this;
+
             $(e).change(function () {
+
+                //Si el tipo no es permitido no deja subir
+                if (!$this.validarInputTipos(this))
+                    return;
+
                 var formData = new FormData();
                 formData.append('file', $(this)[0].files[0]);
                 $.ajax({
@@ -393,7 +401,7 @@
             var array = new Array();
             $.each($('.div-servicios'), function (i, item) {
                 var select = $(item).find('.servicios-contrato').first();
-                var elemento = { Servicio: { Id: parseInt($(select).val()) } };
+                var elemento = { Id: ($(item).data('id')) ? parseInt($(item).data('id')) : 0, Servicio: { Id: parseInt($(select).val()) } };
                 array.push(elemento);
             });
             return array;
@@ -402,7 +410,7 @@
             var array = new Array();
             $.each($('.div-destinos'), function (i, item) {
                 var select = $(item).find('.destinos-contrato').first();
-                var elemento = { Destino: { Id: parseInt($(select).val()) } };
+                var elemento = { Id: ($(item).data('id')) ? parseInt($(item).data('id')) : 0, Destino: { Id: parseInt($(select).val()) } };
                 array.push(elemento);
             });
             return array;
@@ -416,6 +424,7 @@
                 var dias = parseInt($(item).find('.input-dias').first().val()) || 1;
                 var total = $thisObject.calcularTotalSegurosSingle(selectSeguro, dias);
                 var elemento = {
+                    Id: ($(item).data('id')) ? parseInt($(item).data('id')) : 0,
                     Valor: total, Total_Dias: dias, Tipo_Seguro: { Id: parseInt($(selectTipo).val()) } ,
                     Seguro: parseInt($(selectSeguro).val()) 
                 };
@@ -426,9 +435,9 @@
         obtenerListaArchivos: function () {
             var array = new Array();
             $.each($('.div-documentos'), function (i, item) {
-                var inputArchivo = $(item).find('.input-archivo').first();
-                if ($(inputArchivo).data('temp')) {
-                    var archivo = { Nombre: $(inputArchivo).data('temp') };
+                var doc = $(item).find('.input-archivo').first();
+                if ($(doc).data('temp')) {
+                    var archivo = { Id: ($(item).data('id')) ? parseInt($(item).data('id')) : 0, Nombre: $(doc).data('temp') };
                     array.push(archivo);
                 }
             });
@@ -439,7 +448,7 @@
                 Nombre: $('#nombre-contrato').val(),
                 Descripcion: $('#descripcion-contrato').val(),
                 Fecha_Viaje: $('#fecha-viaje').data('DateTimePicker').date()._d,
-                Valor: $('#valor-contrato').val(),
+                Valor: parseInt($('#valor-contrato').val()),
                 Curso: this.obtenerCurso(),
                 ListaServiciosAsociados: this.obtenerListaServicios(),
                 ListaDestinosAsociados: this.obtenerListaDestinos(),
@@ -457,6 +466,20 @@
                 }
             }
             return salida;
+        },
+        validarInputTipos: function (f) {
+
+            var ext = ['gif', 'jpg', 'jpeg', 'png', 'pdf', 'docx', 'xlsx'];
+            var v = f.value.split('.').pop().toLowerCase();
+            for (var i = 0, n; n = ext[i]; i++) {
+                if (n.toLowerCase() == v)
+                    return true;
+            }
+            var t = f.cloneNode(true);
+            t.value = '';
+            f.parentNode.replaceChild(t, f);
+            alert('extensión no válida');
+            return false;
         },
         guardaContratoAjax: function (contrato) {
             return $.ajax({
@@ -514,7 +537,7 @@
             }, 3000);
         },
         normalTextEnFinalizar: function () {
-            $('#registrar-input').html('Finalizar');
+            $('#registrar-input').html('Generar Contrato');
             $('#registrar-input').removeClass('disabled');
         },
         cargandoEnFinalizar: function () {

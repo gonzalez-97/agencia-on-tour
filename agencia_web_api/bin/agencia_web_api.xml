@@ -706,6 +706,31 @@
             Borra el destino (actualiza el campo eliminado = 0)
             </summary>
         </member>
+        <member name="M:agencia_web_api.Controllers.PagoController.Get">
+            <summary>
+            Una lista de pagos :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoController.GetById(System.Int32)">
+            <summary>
+            Filtro de pago por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoController.NuevoPago(agencia_web_api.Models.Pago_Api)">
+            <summary>
+            Crea un nuevo pago (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoController.EditarPago(agencia_web_api.Models.Pago_Api)">
+            <summary>
+            Actualiza el pago (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoController.BorrarPago(System.Int32)">
+            <summary>
+            Borra el pago (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.SeguroAsociadoController.Get">
             <summary>
             Una lista de seguros asociados al contrato :) (formato JSON)

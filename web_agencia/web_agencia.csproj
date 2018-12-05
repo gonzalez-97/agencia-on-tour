@@ -175,6 +175,7 @@
     <Compile Include="Controllers\EjecutivoController.cs" />
     <Compile Include="Controllers\EncargadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\SeguroController.cs" />
     <Compile Include="Controllers\TipoSeguroController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\Destino_Asociado_Web.cs" />
     <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
+    <Compile Include="Models\Pago_Web.cs" />
     <Compile Include="Models\Seguro_Asociado_Web.cs" />
     <Compile Include="Models\Tipo_Seguro_Web.cs" />
     <Compile Include="Models\Servicios\Colecciones.cs" />
@@ -203,6 +205,7 @@
     <Compile Include="Models\Tarea_Terminada.cs" />
     <Compile Include="Models\Usuario_Web.cs" />
     <Compile Include="Models\Views\CursoViewModel.cs" />
+    <Compile Include="Models\Views\PagoViewModel.cs" />
     <Compile Include="Models\Views\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -594,6 +597,11 @@
     <Content Include="Views\Encargado\Index.cshtml" />
     <Content Include="Views\Contrato\Index.cshtml" />
     <Content Include="Views\Contrato\Editar.cshtml" />
+    <Content Include="Scripts\js\plugins\jquery.onTour.js" />
+    <Content Include="Views\Pago\MisPagos.cshtml" />
+    <Content Include="Views\Pago\Nuevo.cshtml" />
+    <Content Include="Views\Pago\EditarMisPagos.cshtml" />
+    <Content Include="Views\Pago\TodosPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

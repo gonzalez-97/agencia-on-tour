@@ -24,6 +24,9 @@ namespace agencia_web_api.Models.Servicios
         public const string Servicios_Asociado_Todos = "sp_servicio_asignado_todos";
         public const string Destinos_Asociado_Todos = "sp_destinos_asignados_todos";
         public const string Archivos_Todos = "sp_archivo_todos";
+        public const string Pago_Todos = "sp_pago_todos";
+        public const string Actividad_Asociada_Todos = "sp_actividad_asignada_todos";
+        public const string Pago_Actividad_Todos = "sp_pago_actividad_todos";
         #endregion
 
         #region Actividad
@@ -128,6 +131,27 @@ namespace agencia_web_api.Models.Servicios
         public const string Archivo_Crear = "sp_archivo_create";
         public const string Archivo_Por_Id = "sp_archivo_por_id";
         public const string Archivo_Borrar = "sp_archivo_delete";
+        #endregion
+
+        #region Pagos
+        public const string Pago_Crear = "sp_pago_create";
+        public const string Pago_Crear_Desde_Actividad = "sp_pago_desde_actividad_create";
+        public const string Pago_Por_Id = "sp_pago_por_id";
+        public const string Pago_Actualizar = "sp_pago_update";
+        public const string Pago_Borrar = "sp_pago_delete";
+        #endregion
+
+        #region Actividades Asignadas
+        public const string Actividad_Asociada_Crear = "sp_actividad_asignada_create";
+        public const string Actividad_Asociada_Por_Id = "sp_actividad_asignada_por_id";
+        public const string Actividad_Asociada_Borrar = "sp_actividad_asignada_delete";
+        public const string Actividad_Asociada_Actualizar = "sp_actividad_asignada_update";
+        #endregion
+
+        #region Pagos Actividades
+        public const string Pago_Actividad_Crear = "sp_pago_actividad_create";
+        public const string Pago_Actividad_Por_Id = "sp_pago_actividad_por_id";
+        public const string Pago_Actividad_Borrar = "sp_pago_actividad_delete";
         #endregion
     }
 }

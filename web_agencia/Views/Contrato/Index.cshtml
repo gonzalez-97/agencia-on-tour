@@ -93,10 +93,10 @@
             table.on('click', '.remove', function (e)
             {
                 var id = $(this).attr('id');
-                var respuesta = confirm("¿Desea borrar el colegio " + id + "?");
+                var respuesta = confirm("¿Desea borrar el contrato " + id + "?");
                 if (respuesta == true)
                 {
-                    BorrarColegio(id);
+                    BorrarContrato(id);
                     $tr = $(this).closest('tr');
                     table.row($tr).remove().draw();
                     e.preventDefault();
@@ -105,9 +105,9 @@
 
         });
 
-        function BorrarColegio(id)
+        function BorrarContrato(id)
         {
-            $.get("/contratos/borrar/" + id, function (data) {
+            $.get("/contrato/borrar/" + id, function (data) {
                 var respuesta = JSON.parse(data);
                 if (respuesta)
                     alert("El contrato ha sido borrado exitosamente.");

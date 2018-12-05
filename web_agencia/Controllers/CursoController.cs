@@ -90,6 +90,7 @@ namespace web_agencia.Controllers
                 Id = curso.Id,
                 Nombre = curso.Nombre,
                 TotalReunido = curso.TotalReunido,
+                TotalPagar = curso.TotalPagar,
                 Colegio = curso.Colegio,
                 ColegiosDisponibles = colegios.Select(n => new SelectListItem { Value = n.Id.ToString(), Text = n.Nombre }).ToList()
             };

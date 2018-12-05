@@ -110,6 +110,7 @@ namespace web_agencia.Models
             this.ListaSeguroAsociados = objeto.ListaSeguroAsociados;
             this.ListaServiciosAsociados = objeto.ListaServiciosAsociados;
             this.ListaDestinosAsociados = objeto.ListaDestinosAsociados;
+            this.ListaArchivos = objeto.ListaArchivos;
         }
     }
 }

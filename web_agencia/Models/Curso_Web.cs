@@ -107,6 +107,7 @@ namespace web_agencia.Models
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
             this.TotalReunido = objeto.TotalReunido;
+            this.TotalPagar = objeto.TotalPagar;
             this.Colegio = objeto.Colegio;
         }
 
@@ -115,6 +116,7 @@ namespace web_agencia.Models
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
             this.TotalReunido = objeto.TotalReunido;
+            this.TotalPagar = objeto.TotalPagar;
             this.Colegio = objeto.Colegio;
         }
         internal bool ValidarCursoViewModel(CursoViewModel curso, bool v)
@@ -125,11 +127,6 @@ namespace web_agencia.Models
             if (string.IsNullOrEmpty(curso.Nombre) || string.IsNullOrWhiteSpace(curso.Nombre))
             {
                 _dictionaryError.Add("Nombre", "Este campo es obligatorio.");
-            }
-
-            if (curso.TotalReunido == 0)
-            {
-                _dictionaryError.Add("TotalReunido", "Debe ingresar un monto.");
             }
             return _dictionaryError.Count == 0;
         }

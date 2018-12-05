@@ -60,7 +60,7 @@ namespace web_agencia.Models
             }
         }
 
-        private async Task<bool> Update()
+        public async Task<bool> Update()
         {
             try
             {

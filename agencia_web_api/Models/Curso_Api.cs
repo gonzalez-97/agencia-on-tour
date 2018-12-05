@@ -20,7 +20,6 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Nombre", this.Nombre);
-                p.Add("TotalReunido", this.TotalReunido);
                 p.Add("Colegio_Id", this.Colegio.Id);
                 Db.Execute(Procs.Curso_Crear, p, commandType: CommandType.StoredProcedure);
                 return true;
@@ -71,6 +70,7 @@ namespace agencia_web_api.Models
                 p.Add("Id", this.Id);
                 p.Add("Nombre", this.Nombre);
                 p.Add("TotalReunido", this.TotalReunido);
+                p.Add("TotalPagar", this.TotalPagar);
                 p.Add("Colegio_Id", this.Colegio.Id);
                 Db.Execute(Procs.Curso_Actualizar, p, commandType: CommandType.StoredProcedure);
                 return true;
@@ -102,6 +102,7 @@ namespace agencia_web_api.Models
             this.Id = objeto.Id;
             this.Nombre = objeto.Nombre;
             this.TotalReunido = objeto.TotalReunido;
+            this.TotalPagar = objeto.TotalPagar;
             this.Colegio = objeto.Colegio;
         }
     }
