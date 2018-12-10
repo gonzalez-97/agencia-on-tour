@@ -1,4 +1,5 @@
 ﻿
+
 using agencia_lib;
 using agencia_web_api.Models.Servicios;
 using Dapper;
@@ -13,6 +14,8 @@ namespace agencia_web_api.Models
 {
     public class Contrato_Api: Contrato
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Create()
         {
@@ -28,12 +31,13 @@ namespace agencia_web_api.Models
 
                 var retorno = Db.QuerySingle<Contrato_Api>(Procs.Contrato_Crear, param: p, commandType: CommandType.StoredProcedure);
                 this.Id = retorno.Id;
+                logger.Info("Contrato N°{0} creado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -65,6 +69,7 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
@@ -81,12 +86,13 @@ namespace agencia_web_api.Models
                 p.Add("Fecha_Viaje", this.Fecha_Viaje);
                 p.Add("Valor", this.Valor);
                 Db.Execute(Procs.Contrato_Actualizar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Contrato N°{0} actualizado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -97,12 +103,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
                 Db.Execute(Procs.Contrato_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Contrato N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿define([], function () {
+﻿define(["all"], function (all)
+{
     return {
         loadDatePicker: function () {
             $('.datepicker').datetimepicker({
@@ -461,10 +462,18 @@
             var salida = true;
             for (var key in objeto) {
                 if (objeto[key] === "" || objeto[key] === null || objeto[key] === undefined) {
-                    this.generarAlerta('El campo ' + key + " no puede ser vacio");
+                    all.generarAlerta('El campo ' + key + ' no puede ser vacio');
+                    salida = false;
+                }
+            };
+
+            if (salida) {
+                if (objeto.ListaDestinosAsociados.length === 0) {
+                    all.generarAlerta('Debe agregar al menos un destino');
                     salida = false;
                 }
             }
+
             return salida;
         },
         validarInputTipos: function (f) {
@@ -502,7 +511,7 @@
                 var alerta = data;
                 if (data === true) alerta = 'Se ha guardado el contrato existosamente';
                 if (data === false) alerta = 'Error al guardar los datos del contrato';
-                $this.generarAlerta(alerta);
+                all.generarAlerta(alerta);
 
                 if (data === true)
                     return $this.reloadPageAfter3sec();
@@ -510,25 +519,6 @@
                 return $this.normalTextEnFinalizar();
             });
 
-        },
-        generarAlerta: function (message) {
-            var type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
-
-            var color = Math.floor((Math.random() * 6) + 1);
-
-            $.notify({
-                icon: "add_alert",
-                message: message
-            },
-                {
-                    type: type[color],
-                    timer: 5000,
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    }
-                });
-            return;
         },
         reloadPageAfter3sec: function () {
             $('#registrar-input').html('Contrato guardado!');

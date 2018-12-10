@@ -12,6 +12,7 @@ namespace web_agencia.Controllers
     public class EncargadoController : Controller
     {
         // GET: Encargado
+        [Route]
         public ActionResult Index()
         {
             return View("Index", "_LayoutEncargado");

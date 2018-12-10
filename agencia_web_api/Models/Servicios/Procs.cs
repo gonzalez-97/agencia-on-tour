@@ -81,6 +81,7 @@ namespace agencia_web_api.Models.Servicios
         public const string Usuario_Existe = "sp_existe_usuario";
         public const string Usuario_Crear = "sp_usuarios_create";
         public const string Usuario_Actualizar = "sp_usuarios_update";
+        public const string Usuario_Actualizar_Password = "sp_usuarios_update_password";
         public const string Usuario_Por_Rut = "sp_usuarios_por_rut";
         public const string Usuario_Borrar = "sp_usuarios_delete";
         #endregion

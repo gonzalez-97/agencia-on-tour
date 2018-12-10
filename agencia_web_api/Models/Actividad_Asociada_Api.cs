@@ -12,6 +12,7 @@ namespace agencia_web_api.Models
 {
     public class Actividad_Asociada_Api : Actividad_Asociada
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Create()
         {
@@ -29,26 +30,28 @@ namespace agencia_web_api.Models
                 p.Add("CursoID", this.Curso.Id);
                 p.Add("Total_Recaudado", this.Total_Recaudado);
                 p.Add("Prorrateo", this.Prorrateo);
-                var retorno = Db.QuerySingle<Actividad_Asociada_Api>(Procs.Actividad_Asociada_Por_Id, param: p, commandType: CommandType.StoredProcedure);
+                var retorno = Db.QuerySingle<Actividad_Asociada_Api>(Procs.Actividad_Asociada_Crear, param: p, commandType: CommandType.StoredProcedure);
                 this.Id = retorno.Id;
 
-
+                //Crea los pagos del prorrateo...
                 foreach (Alumno alu in alumnos_from_curso)
                 {
                     var parametrosPago = new OracleDynamicParameters();
                     parametrosPago.Add("Alumno_Rut", alu.Rut);
                     parametrosPago.Add("Valor_Pago", Prorrateo);
-                    parametrosPago.Add("Total_Cuenta", alu.TotalReunido);
+                    parametrosPago.Add("Total_Cuenta", alu.TotalReunido.HasValue  ? alu.TotalReunido : 0);
                     parametrosPago.Add("Id_Actividad_Asignada", Id);
                     Db.Execute(Procs.Pago_Crear_Desde_Actividad, parametrosPago, commandType: CommandType.StoredProcedure);
                 }
+
+                logger.Info("Actividad asociada N°{0} creada correctamente", Id);
 
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -88,8 +91,39 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
+
+        public bool Delete()
+        {
+            try
+            {
+                Colecciones col = new Colecciones();
+                List<Pago_Actividad> pagos_delete = col.ListaPagoActividadXActividad(Id).ToList();
+
+                var p = new OracleDynamicParameters();
+                p.Add("Id", this.Id);
+                Db.Execute(Procs.Actividad_Asociada_Borrar, p, commandType: CommandType.StoredProcedure);
+
+                foreach (var item in pagos_delete)
+                {
+                    Pago_Actividad_Api pago_actividad_delete = new Pago_Actividad_Api() { Id = item.Id };
+                    if (!pago_actividad_delete.Delete()) return false;
+                    Pago_Api pago_delete = new Pago_Api() { Id = item.Pago.Id };
+                    if (!pago_delete.Delete()) return false;
+                }
+
+                logger.Info("Actividad asociada N°{0} borrada correctamente", Id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return false;
+            }
+        }
+
     }
 }

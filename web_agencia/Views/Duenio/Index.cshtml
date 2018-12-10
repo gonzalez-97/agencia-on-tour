@@ -1,88 +1,75 @@
 ﻿
-@{
-                /**/
-
-                ViewBag.Title = "Dueño";
-}
+@{ ViewBag.Title = "Dueño";}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-4">
-            <a href="@Url.Action("Registro","Apoderado")">
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body text-primary text-center">
-                        <h5 class="card-title">Registro Apoderado</h5>
-                        <p class="card-text">Si aún no estas registrado como apoderado, pincha aquí.</p>
-                        <span class="btn btn-primary">Llevame allí</span>
+        <div class="col-lg-4">
+            <div class="card ">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="far fa-chart-bar fa-lg"></i>
+                    </div>
+                    <h4 class="card-title">Resumen Colegios</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="grafico-general-colegio"></div>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <a href="@Url.Action("Registro","Alumno")">
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body text-primary text-center">
-                        <h5 class="card-title">Registro Alumno</h5>
-                        <p class="card-text">Si quieres registrar un nuevo alumno, pincha aquí.</p>
-                        <span class="btn btn-primary">Llevame allí</span>
+        <div class="col-lg-8">
+            <div class="card ">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="far fa-chart-bar fa-lg"></i>
+                    </div>
+                    <h4 class="card-title">Resumen Cursos</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="grafico-general-cursos" style="height: 300px;"></div>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <a href="#">
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body text-primary text-center">
-                        <h5 class="card-title">Nuevo Pago</h5>
-                        <p class="card-text">Si necesitas realizar un deposito para tu pupilo, pincha aquí.</p>
-                        <span class="btn btn-primary">Llevame allí</span>
+    </div>
+    <div class="row">
+        <div class="card ">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="fas fa-chart-pie fa-lg"></i>
+                </div>
+                <h4 class="card-title">Resumen Actividades</h4>
+            </div>
+            <div class="card-body ">
+                <div class="row">
+                        <label class="col-sm-2 col-form-label">Curso:</label>
+                        <div class="col-sm-4">
+                            <div class="form-group bmd-form-group">
+                                <select class="form-control" id="filtro-cursos">
+                                    <option>Cargando...</option>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="grafico-actividades-cursos" style="height: 500px;"></div>
                     </div>
                 </div>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a href="#">
-                <div class="card border-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body text-primary text-center">
-                        <h5 class="card-title">Pagos Realizados</h5>
-                        <p class="card-text">Quieres ver el historal de pagos, pincha aquí</p>
-                        <span class="btn btn-primary">Llevame allí</span>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
 
 @section scripts {
-    <script>
-        $(document).ready(function () {
-
-           $.get("/apoderado/existe-apoderado", function (data) {
-              var respuesta = JSON.parse(data);
-              if (!respuesta)
-                  ApoderadoNoExiste();
-
-           });
-        });
-
-        function ApoderadoNoExiste()
-        {
-            var type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
-
-            var color = Math.floor((Math.random() * 6) + 1);
-
-            $.notify({
-                icon: "add_alert",
-                message: "Agencia On-tour te recuerda que debes registrarte como apoderado! <br> <a href='/apoderado/registro'>Registrarse Aqui! </a> "
-            },
-            {
-               type: type[color],
-               timer: 5000,
-               placement: {
-                  from: 'top',
-                  align: 'right'
-               }
-            });
-        }
-    </script>
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script data-main="/Scripts/pages/reporte-gerencia" src="/Scripts/require.js"></script>
 }

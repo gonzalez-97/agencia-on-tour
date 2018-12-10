@@ -103,15 +103,12 @@ namespace web_agencia.Models
         {
             _dictionaryError = new Dictionary<string, string>();
             if (string.IsNullOrEmpty(actividad.Nombre) || string.IsNullOrWhiteSpace(actividad.Nombre))
-            {
                 _dictionaryError.Add("Nombre", "Este campo es obligatorio.");
-            }
 
             if (string.IsNullOrEmpty(actividad.Descripcion) || string.IsNullOrWhiteSpace(actividad.Descripcion))
-            {
                 _dictionaryError.Add("Descripcion", "Este campo es obligatorio.");
-            }
-            return _dictionaryError.Count() == 0;
+            
+            return !_dictionaryError.Any();
         }
     }
 }

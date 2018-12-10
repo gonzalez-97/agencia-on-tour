@@ -1,5 +1,7 @@
 ﻿@{
-  ViewBag.Title = "Todos los Pagos";
+                /**/
+
+                ViewBag.Title = "Todos los Pagos";
 }
 <div class="container-fluid">
     <div class="row">
@@ -14,9 +16,9 @@
                 <div class="card-body">
                     <div class="toolbar">
                         @*<a href="@Url.Action("Nuevo", "Pago")" class="btn btn-fill btn-rose">
-                            Registrar nuevo pago
-                            <div class="ripple-container"></div>
-                        </a>*@
+                                Registrar nuevo pago
+                                <div class="ripple-container"></div>
+                            </a>*@
                     </div>
                     <div class="material-datatables">
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -55,73 +57,76 @@
     <!-- end row -->
 </div>
 @section scripts {
-    <script>
-        $(document).ready(function () {
+        <script data-main="/Scripts/pages/all" src="/Scripts/require.js"></script>
+        <script>
+            $(document).ready(function () {
+                //Cierra sesion
+                require(['all'], function (all) {
+                    all.closeSesion();
+                });
 
-            var table = $('#datatables').DataTable({
-                pagingType: "full_numbers",
-                language: { url: "/Scripts/Spanish.json" },
-                ajax: {
-                    url: "/pagos/all-pagos-ajax",
-                    dataSrc : ""
-                },
-                columns: [
-                    { "data": "Id" },
-                    { "data": "Alumno.Rut" },
-                    { "data": "Valor_Pago" },
-                    { "data": "Total_Cuenta" },
-                    { "data": "Alumno.Curso.Nombre" },
-                    { "data": "Fecha_Pago" },
-                    {
-                        "data": "Id",
-                        "className": "disabled-sorting text-right",
-                        "render": function (data, type, full, meta) {
-                            return "<a href='#' id='"+ full.Id + "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a>";
+                var table = $('#datatables').DataTable({
+                    pagingType: "full_numbers",
+                    language: { url: "/Scripts/Spanish.json" },
+                    ajax: {
+                        url: "/pagos/all-pagos-ajax",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        { "data": "Id" },
+                        { "data": "Alumno.Rut" },
+                        { "data": "Valor_Pago" },
+                        { "data": "Total_Cuenta" },
+                        { "data": "Alumno.Curso.Nombre" },
+                        { "data": "Fecha_Pago" },
+                        {
+                            "data": "Id",
+                            "className": "disabled-sorting text-right",
+                            "render": function (data, type, full, meta) {
+                                return "<a href='#' id='" + full.Id + "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a>";
+                            }
                         }
-                    }
-                ],
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                ordering : true,
-                columnDefs: [{ orderable: false, targets: "disabled-sorting" },
+                    ],
+                    lengthMenu: [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    ordering: true,
+                    columnDefs: [{ orderable: false, targets: "disabled-sorting" },
                     {
                         targets: 5, render: function (data) {
                             var fecha_viaje = new Date(data.match(/\d+/)[0] * 1);
                             return moment(fecha_viaje).format('DD/MM/YYYY');
-                        }}],
-                responsive: true
+                        }
+                    }],
+                    responsive: true
+                });
+
+
+                // Delete a record
+                table.on('click', '.remove', function (e) {
+                    var id = $(this).attr('id');
+                    var respuesta = confirm("¿Desea borrar el pago " + id + "? \n(Se actualizará el total reunido del alumno)");
+                    if (respuesta == true) {
+                        BorrarPago(id);
+                        $tr = $(this).closest('tr');
+                        table.row($tr).remove().draw();
+                        e.preventDefault();
+                    }
+                });
+
             });
 
+            function BorrarPago(id) {
+                $.get("/pagos/borrar/" + id, function (data) {
+                    var respuesta = JSON.parse(data);
+                    if (respuesta)
+                        alert("El pago ha sido borrado exitosamente.");
+                    else
+                        alert("Error al borrar el pago");
+                });
+            }
 
-            // Delete a record
-            table.on('click', '.remove', function (e)
-            {
-                var id = $(this).attr('id');
-                var respuesta = confirm("¿Desea borrar el pago " + id + "? \n(Se actualizará el total reunido del alumno)");
-                if (respuesta == true)
-                {
-                    BorrarPago(id);
-                    $tr = $(this).closest('tr');
-                    table.row($tr).remove().draw();
-                    e.preventDefault();
-                }
-            });
-
-        });
-
-        function BorrarPago(id)
-        {
-            $.get("/pagos/borrar/" + id, function (data) {
-                var respuesta = JSON.parse(data);
-                if (respuesta)
-                    alert("El pago ha sido borrado exitosamente.");
-                else
-                    alert("Error al borrar el pago");
-            });
-        }
-
-    </script>
-}
+        </script>
+    }
 

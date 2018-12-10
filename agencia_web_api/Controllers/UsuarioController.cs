@@ -34,7 +34,7 @@ namespace agencia_web_api.Controllers
         [HttpPost]
         public bool Existe([FromBody] Usuario_Api m)
         {
-            return m.ExisteUsuario(m.Rut, m.Password);
+            return m.ExisteUsuario(m.Rut, m.EncodePassword(m.Password));
         }
 
         /// <summary>
@@ -80,6 +80,14 @@ namespace agencia_web_api.Controllers
             if (user_editar.Update()) return Ok();
 
             return BadRequest("No se ha podido actualizar el usuario.");
+        }
+
+        [Route("actualizar-password")]
+        [HttpPut]
+        public IHttpActionResult EditarUsuarioPassword(Usuario_Api user_editar)
+        {
+            if (user_editar.UpdateOnlyPassword()) return Ok();
+            return BadRequest("No se ha podido actualizar la contraseña del usuario.");
         }
 
         /// <summary>

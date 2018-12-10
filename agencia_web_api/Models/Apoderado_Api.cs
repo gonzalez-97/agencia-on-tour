@@ -12,6 +12,7 @@ namespace agencia_web_api.Models
 {
     public class Apoderado_Api : Apoderado
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         IDbConnection Db = ConexionDb.GeneraConexion();
 
         public bool ExisteApoderado(int rut)
@@ -30,12 +31,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Usuario.Rut);
                 Db.Execute(Procs.Apoderado_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Apoderado creado correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -64,8 +66,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -95,8 +97,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -107,10 +109,12 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Usuario.Rut);
                 Db.Execute(Procs.Apoderado_Borrar_Por_Rut, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Apoderado N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }

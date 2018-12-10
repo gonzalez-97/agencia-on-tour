@@ -221,3 +221,6 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\a
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.csproj.CopyComplete
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\obj\Debug\agencia_web_api.pdb
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.config
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.xml

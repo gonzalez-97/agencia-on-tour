@@ -281,7 +281,7 @@
                 var alerta = data;
                 if (data === true) alerta = 'Se ha actualizado el contrato existosamente';
                 if (data === false) alerta = 'Error al actualizar los datos del contrato';
-                contrato.generarAlerta(alerta);
+                all.generarAlerta(alerta);
 
                 //if (data === true) return contrato.reloadPageAfter3sec();
 

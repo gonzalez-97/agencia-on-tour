@@ -1,0 +1,130 @@
+﻿@{
+  ViewBag.Title = "Pagos Actividades";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">assignment</i>
+                    </div>
+                    <h4 class="card-title">Todos los pagos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="toolbar">
+                        @*<a href="@Url.Action("Nuevo", "Pago")" class="btn btn-fill btn-rose">
+                            Registrar nuevo pago
+                            <div class="ripple-container"></div>
+                        </a>*@
+                    </div>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Alumno</th>
+                                    <th>Valor Pago</th>
+                                    <th>Total a la fecha </th>
+                                    <th>Curso</th>
+                                    <th>Actividad</th>
+                                    <th>Fecha</th>
+                                    <th class="disabled-sorting text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Alumno</th>
+                                    <th>Valor Pago</th>
+                                    <th>Total a la fecha </th>
+                                    <th>Curso</th>
+                                    <th>Actividad</th>
+                                    <th>Fecha</th>
+                                    <th class="text-right">Acciones</th>
+                                </tr>
+                            </tfoot>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end content-->
+            </div>
+            <!--  end card  -->
+        </div>
+        <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+            var table = $('#datatables').DataTable({
+                pagingType: "full_numbers",
+                language: { url: "/Scripts/Spanish.json" },
+                ajax: {
+                    url: "/actividad-asociada/pagos-actividad-ajax",
+                    dataSrc : ""
+                },
+                columns: [
+                    { "data": "Id" },
+                    { "data": "Pago.Alumno.Rut" },
+                    { "data": "Pago.Valor_Pago" },
+                    { "data": "Pago.Total_Cuenta" },
+                    { "data": "Pago.Alumno.Curso.Nombre" },
+                    { "data": "Actividad_Asignada.Actividad.Nombre" },
+                    { "data": "Pago.Fecha_Pago" },
+                    {
+                        "data": "Id",
+                        "className": "disabled-sorting text-right",
+                        "render": function (data, type, full, meta) {
+                            return "<a href='#' id='"+ full.Id + "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a>";
+                        }
+                    }
+                ],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                ordering : true,
+                columnDefs: [{ orderable: false, targets: "disabled-sorting" },
+                    {
+                        targets: 6, render: function (data) {
+                            var fecha_viaje = new Date(data.match(/\d+/)[0] * 1);
+                            return moment(fecha_viaje).format('DD/MM/YYYY');
+                        }}],
+                responsive: true
+            });
+
+
+            // Delete a record
+            table.on('click', '.remove', function (e)
+            {
+                var id = $(this).attr('id');
+                var respuesta = confirm("¿Desea borrar el pago " + id + "? \n(Se actualizará el total reunido del alumno)");
+                if (respuesta == true)
+                {
+                    BorrarPago(id);
+                    $tr = $(this).closest('tr');
+                    table.row($tr).remove().draw();
+                    e.preventDefault();
+                }
+            });
+
+        });
+
+        function BorrarPago(id)
+        {
+            $.get("/actividad-asociada/borrar-pago-actividad/" + id, function (data) {
+                var respuesta = JSON.parse(data);
+                if (respuesta)
+                    alert("El pago de la actividad ha sido borrado exitosamente.");
+                else
+                    alert("Error al borrar el pago");
+            });
+        }
+
+    </script>
+}
+

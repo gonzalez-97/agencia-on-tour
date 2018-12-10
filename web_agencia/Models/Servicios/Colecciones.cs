@@ -213,5 +213,29 @@ namespace web_agencia.Models.Servicios
             }
             return salida;
         }
+
+        public async Task<List<Actividad_Asociada>> ListaActividadesAsociadas()
+        {
+            List<Actividad_Asociada> salida = new List<Actividad_Asociada>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "actividad-asociada"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Actividad_Asociada>>(responseData);
+            }
+            return salida;
+        }
+
+        public async Task<List<Pago_Actividad>> ListaPagosActividad()
+        {
+            List<Pago_Actividad> salida = new List<Pago_Actividad>();
+            HttpResponseMessage responseMessage = await client.GetAsync(string.Format("{0}/{1}", url, "pago-actividad"));
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                salida = JsonConvert.DeserializeObject<List<Pago_Actividad>>(responseData);
+            }
+            return salida;
+        }
     }
 }

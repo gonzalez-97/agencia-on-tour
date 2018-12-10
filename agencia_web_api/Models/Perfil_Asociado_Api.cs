@@ -12,6 +12,8 @@ namespace agencia_web_api.Models
     public class Perfil_Asociado_Api : Perfil_Asociado
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public bool Create()
         {
             try
@@ -20,12 +22,13 @@ namespace agencia_web_api.Models
                 p.Add("Perfil", this.Perfil);
                 p.Add("Rut", this.Rut);
                 Db.Execute(Procs.Perfil_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Perfil Asociado creado correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
         public bool BorrarTodosXRut()
@@ -35,12 +38,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Rut);
                 Db.Execute(Procs.Perfil_Asociado_Borrar_Por_Rut, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Perfiles Asociado por rut borrados correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
     }

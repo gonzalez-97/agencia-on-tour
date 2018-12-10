@@ -16,7 +16,8 @@
                             <label class="col-sm-2 col-form-label">Rut</label>
                             <div class="col-sm-10">
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.Rut, new { @class = "form-control"})
+                                    @Html.TextBoxFor(m => m.Rut, new { @class = "form-control" })
+                                    <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.Rut)</span>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +78,10 @@
                                         </label>
                                     </div>
                                 }
+                                <br />
+                                <span class="helpblock text-danger">@Html.ValidationMessageFor(m => m.PerfilesElegidos)</span>
                             </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-lg-12 ml-auto mr-auto text-center">

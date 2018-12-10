@@ -37,9 +37,7 @@
                                     <th class="text-right">Acciones</th>
                                 </tr>
                             </tfoot>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -52,15 +50,21 @@
     <!-- end row -->
 </div>
 @section scripts {
+    <script data-main="/Scripts/pages/all" src="/Scripts/require.js"></script>
     <script>
         $(document).ready(function () {
+
+            //Cierra sesion
+            require(['all'], function (all) {
+                all.closeSesion();
+            });
 
             var table = $('#datatables').DataTable({
                 pagingType: "full_numbers",
                 language: { url: "/Scripts/Spanish.json" },
                 ajax: {
                     url: "/contrato/all",
-                    dataSrc : ""
+                    dataSrc: ""
                 },
                 columns: [
                     { "data": "Id" },
@@ -69,10 +73,9 @@
                     {
                         "data": "Id",
                         "className": "disabled-sorting text-right",
-                        "render": function (data, type, full, meta)
-                        {
-                            return "<a href='/contrato/" + full.Id+"' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>\
-                                    <a href='#' id='"+ full.Id+ "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a> ";
+                        "render": function (data, type, full, meta) {
+                            return "<a href='/contrato/" + full.Id + "' class='btn btn-link btn-warning btn-just-icon edit'><i class='material-icons'>dvr</i></a>\
+                                        <a href='#' id='"+ full.Id + "' class='btn btn-link btn-danger btn-just-icon remove'><i class='material-icons'>close</i></a> ";
                         }
                     }
                 ],
@@ -80,7 +83,7 @@
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]
                 ],
-                ordering : true,
+                ordering: true,
                 columnDefs: [{
                     orderable: false,
                     targets: "disabled-sorting"
@@ -90,12 +93,10 @@
 
 
             // Delete a record
-            table.on('click', '.remove', function (e)
-            {
+            table.on('click', '.remove', function (e) {
                 var id = $(this).attr('id');
                 var respuesta = confirm("¿Desea borrar el contrato " + id + "?");
-                if (respuesta == true)
-                {
+                if (respuesta == true) {
                     BorrarContrato(id);
                     $tr = $(this).closest('tr');
                     table.row($tr).remove().draw();
@@ -105,8 +106,7 @@
 
         });
 
-        function BorrarContrato(id)
-        {
+        function BorrarContrato(id) {
             $.get("/contrato/borrar/" + id, function (data) {
                 var respuesta = JSON.parse(data);
                 if (respuesta)

@@ -47,7 +47,14 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> CrearAsync(CursoViewModel curso)
         {
             Curso_Web curso_crear = new Curso_Web();
-            if (curso_crear.ValidarCursoViewModel(curso, true)) {
+
+            curso_crear.ValidarCursoViewModel(curso, true);
+            ModelState.Clear();
+            foreach (var item in curso_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+
+            if (ModelState.IsValid)
+            {
                 bool retorno = await curso_crear.CreateFromViewAsync(curso);
                 if (retorno)
                 {
@@ -71,8 +78,7 @@ namespace web_agencia.Controllers
             Colecciones col = new Colecciones();
             var colegios = await col.ListaColegios();
             curso.ColegiosDisponibles = colegios.Select(n => new SelectListItem { Value = n.Id.ToString(), Text = n.Nombre }).ToList();
-            foreach (var item in curso_crear._dictionaryError)
-                ModelState.AddModelError(item.Key, item.Value);
+
             return View("Nuevo", "_LayoutAdmin", curso);
         }
 
@@ -126,6 +132,8 @@ namespace web_agencia.Controllers
             Colecciones col = new Colecciones();
             var colegios = await col.ListaColegios();
             curso.ColegiosDisponibles = colegios.Select(n => new SelectListItem { Value = n.Id.ToString(), Text = n.Nombre }).ToList();
+
+            ModelState.Clear();
             foreach (var item in curso_editar._dictionaryError)
                 ModelState.AddModelError(item.Key, item.Value);
             return View("Editar", "_LayoutAdmin", curso);

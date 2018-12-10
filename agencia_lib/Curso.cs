@@ -14,11 +14,5 @@ namespace agencia_lib
         public int? TotalPagar { get; set; }
         public Colegio Colegio { get; set; }
 
-        public Curso()
-        {
-            this.Id = 0;
-            this.Nombre = string.Empty;
-            this.Colegio = new Colegio();
-        }
     }
 }

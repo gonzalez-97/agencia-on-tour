@@ -13,6 +13,7 @@ namespace agencia_web_api.Models
     public class Tipo_Seguro_Api : Tipo_Seguro
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool Read(int id)
         {
             try
@@ -27,8 +28,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 

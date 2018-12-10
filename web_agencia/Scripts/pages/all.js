@@ -11,6 +11,26 @@
                     }
                 });
             });
+        },
+        generarAlerta: function (message)
+        {
+            var type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+
+            var color = Math.floor((Math.random() * 6) + 1);
+
+            $.notify({
+                icon: "add_alert",
+                message: message
+            },
+                {
+                    type: type[color],
+                    timer: 5000,
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    }
+                });
+            return;
         }
     }
 });

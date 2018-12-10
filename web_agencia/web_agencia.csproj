@@ -162,6 +162,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ActividadAsociadaController.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actividad_Asociada_Web.cs" />
     <Compile Include="Models\Actividad_Web.cs" />
     <Compile Include="Models\Alumno_Web.cs" />
     <Compile Include="Models\Apoderado_Web.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Models\Destino_Asociado_Web.cs" />
     <Compile Include="Models\Destino_Web.cs" />
     <Compile Include="Models\Mantenedor_Ruta.cs" />
+    <Compile Include="Models\Pago_Actividad_Web.cs" />
     <Compile Include="Models\Pago_Web.cs" />
     <Compile Include="Models\Seguro_Asociado_Web.cs" />
     <Compile Include="Models\Tipo_Seguro_Web.cs" />
@@ -204,6 +207,7 @@
     <Compile Include="Models\Servicio_Web.cs" />
     <Compile Include="Models\Tarea_Terminada.cs" />
     <Compile Include="Models\Usuario_Web.cs" />
+    <Compile Include="Models\Views\ActividadAsociadaViewModel.cs" />
     <Compile Include="Models\Views\CursoViewModel.cs" />
     <Compile Include="Models\Views\PagoViewModel.cs" />
     <Compile Include="Models\Views\UsuarioViewModel.cs" />
@@ -523,7 +527,9 @@
     <Content Include="Scripts\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="Scripts\js\plugins\sweetalert2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pages\reporte-gerencia.js" />
     <Content Include="Scripts\pages\all.js" />
+    <Content Include="Scripts\pages\actividad-asociada.js" />
     <Content Include="Scripts\pages\contrato-edit.js" />
     <Content Include="Scripts\pages\contrato.js" />
     <Content Include="Scripts\pages\registro-alumno.js" />
@@ -602,6 +608,9 @@
     <Content Include="Views\Pago\Nuevo.cshtml" />
     <Content Include="Views\Pago\EditarMisPagos.cshtml" />
     <Content Include="Views\Pago\TodosPagos.cshtml" />
+    <Content Include="Views\ActividadAsociada\Nuevo.cshtml" />
+    <Content Include="Views\ActividadAsociada\MisPagosCursos.cshtml" />
+    <Content Include="Views\Duenio\TodosPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

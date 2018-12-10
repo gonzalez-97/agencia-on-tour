@@ -13,6 +13,7 @@ namespace agencia_web_api.Models
     public class Seguro_Asociado_Api : Seguro_Asociado
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool Create()
         {
             try
@@ -24,12 +25,13 @@ namespace agencia_web_api.Models
                 p.Add("SeguroID", this.Seguro);
                 p.Add("Total_Dias", this.Total_Dias);
                 Db.Execute(Procs.Seguro_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Seguro Asociado creado correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -71,6 +73,7 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
@@ -87,12 +90,13 @@ namespace agencia_web_api.Models
                 p.Add("SeguroID", this.Seguro);
                 p.Add("Total_Dias", this.Total_Dias);
                 Db.Execute(Procs.Seguro_Asociado_Actualizar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Seguro asociado N°{0} actualizado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -103,12 +107,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
                 Db.Execute(Procs.Seguro_Asociado_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Seguro asociado N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
     }

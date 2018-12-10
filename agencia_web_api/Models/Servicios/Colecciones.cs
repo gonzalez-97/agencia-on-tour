@@ -472,5 +472,114 @@ namespace agencia_web_api.Models.Servicios
             return salida;
         }
 
+        public IEnumerable<Actividad_Asociada> ListaActividadAsociada()
+        {
+             var p = new OracleDynamicParameters();
+             p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+             var result = Db.Query<dynamic>(Procs.Actividad_Asociada_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+             var salida = result.Select(n =>
+             {
+                  Curso_Api curso = new Curso_Api();
+                  curso.Read((int)n.CURSOID);
+
+                  Actividad_Api actividad = new Actividad_Api();
+                  actividad.Read((int)n.ACTIVIDADID);
+
+                  return new Actividad_Asociada()
+                  {
+                      Id = (int)n.ID,
+                      Actividad = new Actividad()
+                      {
+                          Id = actividad.Id,
+                          Nombre = actividad.Nombre,
+                          Descripcion = actividad.Descripcion
+                      },
+                      Curso = new Curso()
+                      {
+                          Id = curso.Id,
+                          Nombre = curso.Nombre,
+                          TotalReunido = curso.TotalReunido,
+                          TotalPagar = curso.TotalPagar,
+                          Colegio = curso.Colegio
+                      },
+                      Total_Recaudado = (int)n.TOTAL_RECAUDADO,
+                      Prorrateo = (int)n.PRORRATEO
+                  };
+             });
+
+            return salida;
+        }
+
+        public IEnumerable<Pago_Actividad> ListaPagoActividad()
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<dynamic>(Procs.Pago_Actividad_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Select(n =>
+            {
+                Pago_Api pago = new Pago_Api();
+                pago.Read((int)n.PAGOID);
+
+                Actividad_Asociada_Api actividad_asociada = new Actividad_Asociada_Api();
+                actividad_asociada.Read((int)n.ACTIVIDAD_ASIGNADAID);
+
+                return new Pago_Actividad()
+                {
+                    Id = (int)n.ID,
+                    Pago = new Pago()
+                    {
+                        Id = pago.Id,
+                        Alumno = pago.Alumno,
+                        Valor_Pago = pago.Valor_Pago,
+                        Total_Cuenta = pago.Total_Cuenta,
+                        Fecha_Pago = pago.Fecha_Pago
+                    },
+                    Actividad_Asignada = new Actividad_Asociada()
+                    {
+                        Id = actividad_asociada.Id,
+                        Actividad = actividad_asociada.Actividad,
+                        Curso = actividad_asociada.Curso,
+                        Total_Recaudado = actividad_asociada.Total_Recaudado,
+                        Prorrateo = actividad_asociada.Prorrateo
+                    }
+                };
+            });
+
+            return salida;
+        }
+
+        public IEnumerable<Pago_Actividad> ListaPagoActividadXActividad(int id)
+        {
+            var p = new OracleDynamicParameters();
+            p.Add("c1", dbType: OracleDbType.RefCursor, direction: ParameterDirection.Output);
+
+            var result = Db.Query<dynamic>(Procs.Pago_Actividad_Todos, param: p, commandType: CommandType.StoredProcedure);
+
+            var salida = result.Where(n => (int)n.ACTIVIDAD_ASIGNADAID == id).Select(n =>
+            {
+                Pago_Api pago = new Pago_Api();
+                pago.Read((int)n.PAGOID);
+
+                return new Pago_Actividad()
+                {
+                    Id = (int)n.ID,
+                    Pago = new Pago()
+                    {
+                        Id = pago.Id,
+                        Alumno = pago.Alumno,
+                        Valor_Pago = pago.Valor_Pago,
+                        Total_Cuenta = pago.Total_Cuenta,
+                        Fecha_Pago = pago.Fecha_Pago
+                    }
+                };
+            });
+
+            return salida;
+        }
+
     }
 }

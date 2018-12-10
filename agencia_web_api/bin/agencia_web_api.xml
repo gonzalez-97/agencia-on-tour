@@ -481,6 +481,21 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:agencia_web_api.Controllers.ActividadAsociadaController.Get">
+            <summary>
+            Una lista de actividades :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ActividadAsociadaController.GetById(System.Int32)">
+            <summary>
+            Filtro de actividad por ID
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.ActividadAsociadaController.NuevaActividadAsociada(agencia_web_api.Models.Actividad_Asociada_Api)">
+            <summary>
+            Crea la actividad (formato JSON)
+            </summary>
+        </member>
         <member name="M:agencia_web_api.Controllers.ActividadController.Get">
             <summary>
             Una lista de actividades :) (formato JSON)
@@ -704,6 +719,21 @@
         <member name="M:agencia_web_api.Controllers.DestinoController.BorrarDestino(System.Int32)">
             <summary>
             Borra el destino (actualiza el campo eliminado = 0)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoActividadController.Get">
+            <summary>
+            Una lista de actividades :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoActividadController.GetByActividadAsignada(System.Int32)">
+            <summary>
+            Una lista de actividades por  :) (formato JSON)
+            </summary>
+        </member>
+        <member name="M:agencia_web_api.Controllers.PagoActividadController.GetById(System.Int32)">
+            <summary>
+            Filtro de actividad por ID
             </summary>
         </member>
         <member name="M:agencia_web_api.Controllers.PagoController.Get">

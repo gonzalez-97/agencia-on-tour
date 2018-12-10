@@ -40,7 +40,13 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> CrearAsync(Colegio_Web colegio)
         {
             Colegio_Web c = new Colegio_Web();
-            if (c.ValidarColegio(colegio, true)) {
+
+            c.ValidarColegio(colegio);
+            foreach (var item in c._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+
+            if (ModelState.IsValid)
+            {
                 bool retorno = await colegio.Create();
                 if (retorno)
                 {
@@ -61,9 +67,6 @@ namespace web_agencia.Controllers
                     return RedirectToAction("Exito", "Home");
                 }
             }
-            foreach(var item in c._dictionaryError)
-                ModelState.AddModelError(item.Key, item.Value);
-
             return View("Nuevo", "_LayoutAdmin", colegio);
         }
 
@@ -79,13 +82,16 @@ namespace web_agencia.Controllers
         [Route("actualizar")]
         public async Task<ActionResult> ActualizarAsync(Colegio_Web colegio)
         {
-            Colegio_Web c = new Colegio_Web();
-            if (c.ValidarColegio(colegio, false)) {
+            colegio.ValidarColegio(colegio);
+            foreach (var item in colegio._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+
+            if (ModelState.IsValid)
+            {
                 bool retorno = await colegio.Update();
                 if (retorno)
                 {
                     SessionUser userSesion = new SessionUser();
-
                     Tarea_Terminada task = new Tarea_Terminada()
                     {
                         LayoutNombre = "_LayoutAdmin",
@@ -97,13 +103,11 @@ namespace web_agencia.Controllers
                     };
 
                     userSesion.SesionTareaTerminada = task;
-
                     return RedirectToAction("Exito", "Home");
                 }
             }
-            foreach (var item in colegio._dictionaryError)
-                ModelState.AddModelError(item.Key, item.Value);
-            return View();
+
+            return View("Editar", "_LayoutAdmin", colegio);
         }
 
         [HttpGet]

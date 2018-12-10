@@ -13,6 +13,7 @@ namespace agencia_web_api.Models
 {
     public class Actividad_Api : Actividad
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         IDbConnection Db = ConexionDb.GeneraConexion();
         public bool Create()
         {
@@ -22,6 +23,8 @@ namespace agencia_web_api.Models
                 p.Add("Nombre", this.Nombre);
                 p.Add("Descripcion", this.Descripcion);
                 Db.Execute(Procs.Actividad_Crear, p, commandType: CommandType.StoredProcedure);
+
+                logger.Info("Actividad creada correctamente");
                 return true;
             }
             catch (Exception ex)
@@ -45,8 +48,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
 
         }
@@ -56,14 +59,18 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
-                AddParametersThis(p);
+                p.Add("Id", this.Id);
+                p.Add("Nombre", this.Nombre);
+                p.Add("Descripcion", this.Descripcion);
                 Db.Execute(Procs.Actividad_Actualizar, p, commandType: CommandType.StoredProcedure);
+
+                logger.Info("Actividad N°{0} actualizada correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -74,21 +81,14 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
                 Db.Execute(Procs.Actividad_Borrar, p, commandType: CommandType.StoredProcedure);
+
+                logger.Info("Actividad N°{0} borrada correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-            }
-        }
-
-        private void AddParametersThis(OracleDynamicParameters parameters)
-        {
-            Type t = GetType();
-            foreach (PropertyInfo p in t.GetProperties())
-            {
-                object valor = p.GetValue(this, null);
-                parameters.Add(p.Name, valor);
             }
         }
 

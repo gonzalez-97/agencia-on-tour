@@ -61,6 +61,8 @@ namespace web_agencia.Controllers
                     return RedirectToAction("Exito", "Home");
                 }
             }
+
+            ModelState.Clear();
             foreach (var item in destino._dictionaryError)
                 ModelState.AddModelError(item.Key, item.Value);
 
@@ -101,7 +103,8 @@ namespace web_agencia.Controllers
                     return RedirectToAction("Exito", "Home");
                 }
             }
-           foreach (var item in destino._dictionaryError)
+            ModelState.Clear();
+            foreach (var item in destino._dictionaryError)
                ModelState.AddModelError(item.Key, item.Value);
 
            return View("Editar", "_LayoutAdmin", destino);

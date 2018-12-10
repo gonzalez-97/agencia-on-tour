@@ -13,6 +13,7 @@ namespace agencia_web_api.Models
     public class Pago_Actividad_Api : Pago_Actividad
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool Create()
         {
             try
@@ -20,13 +21,14 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Pago_ID", this.Pago.Id);
                 p.Add("Actividad_Asignada_ID", this.Actividad_Asignada.Id);
-                Db.Execute(Procs.Destino_Asociado_Crear, p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Pago_Actividad_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Pago actividad creada correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -67,23 +69,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-            }
-        }
-
-        public bool Update()
-        {
-            try
-            {
-                var p = new OracleDynamicParameters();
-                p.Add("Id", this.Id);
-                Db.Execute(Procs.Destino_Asociado_Actualizar, p, commandType: CommandType.StoredProcedure);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-                throw;
             }
         }
 
@@ -93,13 +80,14 @@ namespace agencia_web_api.Models
             {
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
-                Db.Execute(Procs.Destino_Asociado_Borrar, p, commandType: CommandType.StoredProcedure);
+                Db.Execute(Procs.Pago_Actividad_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Pago actividad N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
     }

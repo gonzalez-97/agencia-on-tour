@@ -1,0 +1,27 @@
+2018-12-10 00:21:07.0463|INFO|agencia_web_api.Models.Usuario_Api|Usuario N°1 actualizado correctamente
+2018-12-10 00:21:07.1533|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfiles Asociado por rut borrados correctamente
+2018-12-10 00:21:07.2293|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:45.8604|INFO|agencia_web_api.Models.Usuario_Api|Usuario N°19570929 actualizado correctamente
+2018-12-10 00:22:45.9047|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfiles Asociado por rut borrados correctamente
+2018-12-10 00:22:45.9894|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:46.0184|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:46.0754|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:46.1094|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:46.1494|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:22:56.6416|INFO|agencia_web_api.Models.Usuario_Api|Usuario N°1 actualizado correctamente
+2018-12-10 00:22:56.6756|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfiles Asociado por rut borrados correctamente
+2018-12-10 00:22:56.7256|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:09.6978|INFO|agencia_web_api.Models.Usuario_Api|Usuario N°19570929 actualizado correctamente
+2018-12-10 00:23:09.8218|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfiles Asociado por rut borrados correctamente
+2018-12-10 00:23:09.8748|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:09.9558|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:10.0538|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:10.0918|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:10.1328|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:29.5557|INFO|agencia_web_api.Models.Usuario_Api|Usuario N°19570929 actualizado correctamente
+2018-12-10 00:23:29.6397|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfiles Asociado por rut borrados correctamente
+2018-12-10 00:23:29.7047|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:29.7557|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:29.8007|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:29.8677|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 00:23:29.9107|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente

@@ -219,3 +219,6 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\Syst
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.config
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.dll
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\agencia_web_api\bin\NLog.xml

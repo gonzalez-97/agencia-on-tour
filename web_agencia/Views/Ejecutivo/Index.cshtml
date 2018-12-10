@@ -28,3 +28,15 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script data-main="/Scripts/pages/all" src="/Scripts/require.js"></script>
+    <script>
+    $(document).ready(function () {
+        //Cierra sesion
+        require(['all'], function (all) {
+            all.closeSesion();
+        });
+    });
+    </script>
+}

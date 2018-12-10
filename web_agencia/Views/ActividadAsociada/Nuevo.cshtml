@@ -1,0 +1,54 @@
+﻿@{ ViewBag.Title = "Nueva Actividad Asociada";}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-text">
+                    <div class="card-text">
+                        <h4 class="card-title">Nueva actividad asociada</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Curso</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select id="curso_select" class="form-control">
+                                    <option>Cargando...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 col-form-label">Actividad</label>
+                        <div class="col-sm-4">
+                            <select id="actividad_select" class="form-control">
+                                <option>Cargando...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Valor</label>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="number" id="total_recaudado" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12 ml-auto mr-auto text-center">
+                            <button type="button" class="btn btn-rose" id="registrar-input">
+                                Crear Actividad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts 
+{
+    @Scripts.Render("~/Scripts/js/plugins/es.js")
+    <script data-main="/Scripts/pages/actividad-asociada" src="/Scripts/require.js"></script>
+}
+

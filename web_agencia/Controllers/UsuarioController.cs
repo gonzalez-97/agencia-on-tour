@@ -48,7 +48,12 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> CrearAsync(UsuarioViewModel user)
         {
             Usuario_Web user_crear = new Usuario_Web();
-            if (await user_crear.ValidarUsuarioModel(user, true))
+
+            await user_crear.ValidarUsuarioModel(user, true);
+            foreach (var item in user_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+
+            if (ModelState.IsValid)
             {
                 bool retorno = await user_crear.CreateFromViewAsync(user);
                 if (retorno)
@@ -71,6 +76,7 @@ namespace web_agencia.Controllers
                 }
 
             }
+
             Colecciones col = new Colecciones();
             var perfiles = await col.ListaPerfilesAsync();
             user.PerfilesDisponibles = perfiles.Select(n => new SelectListItem
@@ -79,8 +85,6 @@ namespace web_agencia.Controllers
                 Text = n.Tipo
             }).ToList();
 
-            foreach (var item in user_crear._dictionaryError)
-                ModelState.AddModelError(item.Key, item.Value);
             return View("Nuevo", "_LayoutAdmin", user);
         }
 
@@ -113,7 +117,12 @@ namespace web_agencia.Controllers
         public async Task<ActionResult> ActualizarAsync(UsuarioViewModel user)
         {
             Usuario_Web user_crear = new Usuario_Web();
-            if (await user_crear.ValidarUsuarioModel(user, false))
+
+            await user_crear.ValidarUsuarioModel(user, false);
+            foreach (var item in user_crear._dictionaryError)
+                ModelState.AddModelError(item.Key, item.Value);
+
+            if (ModelState.IsValid)
             {
                 bool retorno = await user_crear.UpdateFromViewAsync(user);
                 if (retorno)
@@ -147,8 +156,6 @@ namespace web_agencia.Controllers
             }).ToList();
             user.Lista_Perfiles = user2.Lista_Perfiles;
 
-            foreach (var item in user_crear._dictionaryError)
-                ModelState.AddModelError(item.Key, item.Value);
             return View("Editar", "_LayoutAdmin", user);
         }
 

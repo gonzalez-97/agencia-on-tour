@@ -14,6 +14,7 @@ namespace agencia_web_api.Models
     public class Colegio_Api: Colegio
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool Create()
         {
             try
@@ -21,12 +22,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Nombre", this.Nombre);
                 Db.Execute(Procs.Colegio_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Colegio creado correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -44,8 +46,8 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
 
         }
@@ -57,12 +59,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 AddParametersThis(p);
                 Db.Execute(Procs.Colegio_Actualizar,p, commandType: CommandType.StoredProcedure);
+                logger.Info("Colegio N°{0} actualizado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -73,10 +76,12 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
                 Db.Execute(Procs.Colegio_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Colegio N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }

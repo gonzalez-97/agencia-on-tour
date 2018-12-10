@@ -12,6 +12,7 @@ namespace agencia_web_api.Models
 {
     public class Alumno_Api: Alumno
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         IDbConnection Db = ConexionDb.GeneraConexion();
 
         public bool ExisteAlumno(int rut)
@@ -36,12 +37,14 @@ namespace agencia_web_api.Models
                 p.Add("Apoderado_Id", this.Apoderado.Id);
                 p.Add("Curso", this.Curso.Id);
                 Db.Execute(Procs.Alumno_Crear, p, commandType: CommandType.StoredProcedure);
+
+                logger.Info("Alumno N°{0} creado correctamente", Rut);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -69,12 +72,13 @@ namespace agencia_web_api.Models
                 TotalReunido = (int?)result.TOTALREUNIDO;
                 TotalPagar = (int?)result.TOTALPAGAR;
                 Apoderado = new Apoderado() { Id = apoderado.Id, Usuario = apoderado.Usuario };
-                Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
+                Curso = new Curso() { Id = curso.Id, Nombre = curso.Nombre, TotalPagar = curso.TotalPagar, TotalReunido = curso.TotalReunido, Colegio = curso.Colegio };
 
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
@@ -94,12 +98,14 @@ namespace agencia_web_api.Models
                 p.Add("TotalReunido", this.TotalReunido);
                 p.Add("TotalPagar", this.TotalPagar);
                 Db.Execute(Procs.Alumno_Actualizar, p, commandType: CommandType.StoredProcedure);
+
+                logger.Info("Alumno N°{0} actualizado correctamente", Rut);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -110,12 +116,13 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Rut);
                 Db.Execute(Procs.Alumno_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Alumno N°{0} borrado correctamente", Rut);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 

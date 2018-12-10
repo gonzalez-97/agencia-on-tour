@@ -13,6 +13,7 @@ namespace agencia_web_api.Models
     public class Pago_Api: Pago
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool Create()
         {
             try
@@ -22,12 +23,13 @@ namespace agencia_web_api.Models
                 p.Add("Valor_Pago", this.Valor_Pago);
                 p.Add("Total_Cuenta", this.Total_Cuenta);
                 Db.Execute(Procs.Pago_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Pago creado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -66,6 +68,7 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
@@ -81,12 +84,13 @@ namespace agencia_web_api.Models
                 p.Add("Total_Cuenta", this.Total_Cuenta);
                 p.Add("Fecha", this.Fecha_Pago);
                 Db.Execute(Procs.Pago_Actualizar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Pago N°{0} actualizado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -97,10 +101,12 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Id", this.Id);
                 Db.Execute(Procs.Pago_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Pago N°{0} borrado correctamente", Id);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }

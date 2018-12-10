@@ -29,7 +29,6 @@ namespace web_agencia.Models
         public Usuario_Web()
         {
             this.Lista_Perfiles = new List<Perfil>();
-
             client = new HttpClient();
             client.BaseAddress = url;
             client.DefaultRequestHeaders.Accept.Clear();
@@ -240,11 +239,10 @@ namespace web_agencia.Models
             }
 
             if (string.IsNullOrEmpty(user.Correo) || string.IsNullOrWhiteSpace(user.Correo)) { _dictionaryError.Add("Correo", "Este campo es obligatorio."); }
-            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrWhiteSpace(user.Password)) { _dictionaryError.Add("Password", "Este campo es obligatorio."); }
             if (string.IsNullOrEmpty(user.Nombre) || string.IsNullOrWhiteSpace(user.Nombre)) { _dictionaryError.Add("Nombre", "Este campo es obligatorio."); }
             if (string.IsNullOrEmpty(user.APaterno) || string.IsNullOrWhiteSpace(user.APaterno)) { _dictionaryError.Add("APaterno", "Este campo es obligatorio."); }
             if (string.IsNullOrEmpty(user.AMaterno) || string.IsNullOrWhiteSpace(user.AMaterno)) { _dictionaryError.Add("AMaterno", "Este campo es obligatorio."); }
-
+            if (!user.PerfilesElegidos.Any()) _dictionaryError.Add("PerfilesElegidos", "Debe seleccionar al menos un perfil.");
             return _dictionaryError.Count == 0;
         }
     }

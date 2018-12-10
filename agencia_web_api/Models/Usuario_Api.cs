@@ -16,6 +16,7 @@ namespace agencia_web_api.Models
     public class Usuario_Api : Usuario
     {
         IDbConnection Db = ConexionDb.GeneraConexion();
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public bool ExisteUsuario(int rut, string pass)
         {
             var p = new OracleDynamicParameters();
@@ -32,14 +33,17 @@ namespace agencia_web_api.Models
             try
             {
                 var p = new OracleDynamicParameters();
+                this.Password =  EncodePassword(Password);
+
                 AddParametersThis(p);
                 Db.Execute(Procs.Usuario_Crear, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Usuario creado correctamente");
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -47,15 +51,44 @@ namespace agencia_web_api.Models
         {
             try
             {
+                var salida = true;
                 var p = new OracleDynamicParameters();
-                AddParametersThis(p);
+                p.Add("Rut", this.Rut);
+                p.Add("DigitoV", this.DigitoV);
+                p.Add("Correo", this.Correo);
+                p.Add("Nombre", this.Nombre);
+                p.Add("APaterno", this.APaterno);
+                p.Add("AMaterno", this.AMaterno);
                 Db.Execute(Procs.Usuario_Actualizar, p, commandType: CommandType.StoredProcedure);
+
+                //Si la contraseña no es vacia se modifica
+                if (!string.IsNullOrEmpty(this.Password))
+                    salida = UpdateOnlyPassword();
+
+                logger.Info("Usuario N°{0} actualizado correctamente", Rut);
+                return salida;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+                return false;
+            }
+        }
+
+        public bool UpdateOnlyPassword()
+        {
+            try
+            {
+                var p = new OracleDynamicParameters();
+                p.Add("Rut", this.Rut);
+                p.Add("Password", EncodePassword(this.Password));
+                Db.Execute(Procs.Usuario_Actualizar_Password, p, commandType: CommandType.StoredProcedure);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
-                throw;
             }
         }
 
@@ -87,6 +120,7 @@ namespace agencia_web_api.Models
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
@@ -98,10 +132,12 @@ namespace agencia_web_api.Models
                 var p = new OracleDynamicParameters();
                 p.Add("Rut", this.Rut);
                 Db.Execute(Procs.Usuario_Borrar, p, commandType: CommandType.StoredProcedure);
+                logger.Info("Usuario N°{0} borrado correctamente", Rut);
                 return true;
             }
             catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return false;
             }
         }
