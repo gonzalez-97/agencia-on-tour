@@ -275,7 +275,6 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.A
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Newtonsoft.Json.dll
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Slapper.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Net.Http.Extensions.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Net.Http.Formatting.dll
@@ -298,8 +297,6 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.A
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Newtonsoft.Json.xml
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Slapper.pdb
-C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\Slapper.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Web.Helpers.xml
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Web.Mvc.xml
@@ -315,3 +312,4 @@ C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_a
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agencia.csproj.CopyComplete
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agencia.dll
 C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\obj\Debug\web_agencia.pdb
+C:\Users\Portafolio\Documents\GitHub\agencia-on-tour\web_agencia\bin\System.Web.Providers.dll

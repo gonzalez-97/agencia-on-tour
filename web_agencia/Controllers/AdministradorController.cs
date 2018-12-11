@@ -13,6 +13,7 @@ namespace web_agencia.Controllers
     {
         // GET: Administrador
         [Route]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View("Index", "_LayoutAdmin");

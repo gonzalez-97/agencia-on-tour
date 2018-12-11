@@ -143,29 +143,7 @@
     <script>
 
         require(['contrato'], function (contrato) {
-
-            contrato.cargarCursosSelect();
-            contrato.loadDatePicker();
-
-            $('#add-servicio').click(function (e) {
-                contrato.addServicio();
-            });
-
-            $('#add-seguro').click(function (e) {
-                contrato.addSeguro();
-            });
-
-            $('#add-destino').click(function (e) {
-                contrato.addDestino();
-            });
-
-            $('#add-documento').click(function (e) {
-                contrato.addDocumento();
-            });
-
-            $('#registrar-input').click(function (e) {
-                contrato.botonFinalizar();
-            });
+            contrato.init();
         });
     </script>
 }

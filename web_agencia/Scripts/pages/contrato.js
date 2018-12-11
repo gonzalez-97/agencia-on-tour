@@ -1,10 +1,38 @@
 ﻿define(["all"], function (all)
 {
     return {
+        init: function ()
+        {
+            all.init();
+            this.cargarCursosSelect();
+            this.loadDatePicker();
+
+            var $this = this;
+            $('#add-servicio').click(function (e) {
+                $this.addServicio();
+            });
+
+            $('#add-seguro').click(function (e) {
+                $this.addSeguro();
+            });
+
+            $('#add-destino').click(function (e) {
+                $this.addDestino();
+            });
+
+            $('#add-documento').click(function (e) {
+                $this.addDocumento();
+            });
+
+            $('#registrar-input').click(function (e) {
+                $this.botonFinalizar();
+            });
+        },
         loadDatePicker: function () {
             $('.datepicker').datetimepicker({
                 format: 'DD/MM/YYYY',
                 showTodayButton: true,
+                minDate: moment(),
                 defaultDate: moment(),
                 locale: 'es',
                 icons: {

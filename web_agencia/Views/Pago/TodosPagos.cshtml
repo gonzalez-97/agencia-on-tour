@@ -60,9 +60,9 @@
         <script data-main="/Scripts/pages/all" src="/Scripts/require.js"></script>
         <script>
             $(document).ready(function () {
-                //Cierra sesion
+                //Cierra sesion y cambia contraseña ver all.js
                 require(['all'], function (all) {
-                    all.closeSesion();
+                    all.init();
                 });
 
                 var table = $('#datatables').DataTable({

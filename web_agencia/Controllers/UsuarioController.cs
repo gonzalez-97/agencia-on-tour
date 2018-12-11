@@ -166,5 +166,31 @@ namespace web_agencia.Controllers
             Usuario_Web user_borrar = new Usuario_Web() { Rut = rut };
             return Json(await user_borrar.DeleteThisAsync(), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [Route("cambiar-password")]
+        public async Task<ActionResult> CambiarPassword(string password, string password_again)
+        {
+            var salida = false;
+            try
+            {
+                var sesion = new SessionUser();
+
+                if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(password_again))
+                    return Json("Las contraseñas no pueden ser vacias.", JsonRequestBehavior.AllowGet);
+
+                if (!password.Equals(password_again))
+                    return Json("Las contraseñas no coinciden.", JsonRequestBehavior.AllowGet);
+
+                Usuario_Web usuario_update = new Usuario_Web() { Rut = sesion.SesionWeb.Rut, Password = password };
+                salida = await usuario_update.UpdatePassword();
+                return Json(salida, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception)
+            {
+                return Json(salida, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@
     {
         init: function ()
         {
-            all.closeSesion();
+            all.init();
             contrato.loadDatePicker();
             this.cargarContrato(this.getIdContratoFromURL());
 

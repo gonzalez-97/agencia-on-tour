@@ -25,3 +25,4 @@
 2018-12-10 00:23:29.8007|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
 2018-12-10 00:23:29.8677|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
 2018-12-10 00:23:29.9107|INFO|agencia_web_api.Models.Perfil_Asociado_Api|Perfil Asociado creado correctamente
+2018-12-10 18:10:57.7807|ERROR|agencia_web_api.Models.Curso_Api|Sequence contains no elements
